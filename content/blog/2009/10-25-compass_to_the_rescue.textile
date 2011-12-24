@@ -1,0 +1,49 @@
+---
+title: Compass to the Rescue
+excerpt: How the Compass CSS &ldquo;Meta-Framework&rdquo; has taken the pain out of my stylesheets. Something for which I am eternally grateful.
+created_at: 2009/10/25
+kind: article
+---
+h3. CSS and Me
+
+For years I've been on the lookout for things that simplify the process of writing CSS because, as I'm a programmer, I "suck at it":http://www.betaversion.org/~stefano/linotype/news/169/. I've tried many times in the past to persevere with my own designs, and although I know how the whole HTML/CSS thing hangs together, I always end up going with a template lifted from the web, with some of my own minor tweaks.
+
+This is probably because I lack the tools to build layouts, as like most non-designers, I don't want to fork out a Photoshop licence fee. So I'm always keen to try out open source tools that make my CSS easier.
+
+h3. CSS for Programmers
+
+The first time I used "SASS":http://sass-lang.com/ I was quite impressed, particularly with the ability to "define variables":http://sass-lang.com/#variables, as it meant that I wouldn't have to use Find and Replace every two minutes. But I still saw it as a second-class offshoot of "HAML":http://haml-lang.com/. Now that I've got to know it I think of it as the preprocessor that CSS has needed for so long.
+
+h4. Greater than the sum of its parts
+
+At the same time as I was initially playing with HAML and SASS, I also came across "Blueprint":http://www.blueprintcss.org/ and thought that it was the answer to my CSS prayers. But after a while I realised that something was still missing. Then I found "Compass":http://compass-style.org/.
+
+Compass calls itself a "Meta-Framework", a term I can't resist (we've reached the point where we have frameworks of frameworks, which makes me chuckle.) It combines the various CSS frameworks (Blueprint, Yahoo! UI, 960 Grid System) with SASS to create something that is much better than the sum of its parts.
+
+By default it uses Blueprint to provide a grid system and baseline. It provides SASS mixins (which you can think of as CSS macros) which allow you to "define your grid in SASS without modifiying the HTML":http://wiki.github.com/chriseppstein/compass/blueprint-documentation-grid-module. I like this as it keeps the layout in the CSS where it belongs.
+
+h4. Good with colours
+
+Compass also features SASS mixins for manipulating colours, via a module named "compass-colors":http://github.com/chriseppstein/compass-colors. The module allows you to lighten and darken colours, and even adjust the hue and saturation:
+
+<pre>!font_color= lighten(#000, 20)
+!other_font_color= adjust-hue(#cc3, 20deg)
+</pre>
+
+I've liked the idea of colour manipulation functions since I first saw them in the "NodeBox Colors":http://nodebox.net/code/index.php/Colors library. Compass-colors helps you to build themes with "complimentary and analogous color mixins":http://chriseppstein.github.com/compass-colors/.
+
+There's also a "link_colors mixin":http://github.com/chriseppstein/compass/blob/master/frameworks/compass/stylesheets/compass/utilities/links/_link_colors.sass which defines all of the colours for the various link pseudo-classes in one mixin call.
+
+*UPDATE:* "compass-colors is now part of SASS":http://nex-3.com/posts/89-powerful-color-manipulation-with-sass as of v2.4
+
+h4. Syntax
+
+My only complaint with SASS is that the syntax seems a little unnatural. Mixins are prefixed with a "+" and variables are prefixed with a "!", which I don't like because it makes conditional statements look a little strange:
+
+<pre>@if !bold
+  font-weight: bold
+</pre>
+
+Which to me reads as "if bold is false, set the font-weight to bold" when in fact it means the opposite. A more standard variable prefix like "$" would have seemed more natural.
+
+But that's just me nit-picking. I love the project after all. If you're a programmer who hates CSS, you really should give SASS and Compass a try.

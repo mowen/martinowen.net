@@ -1,0 +1,31 @@
+---
+title: Blogging with Webby
+excerpt: My experiences of blogging with the Webby static site generator, and not looking back.
+created_at: 2009/10/19
+kind: article
+tags: [tools]
+---
+h3. Blogger's Block
+
+I very rarely blog. I've posted a total of three times in the past eighteen months. Even when I have things to blog about, and I even start a post, other things get in the way and the posts get left on the shelf. I've decided that this is due to two things:
+
+# I don't feel like anyone will want to read a post unless I've spent hours crafting it, and...
+# _Editing posts in Wordpress is a chore_.
+
+There's no easy solution to the first problem, but I think I've found one for the second. Browser-based text-editing is a problem as old as the web, and Wordpress comes with one of the best JavaScript WYSIWYG editors, "TinyMCE":http://tinymce.moxiecode.com/. Tiny is as good a browser-based editor as I've seen, but I've still never been able to get it to work without resorting to editing the HTML manually. That ruins my flow, and in the end the post doesn't get written because I've spent as much time moving text and tags around as I have putting words down.
+
+When WYSIWYG fails, I resort to Textile...
+
+h3. Textile
+
+I _love_ "Textile":http://textism.com/tools/textile/, and always have. I think non-techincal users should give it (or a similar markup generator such as "Markdown":http://daringfireball.net/projects/markdown/) a go. This blog post (allbeit on a website for a Ruby Textile library) agrees with me: "WYSI-Dangerous - Why WYSIWYG editors are bad for your website":http://redcloth.org/articles/wysi-dangerous-why-wysiwyg-editors-are-bad-for-your-website/.
+
+When I see someone struggling with Word I know their life would be so much easier if they just spent an hour (if that) learning Textile and used it for formatting their documents. In the past I have written Ruby code to generate HTML documentation from a Textile source in order to avoid using Word. The documentation was much the better for it. (I plan to upload this to GitHub some day, under the name "Word Must Die.")
+
+h3. Webby
+
+And so I discovered Webby. This isn't the first static site generator written in Ruby that I've played with ("StaticMatic":http://staticmatic.rubyforge.org/ and "Jekyll":http://jekyllrb.com/ being the others) but it is the one I've got along with most easily. _I was very close to going with Jekyll, but I didn't like the lack of support for HAML and didn't want to use a fork._
+
+I'm also using "Ultraviolet":http://ultraviolet.rubyforge.org/ with for syntax highlighting, which uses Textmate bundles to support every language I could ever imagine blogging about.
+
+My setup isn't perfect yet, but with help from existing Webby users (notably "Aaron Qian":http://aaronqian.com/) and "Disqus":http://disqus.com/ for comments, I'm hoping to have something which rivals my old Wordpress install.

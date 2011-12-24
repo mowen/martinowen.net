@@ -1,0 +1,9 @@
+output/*
+tmp/*
+*.swp
+*~
+.DS_Store
+.bundle
+.sass-cache
+output.diff
+Gemfile.lock

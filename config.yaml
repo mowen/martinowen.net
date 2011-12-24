@@ -1,0 +1,41 @@
+--- 
+output_dir: output
+data_sources: 
+- type: filesystem_unified
+  items_root: /
+  layouts_root: /
+
+# Custom settings
+
+text_extensions: [ 'html', 'css', 'haml', 'sass', 'scss', 'erb', 'md', 'textile', 'org' ]
+
+# Use rsync + ssh for live site. To deploy:
+#
+#   % rake deploy:rsync
+deploy:
+  default:
+    dst: "mgutz_com:www/nanoc3_blog"
+    options: ['-ave ssh', '--exclude=.DS_Store', '--exclude=*~']
+
+# domain to which this site is deployed
+base_url: http://martinowen.net
+
+google_analytics:
+  domain: martinowen.net
+  site_id: UA-3614897-1
+
+# currently used by logo
+site_name: martinowen.net
+
+# number of full featured posts to display on front
+featured_count: 0
+
+# number of excerpted posts to display on front
+excerpt_count: 10
+
+# number of other articles to reference at bottom of each article
+other_articles_max: 3
+
+# DISQUS Site Shortname. Comment out to disable.
+disqus_shortname: martinowen
+

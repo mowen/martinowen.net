@@ -1,0 +1,57 @@
+--- 
+title: How to use FuncUnit with Sauce Labs
+tags: [testing, javascript, funcunit]
+created_at: 2011/05/14
+kind: article
+excerpt: How to use the FuncUnit web application testing framework with cloud-based Selenium service Sauce Labs
+--- 
+h3. Functional web application testing with FuncUnit
+
+p. We've recently started using the "FuncUnit":http://funcunit.com/ automated web application testing framework where I work. It is built on top of "Selenium":http://seleniumhq.org/, but adds a lot of value as it uses jQuery's selector syntax, which is much easier to work with than Selenium's XPath selectors.
+
+p. FuncUnit also provides "many helper functions":http://javascriptmvc.com/docs/FuncUnit.html#&who=mastering for waiting until elements exist on the page. This is invaluable if you are doing a lot of DOM manipulation in your application, which we certainly are.
+
+h3. Cross-browser testing with Sauce Labs
+
+p. Something we wanted to do with our functional testing was run the tests in different browser environments using the cloud-based cross-browser testing service "Sauce Labs":http://saucelabs.com/, as this would save us from having to install older versions of various browsers. I wasn't sure if this was going to be possible, but with "some advice from Brian Moschel":http://forum.javascriptmvc.com/#topic/32525000000389015 I was able to get it working.
+
+h3. How to combine the two
+
+p. FuncUnit loads its Selenium settings from a file named @settings.js@ which should be located in the same directory as your FuncUnit test page. In order to use Sauce Labs as your Selenium server when running FuncUnit, you need the following code in your settings.js:
+
+<notextile><code class="language-javascript">FuncUnit = {
+    browsers: [
+        JSON.stringify({ 
+            username: "<%= h '<your Sauce Labs username>' %>",
+            "access-key": "<%= h '<your Sauce Labs Api Key>' %>",
+            os: "Windows 2003",
+            browser: "firefox",
+            "browser-version": "3.6.",
+            name: "My Tests",
+            "user-extensions-url": "http://<%= h '<your server>' %>/funcunit/java/user-extensions.js"
+        })
+    ],
+   
+    serverHost: 'ondemand.saucelabs.com',
+    serverPort: 80,
+    
+    jmvcRoot: 'http://<%= h '<your server>' %>/'
+};
+</code></notextile>
+
+p. _You will of course have to sign up for a free account with Sauce Labs to obtain a username and access-key, and make your application publicly available._
+
+p. This uses the Sauce Labs' "JSON config":http://saucelabs.com/docs/sauce-ondemand#json-config as the browser string, and also specifies their server as the server host. The JSON config tells Sauce Labs to load a Selenium user-extensions file, which bundles all of the JavaScript code that implements FuncUnit. I had to make this publicly available on my server as there is no way to upload this to Sauce Labs in advance.
+
+p. If you now run the HTML page that contains your FuncUnit tests like so:
+
+<pre>./funcunit/envjs path/to/funcunit.html
+</pre>
+
+p. The settings in @settings.js@ will be loaded and the tests will be run on Sauce Labs' machines, not yours. As long as you open your pages in your tests using @S.open('//index.html')@ the jmvcRoot will be applied and you will be able to test locally as well as with Sauce Labs.
+
+h3. Something to note
+
+p. I wouldn't recommend running tests on Sauce Labs very often, as it is much slower than running locally, and isn't possible to debug.
+
+p. The best way to run tests during development is to open your @funcunit.html@ page in the browser you want to test in, the tests will then execute very quickly in a pop-up window.

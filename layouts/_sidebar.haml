@@ -1,0 +1,10 @@
+---
+---
+%ul
+  - sorted_articles.each do |item|
+    %li
+      %h3
+        %time(datetime="#{item[:created_at].gsub('/', '-')}")
+          = item[:created_at]
+        %a(href="#{route_path(item)}" title="#{item[:excerpt] || ''}")
+          = "&raquo; #{item[:title]}"

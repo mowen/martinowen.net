@@ -1,0 +1,29 @@
+---
+title: Playing with Mozilla Ubiquity
+excerpt: Getting to know Mozilla's impressive new Ubiquity Firefox extension, and my experiences of working on a command for it.
+created_at: 2009/11/14
+kind: article
+---
+I took a look at "Mozilla Ubiquity":https://mozillalabs.com/ubiquity/ recently, which is best described as an attempt at a natural language launcher for web services. It reminds me of the Mac launcher app "Quicksilver":http://en.wikipedia.org/wiki/Quicksilver_%28software%29. For example, if you type "weather liverpool" into it, you get the weather for Liverpool.
+
+I personally really like this kind of thing because it means that I don't have to use the mouse.
+
+h3. The built-in commands
+
+Ubiquity comes with a number of built-in commands which I'm sure you can imagine:
+
+* @imdb star wars@ will take you to the Star Wars page on the IMDB.
+* @lookup gandhi@ will take you to the Gandhi entry of Wikipedia.
+* @tweet The text of a Tweet@ will post a Tweet.
+* @map 10 downing street london@ will get you a Google Map of the British Prime Minister's house.
+* @translate english spanish@ will Google Translate the selected text from English to Spanish.
+
+h3. Playing with a command
+
+Soon after installing Ubiquity and playing with the built-in commands, I found a "BBC iPlayer command":http://github.com/elson/ubiquity-bbc-iplayer that needed upgrading to the latest language API. I found this to be quite difficult, because there isn't a great deal of support for debugging Ubiquity commands at the moment.
+
+If you're going to try to develop commands, I'd suggest using the @CmdUtils.log()@ utility function to write debug messages to the console log in Firebug. The messages will only appear if you have turned on "Show Chrome Messages" on the Console menu.
+
+I eventually got the command working and the changes were merged into the master branch.
+
+*UPDATE 2010/03:* Ubiquity has now been put on the back-burner by Mozilla, in favour of "Jetpack":https://jetpack.mozillalabs.com/. As the developers found it quite difficult to upgrade the latest version to work with Firefox 3.6, only the earlier 0.1 version of the extension has been upgraded to work with it.

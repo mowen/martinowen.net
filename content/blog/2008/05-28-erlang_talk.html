@@ -1,0 +1,50 @@
+--- 
+title: Erlang Talk - Why Functional Programming?
+excerpt: A summary of a talk I gave on Erlang at Liverpool GeekUp.
+created_at: 2008/05/28
+kind: article
+tags: [erlang, liverpool, slides]
+---
+<p><a href='/assets/files/erlangtalk.pdf'>Erlang Talk May 2008</a></p>
+<p>I gave another talk at Liverpool <a href="http://geekup.org">GeekUp</a>, a shorter one this time on Erlang, Ericsson&#8217;s programming language and application platform which is being applied in back-end web projects at places such as Amazon and Facebook (SimpleDB and Facebook Chat respectively). It was a follow on from both <a href="http://blog.cwa.me.uk/2008/05/18/f-presentation-slides-and-demos/">Chris Alcock&#8217;s F# talk</a> at the <a href="http://liverpool.usersof.net/">Liverpool .<span class="caps">NET</span> User Group</a> and my own Comet talk the month before (as Erlang is used as the back-end of Facebook&#8217;s new chat Comet implementation.)</p>
+<p>I didn&#8217;t want to just post the slides as the talk was intentionally short and there are a number of great links (some that I&#8217;ve only discovered since the talk) that I have to point people towards. I also wanted to make a few points about what Erlang is and what it isn&#8217;t. For one thing, it is certainly&#8230;</p>
+<h3>&#8230;Not Just Another Programming Language</h3>
+<p>I&#8217;ve got the feeling from people who have heard about Erlang but not looked into it that they&#8217;re expecting it to be the new Java/C#/<span class="caps">PHP</span>/Ruby (insert language of choice) and they&#8217;ll just use it for the same standard everyday tasks that they use language X for. Unless you spend your days writing servers (of whatever description) then that is unlikely to be the case. Yariv Sadan is working hard to persuade people that Erlang is <a href="http://yarivsblog.com/articles/2008/05/28/announcing-twoorl-an-open-source-erlyweb-based-twitter-clone/">a great platform for writing web apps</a>, but I&#8217;m not convinced, at least not for the front-end.</p>
+<p>A few years ago <a href="http://steve.yegge.googlepages.com/language-trickery-and-ejb">Steve Yegge blogged at Amazon</a> (skip down to <em>Syntax for distributed computing</em>) about a language called Erlang that had special syntax designed specifically for its problem domain:</p>
+<blockquote>
+<p>So Ericsson engineers decided to solve our problem, the one we&#8217;re talking about hurling J2EE books at in the hopes of stunning it, with a new programming language made just for distributed computing. They cleverly called it &#8220;Ericsson Language&#8221;, or Erlang for short.</p>
+<p>They created syntax for the network calls, for running distributed processes, for doing peer reelections, restarting processes, for doing asynchronous event-based messaging, for doing exponential backoff and retry, all kinds o&#8217; stuff.</p>
+<p>Rumor has it that they&#8217;ve built themselves one of the largest real-time, transactional distributed systems in the world, using only about a million lines of Erlang code, which they estimate would be about 20 million lines of buggy C/C++ code.</p>
+<p>Go figure.</p>
+</blockquote>
+<p>Steve has made the point (read the entire post for a more in-depth view) that <strong>language matters</strong> and some problems are so hard to solve that they need a language that is designed specifically for solving them. The problem in this case is writing software that can run on a number of different CPUs (distributed or otherwise) in such a way that those CPUs block each other as little as possible. As the amount of speed that can be wrung out of a single <span class="caps">CPU</span> has peaked, Erlang&#8217;s approach to software has attracted attention.</p>
+<p>So why is Erlang so well equipped for parallelism? Simple&#8230;</p>
+<h3>Single Assignment Semantics</h3>
+<p>I grumbled at Chris&#8217; talk that F# seemed <em>too imperative</em> and that I thought Erlang justified its use of functional language features better. My main gripe was the lack of single-assignment semantics. To me <span class="caps">SAS</span> is Erlang&#8217;s killer feature, and the reason people are seeing it as a solution to programming for multi-core processors. If shared variables can&#8217;t be reassigned, then you avoid all of the headaches associated with traditional thread-based concurrency. It also does away with locks completely, meaning that processes are much less likely to wait on each other, and linear speed-ups on multi-core machines become much more likely.</p>
+<p>Erlang is very strict on immutability &#8211; once a variable has been assigned then it can&#8217;t be reassigned. Seriously. Kiss goodbye to reassignment while you&#8217;re working with Erlang, <em>even with local variables</em>. If you really want to do it you just have to create a new variable:</p>
+
+<notextile><code class="language-erlang">Num = 12,
+Num2 = Num + 1
+</code></notextile>
+
+<p>(<em>Note that if you need to do this you&#8217;re <a href="http://weblog.hypotheticalabs.com/?p=281">probably doing it wrong</a>.</em>)</p>
+<p>It may seem <em>too</em> strict to restrict the reassignment of local variables. I found an excellent post by Luke Hoersten <a href="http://humani.st/why-make-erlang-a-functional-language/">Why Make Erlang a Functional Language?</a> in which he argues that extending <span class="caps">SAS</span> to local variables adds efficiencies to the language which compensate for the overheads of message passing. Whether you agree with that argument or not, you&#8217;ll find that while working with Erlang you&#8217;ll rarely need to reassign a variable, precisely because of Erlang&#8217;s functional language features. Here&#8217;s a quick <code>length()</code> example:</p>
+
+<notextile><code class="language-erlang">length(List) -> length(List, 0).
+length([], Count) -> Count;
+length([Head|Tail], Count) ->
+  length(Tail, Count + 1).
+</code></notextile>
+
+<p>The function uses recursion to iterate over the list and increment a counter without reassigning any local variables. Therefore Erlang justifies its use of functional programming features. Hence my talk.</p>
+<h3>Further Reading</h3>
+<p>Here are some Erlang links that I think are worth checking out:</p>
+<ul>
+	<li><a href="http://www.planeterlang.org">Planet Erlang</a> is a Digg-style site for Erlang content, it&#8217;s down at the time of writing, I assume it&#8217;ll be back up soon.</li>
+	<li><a href="http://yarivsblog.com/">Yariv Sadan&#8217;s blog</a> is an excellent Erlang resource.</li>
+	<li>Kevin Smith, author of a number of <a href="http://pragprog.com/screencasts/v-kserl/erlang-in-practice">Erlang screencasts for the Pragmatic Programmers</a>, has a good <a href="http://weblog.hypotheticalabs.com/">Erlang blog</a></li>
+	<li>Gordon Guthrie, <span class="caps">CEO</span>/<span class="caps">CTO</span> of startup <a href="http://hypernumbers.com">Hypernumbers</a> wrote a good overview of Erlang for Scenius called <a href="http://oreillygmt.typepad.com/scenius/2008/02/erlang-the-ceos.html">Erlang the CEOs Point of View</a></li>
+	<li>CouchDB developer Damien Katz wrote a good post entitled <a href="http://damienkatz.net/2008/03/what_sucks_abou.html">What Sucks About Erlang</a></li>
+	<li>The aforementioned Luke Hoersten has written a tutorial about developing <a href="http://humani.st/scalable-web-apps-erlang-python/">Scalable Web Apps with Erlang &amp; Python</a>. Like I said, Erlang is really a back-end language &#8211; there are better choices for front-end code, but there is no reason why they can&#8217;t work together.</li>
+</ul>
+<p>There&#8217;s also <a href="http://www.youtube.com/watch?v=uKfKtXYLG78">an unintentionally funny promotional film</a> that Ericsson made about Erlang. I deliberately avoided embedding it here, because you would probably have just skipped to it and got quite a bad impression of the language!</p>

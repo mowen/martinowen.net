@@ -1,0 +1,20 @@
+--- 
+title: Comet Talk
+excerpt: Links on the subject of Comet, and the talk I gave at Liverpool GeekUp on it.
+created_at: 2008/04/28
+kind: article
+tags: [javascript, liverpool, slides]
+---
+I'm due to give a talk on "Comet":http://en.wikipedia.org/wiki/Comet_%28programming%29 at Liverpool <a href="http://www.geekup.org" target="_blank">GeekUp</a> tomorrow, and the slides should surface here at some point. In the meantime, I'll provide the links that furnished me with so much inspiration. Start with the ones at the top first:
+
+* "Comet works, and it's easier than you think":http://simonwillison.net/2007/Dec/5/comet/ - Simon Willison's excellent introduction to Comet from December. Thank you Simon.
+* "Comet (programming)":http://en.wikipedia.org/wiki/Comet_%28programming%29 - Comet Wikipedia entry.
+* "Comet Daily":http://www.cometdaily.com - blog with contributions from project leads on various Comet implementations, launched back in October.
+* "Slides from Simon's talk at the Yahoo! Web Development Summit in December":http://www.slideshare.net/simon/time-for-comet/ - I didn't want to go into too much detail in my talk about the various hacks involved in implementing cross-browser HTTP streaming, so I'm just going to tell people to check out Simon's slides (the streaming hacks start at slide 24). Thank you again Simon!
+* "Cometd Project":http://cometd.com/
+* "Jetty Wiki":http://docs.codehaus.org/display/JETTY/Jetty+Wiki - Jetty is the server (recommended in Simon's talk) that I'm going to use for a demo in the talk. The demo is included in the Jetty distribution.
+* "The Bayeux Protocol":http://svn.xantus.org/shortbus/trunk/bayeux/bayeux.html - if you _really_ want to read it - I already have!
+
+The Upcoming page for the talk is "here":http://upcoming.yahoo.com/event/452594/.
+
+*UPDATE:* "Here are the slides.":/assets/files/comettalk.pdf

@@ -1,0 +1,86 @@
+---
+title: Tips for using Emacs Ibuffer
+excerpt: Some settings for the Emacs Ibuffer mode, vital for managing large numbers of buffers.
+created_at: 2010/02/03
+tags: [emacs]
+kind: article
+---
+I've found that one of the most useful features of Emacs is also one of the most sparsely documented: "Ibuffer":http://www.emacswiki.org/emacs/IbufferMode. It provides a way of filtering and then grouping the list of buffers that you currently have open, and greatly improves Emacs' usability.
+
+!/assets/images/ibuffer.jpg!
+
+h3. Using Ibuffer
+
+First of all, rebind the standard buffer list key binding @C-x C-b@ to use Ibuffer:
+
+<notextile><code class="language-lisp">(global-set-key (kbd "C-x C-b") 'ibuffer) ;; Use Ibuffer for Buffer List
+</code></notextile>
+
+Once you've used Ibuffer you won't be going back so you should put this in your .emacs.
+
+h4. Defining your filter groups
+
+You can define your filters and groups in the buffer list itself, but I find that it is easier to specify them in my .emacs:
+
+<notextile><code class="language-lisp">(setq ibuffer-saved-filter-groups
+      '(("home"
+	 ("emacs-config" (or (filename . ".emacs.d")
+			     (filename . "emacs-config")))
+         ("martinowen.net" (filename . "martinowen.net"))
+	 ("Org" (or (mode . org-mode)
+		    (filename . "OrgMode")))
+         ("code" (filename . "code"))
+	 ("Web Dev" (or (mode . html-mode)
+			(mode . css-mode)))
+	 ("Subversion" (name . "\*svn"))
+	 ("Magit" (name . "\*magit"))
+	 ("ERC" (mode . erc-mode))
+	 ("Help" (or (name . "\*Help\*")
+		     (name . "\*Apropos\*")
+		     (name . "\*info\*"))))))
+</code></notextile>
+
+I then load the saved filter group by name in the @ibuffer-mode-hook@ so that a particular filter is always loaded automatically:
+
+<notextile><code class="language-lisp">(add-hook 'ibuffer-mode-hook 
+	  '(lambda ()
+	     (ibuffer-switch-to-saved-filter-groups "home")))
+</code></notextile>
+
+I actually have different filter groups for work and home, and load them according to a global @location@ variable.
+
+h3. Other useful options
+
+There are a few other useful options that I didn't find out about until I looked through the source:
+
+h4. ibuffer-expert
+
+Unless you turn this variable on you will be prompted every time you want to delete a buffer, even unmodified ones, which is way too cautious for most people. You'll still be prompted for confirmation when deleting modified buffers after the option has been turned off.
+
+<notextile><code class="language-lisp">(setq ibuffer-expert t)
+</code></notextile>
+
+h4. ibuffer-show-empty-filter-groups
+
+Turning off @ibuffer-show-empty-filter-groups@ is particularly useful, because the empty filter groups can really clutter things up.
+
+<notextile><code class="language-lisp">(setq ibuffer-show-empty-filter-groups nil)
+</code></notextile>
+
+h4. ibuffer-auto-mode
+
+@ibuffer-auto-mode@ is a minor mode that automatically keeps the buffer list up to date. I turn it on in my @ibuffer-mode-hook@:
+
+<notextile><code class="language-lisp">(add-hook 'ibuffer-mode-hook 
+	  '(lambda ()
+	     (ibuffer-auto-mode 1)
+	     (ibuffer-switch-to-saved-filter-groups "home")))
+</code></notextile>
+
+h3. Filtering Dired buffers by filename
+
+This is something I had a problem with when I upgraded to Emacs 23.1. The latest version of Ibuffer doesn't filter Dired buffers by the filename of the directory. This isn't what I want - if I specify I filename filter I want any buffer with that filename to appear.
+
+Rather than doing diffs against the 22.3 versions of the Ibuffer files to determine the changes (and possibly undo them) I've just copied the old versions from the 'lisp' directory of Emacs 22.3 To a 'vendor' directory in my .emacs.d and loaded that.
+
+If I find a better way to solve this problem I'll post an update.

@@ -1,0 +1,252 @@
+@mixin header-font-style($bold: true) {
+    font-family: $header_font;
+    letter-spacing: -0.04em;
+    @if $bold {
+	font-weight: bold; } }
+
+@mixin include_link_icons {
+    a[href^="mailto:"] {
+	@include link-icon(unquote("email.png")); }
+    a[href$=".pdf"] {
+	@include link-icon(unquote("pdf.png")); }
+    a[href$=".doc"] {
+	@include link-icon(unquote("doc.png")); }
+    a[href$=".xls"] {
+	@include link-icon(unquote("xls.png")); }
+    a.atom-feed,
+    a[href$=".rss"],
+    a[href$=".rdf"] {
+	@include link-icon(unquote("feed.png")); }
+    a.noicon {
+	@include no-link-icon; } }
+
+@mixin social-icon-base {
+    padding-left: 20px;
+    background-repeat: no-repeat;
+    background-position: left center; }
+
+@mixin include_social_icons {
+    a.delicious {
+	@include link-icon(unquote("social_icons/delicious_16.png"), false); }
+    a.twitter {
+	@include link-icon(unquote("social_icons/twitter_16.png"), false); }
+    a.lastfm {
+	@include link-icon(unquote("social_icons/lastfm_16.png"), false); }
+    a.facebook {
+	@include link-icon(unquote("social_icons/facebook_16.png"), false); }
+    a.flickr {
+	@include link-icon(unquote("social_icons/flickr_16.png"), false); }
+    a.github {
+	@include link-icon(unquote("social_icons/github_16.png"), false); }
+    a.linkedin {
+	@include link-icon(unquote("social_icons/linkedin_16.png"), false); }
+    a.friendfeed {
+	@include link-icon(unquote("social_icons/friendfeed_16.png"), false); }
+    a.delicious, a.twitter, a.lastfm,
+    a.facebook, a.flickr, a.github,
+    a.linkedin, a.friendfeed {
+	@include social-icon-base; } }
+
+// Compass imports
+@import "compass/reset";
+@import "compass/layout";
+@import "compass/layout/grid-background";
+@import "compass/css3/border-radius";
+@import "compass/css3/text-shadow";
+@import "compass/css3/box-shadow";
+@import "compass/typography/links";
+@import "compass/typography/lists/bullets";
+@import "compass/typography/vertical_rhythm";
+
+// Compass variables
+$base-font-size: 16px;
+$base-line-height: 24px;
+$default-rhythm-border-style: solid;
+$grid-background-baseline-height: $base-line-height;
+$show-grid-backgrounds: false;
+
+// Blueprint imports
+@import "blueprint/colors";
+@import "blueprint/grid";
+@import "blueprint/link-icons";
+
+// Blueprint variables
+$blueprint_fixed_font_family: unquote("Inconsolata"), Monaco, unquote("Courier New"), Courier;
+$blueprint_grid_columns: 24;
+$blueprint_container_size: 950px;
+$blueprint_grid_margin: 10px;
+$blueprint_grid_width: ($blueprint_container_size + $blueprint_grid_margin) / $blueprint_grid_columns - $blueprint_grid_margin;
+
+$header_font: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+$body_font: Georgia;
+$font_color: lighten(black, 20);
+$background_color: darken(white, 20);
+$post_background: #f0f0f0;
+$post_header_background: #eeffff;
+
+$link_color: lighten(black, 20);;
+$link_hover_color: lighten(black, 60);
+$link_active_color: $link_hover_color;
+$link_visited_color: lighten(black, 40);
+$link_focus_color: $link_hover_color;
+
+@include establish-baseline;
+
+#main {
+    @include container;
+    @include grid-background; }
+
+#main > header, #main > footer {
+    @include column($blueprint_grid_columns); }
+
+#main > footer {
+    @include leader(1);
+    @include trailer(1); }
+
+#other-articles .older { @include column($blueprint_grid_columns/2); }
+#other-articles .newer { @include column($blueprint_grid_columns/2, true); }
+
+body {
+    @include include_link_icons;
+    @include include_social_icons;
+
+    font-family: $body_font;
+    background-color: $background_color;
+
+    @include text-shadow(0px 1px 0px white);
+
+    time {
+	float: left;
+	padding-right: 5px;
+        @include header-font-style; }
+
+    nav {
+	ul {
+	    @include no-bullets; } }
+
+    a {
+	@include link-colors($link_color, $link_hover_color, $link_active_color, $link_visited_color, $link_focus_color);
+	text-decoration: none; }
+
+    h1, h2, h3, h4, h5, h6 {
+	@include header-font-style; }
+
+    #main > header {
+
+	h1 {
+	    @include adjust-font-size-to(50px);
+	    @include text-shadow(0px 2px 0px white); }
+	a {
+	    text-decoration: none;
+	    border: none;
+	    @include link-colors(black, black, black, black, black);
+	    @include header-font-style; }
+	nav {
+	    li {
+		@include adjust-font-size-to(30px);
+		display: inline;
+		margin-right: 50px; } } }
+
+    #main > section {
+	@include column($blueprint_grid_columns - 2, true);
+	@include box-shadow;
+	@include border-radius(15px);
+
+	/* I got this from rhythm-border */
+	padding: 1.438em;
+	border: 0.063em solid #555; }
+
+    .excerpt {
+	@include column($blueprint_grid_columns);
+	@include margin-trailer(1); }
+
+    article {
+	@include column($blueprint_grid_columns - 8);
+	@include box-shadow;
+	@include border-radius(15px);
+
+	/* I got this from rhythm-border */
+	padding: 1.438em;
+	border: 0.063em solid #555;
+
+	header {
+	    h1 { @include adjust-font-size-to(40px); }
+	    h2 { @include adjust-font-size-to(30px); }
+
+	    h1 {
+		@include margin-trailer(0.5); } }
+
+        p, pre, ul, ol {
+	    @include margin-trailer(1); }
+
+	h1 { @include adjust-font-size-to(28px); }
+	h2 { @include adjust-font-size-to(25px); }
+	h3 { @include adjust-font-size-to(22px); }
+	h4 { @include adjust-font-size-to(18px); }
+	h5 { @include adjust-font-size-to(17px); }
+
+	.body {
+	    @include margin-leader(1);
+
+            h1, h2, h3, h4, h5, h6 {
+		@include margin-trailer(0.5); }
+
+	    ul, ol {
+		@include pretty-bullets("bullet_black.png", 15px, 15px, $base-line-height, 25px); } } }
+    
+    #sidebar {
+	$sidebar_columns: 6;
+	@include column($sidebar_columns, true);
+	li {
+	    @include padding-trailer(0.5); }
+	a {
+	    @include header-font-style;
+	    border-bottom: none; } }
+
+    ul.tags {
+	li {
+	    display: inline; } }
+
+    .post-date {
+	@include header-font-style(false);
+	color: $quiet-color; }
+
+    .posts-list {
+	margin-left: 0px;
+	@include no-bullets;
+	a {
+	    @include header-font-style;
+	    border-bottom: none; } }
+    
+    pre, code {
+	@include text-shadow(0px 0px 0px gray); 
+	font-family: $blueprint_fixed_font_family; }
+
+    pre {
+	display: block;
+	background: #222;
+	color: #6f6;
+	padding-left: 0.6em;
+	padding-right: 0.6em;
+	overflow: auto;
+	@include border-radius(5px);
+	@include box-shadow; }
+
+    p, li {
+	code {
+	    @include border-radius(4px); } }
+    img {
+	border: 2px solid #e0e0e0; }
+    #main {
+	.post {
+	    h2 {
+		a {
+		    border-bottom: none; } }
+	    time.post-date, p.post-summary {
+		@include header-font-style;
+		color: $quiet-color;
+		/* Style below stolen from h3.
+		   TODO: This shouldnt be hard-coded!!!! */
+		font-size: 1.5em;
+		margin-bottom: 1em; } } } }
+

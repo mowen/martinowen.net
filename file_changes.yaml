@@ -1,0 +1,157 @@
+--- 
+:"content/2009/12-31-end_of_year.haml": 
+  :created_at: 2009/12/31
+  :updated_at: 2010-06-15 23:14:42 +01:00
+  :digest: a26aafbc69e5e95b7fe2b258bef9513fadfdce5c
+:"content/2010/01-01-ruby_article.haml": 
+  :created_at: 2010/01/01
+  :updated_at: 2010-06-15 23:14:42 +01:00
+  :digest: 35eab6135db6e757cbec195f0d31d1ceb1b7c4d1
+:"content/2010/01-03-stylesheet_article.haml": 
+  :created_at: 2010/01/03
+  :updated_at: 2010-06-15 23:14:42 +01:00
+  :digest: f2a1d55406e72627d1b85366492f38570f9ff000
+:"content/2010/01-13-erb-markdown-test.html.md": 
+  :created_at: 2010/01/13
+  :updated_at: 2010-06-15 23:14:42 +01:00
+  :digest: b0b78b830d428a5ec9015c0decccaf5cde7d6653
+:"content/2010/01-14-markdown-test.md": 
+  :created_at: 2010/01/14
+  :updated_at: 2010-06-15 23:14:42 +01:00
+  :digest: 290196131b48b501ad9c5f340b63039991e490d9
+:"content/2010/01-15-getting_started_with_nanoc3_blog.html.md": 
+  :created_at: 2010/01/15
+  :updated_at: 2010-06-15 23:45:40 +01:00
+  :digest: b83ea94d2919845a9f25c4a5b597ebdcbe660809
+:"content/2009/03-10-my_10_favourite_things_about_git.textile": 
+  :created_at: 2009/08/10
+  :updated_at: 2011-06-04 14:13:43 +01:00
+  :digest: 3aab2a6b8d059cb6b444fabdce1ae1ae287d5ce8
+:"content/2009/08-10-my_5_favourite_things_about_git.textile": 
+  :created_at: 2009/08/10
+  :updated_at: 2011-06-04 14:13:43 +01:00
+  :digest: 3aab2a6b8d059cb6b444fabdce1ae1ae287d5ce8
+:"content/2009/01-12-barcamp_liverpool.html": 
+  :created_at: 2009/01/12
+  :updated_at: 2011-06-04 14:27:58 +01:00
+  :digest: 7abdc494c3b3cbf2a772bfb3725822c12a64d0ef
+:"content/2011/05-14-func_unit_and_sauce_labs.textile": 
+  :created_at: 2011/05/14
+  :updated_at: 2011-06-04 16:26:44 +01:00
+  :digest: 4650af9f67344d0757c84bc8373c6b6ba3feaf27
+:"content/2010/02-03-tips_for_emacs_ibuffer.textile": 
+  :created_at: 2010/02/03
+  :updated_at: 2011-06-04 16:42:42 +01:00
+  :digest: ce4da4bbdc4c27510ebda80470a8de349f5d58c0
+:"content/2010/02-03-tips-for-emacs-ibuffer.textile": 
+  :created_at: 2010/02/03
+  :updated_at: 2011-06-04 16:42:42 +01:00
+  :digest: ce4da4bbdc4c27510ebda80470a8de349f5d58c0
+:"content/2010/21-07-a-git-kata.textile": 
+  :created_at: 2010/07/21
+  :updated_at: 2011-06-04 21:28:30 +01:00
+  :digest: e27ffcd1d84f747642a11ab4189def2efa3a4eaa
+:"content/2009/11-14-playing-with-mozilla-ubiquity.textile": 
+  :created_at: 2009/11/14
+  :updated_at: 2011-06-04 21:31:44 +01:00
+  :digest: fbc2cc3e7b67d72075ba45ec859a6474633a4877
+:"content/2009/10-19-blogging-with-webby.textile": 
+  :created_at: 2009/10/19
+  :updated_at: 2011-06-04 21:36:45 +01:00
+  :digest: 2945e285f262108f53357c6a6e0a92f33f95bb35
+:"content/2009/10-25-compass-to-the-rescue.textile": 
+  :created_at: 2009/10/25
+  :updated_at: 2011-06-04 21:35:37 +01:00
+  :digest: 91526a380fe351bdadfbe6340b776d7b6c197674
+:"content/2009/07-11-i-heart-org-mode.textile": 
+  :created_at: 2009/11/07
+  :updated_at: 2011-06-04 21:39:04 +01:00
+  :digest: c4c6d8d7b289aae8edb1c682b25fa774287a0d22
+:"content/2008/05-28-erlang-talk.html": 
+  :created_at: 2008/05/28
+  :updated_at: 2011-06-04 21:50:06 +01:00
+  :digest: fb52bd7d9ebb913e40022903f6e3d804da10c5dd
+:"content/2009/06-01-twitter-racing-at-howduino-liverpool.textile": 
+  :created_at: 2009/06/01
+  :updated_at: 2011-06-04 21:52:21 +01:00
+  :digest: 5402180b2111ebe24586e55468cc8b9b7c593e76
+:"content/2009/08-10-my-5-favourite-things-about-git.textile": 
+  :created_at: 2009/08/10
+  :updated_at: 2011-06-04 16:31:03 +01:00
+  :digest: 3aab2a6b8d059cb6b444fabdce1ae1ae287d5ce8
+:"content/2008/04-28-comet-talk.textile": 
+  :created_at: 2008/04/28
+  :updated_at: 2011-06-04 21:49:52 +01:00
+  :digest: ff5c2fb2026860361bda5c29602c394abfc3cc28
+:"content/2011/05-14-func-unit-and-sauce-labs.textile": 
+  :created_at: 2011/05/14
+  :updated_at: 2011-06-04 16:30:03 +01:00
+  :digest: 4650af9f67344d0757c84bc8373c6b6ba3feaf27
+:"content/2008/04-28-comet_talk.textile": 
+  :created_at: 2008/04/28
+  :updated_at: 2011-06-04 21:49:52 +01:00
+  :digest: ff5c2fb2026860361bda5c29602c394abfc3cc28
+:"content/2008/05-28-erlang_talk.html": 
+  :created_at: 2008/05/28
+  :updated_at: 2011-06-04 21:50:06 +01:00
+  :digest: fb52bd7d9ebb913e40022903f6e3d804da10c5dd
+:"content/2009/06-01-twitter_racing_at_howduino_liverpool.textile": 
+  :created_at: 2009/06/01
+  :updated_at: 2011-06-04 21:52:21 +01:00
+  :digest: 5402180b2111ebe24586e55468cc8b9b7c593e76
+:"content/2009/10-19-blogging_with_webby.textile": 
+  :created_at: 2009/10/19
+  :updated_at: 2011-06-04 21:37:42 +01:00
+  :digest: 2945e285f262108f53357c6a6e0a92f33f95bb35
+:"content/2009/10-25-compass_to_the_rescue.textile": 
+  :created_at: 2009/10/25
+  :updated_at: 2011-06-04 21:35:37 +01:00
+  :digest: 91526a380fe351bdadfbe6340b776d7b6c197674
+:"content/2009/11-14-playing_with_mozilla_ubiquity.textile": 
+  :created_at: 2009/11/14
+  :updated_at: 2011-06-04 21:31:44 +01:00
+  :digest: fbc2cc3e7b67d72075ba45ec859a6474633a4877
+:"content/blog/2008/04-28-comet_talk.textile": 
+  :created_at: 2008/04/28
+  :updated_at: 2011-06-04 21:49:52 +01:00
+  :digest: ff5c2fb2026860361bda5c29602c394abfc3cc28
+:"content/blog/2008/05-28-erlang_talk.html": 
+  :created_at: 2008/05/28
+  :updated_at: 2011-08-27 22:01:28 +01:00
+  :digest: f37e02fd95c2392c1d5fb24821b2310e61595fc5
+:"content/blog/2009/01-12-barcamp_liverpool.html": 
+  :created_at: 2009/01/12
+  :updated_at: 2011-06-04 16:30:52 +01:00
+  :digest: 7abdc494c3b3cbf2a772bfb3725822c12a64d0ef
+:"content/blog/2009/06-01-twitter_racing_at_howduino_liverpool.textile": 
+  :created_at: 2009/06/01
+  :updated_at: 2011-06-04 21:52:21 +01:00
+  :digest: 5402180b2111ebe24586e55468cc8b9b7c593e76
+:"content/blog/2009/08-10-my_5_favourite_things_about_git.textile": 
+  :created_at: 2009/08/10
+  :updated_at: 2011-06-04 16:31:03 +01:00
+  :digest: 3aab2a6b8d059cb6b444fabdce1ae1ae287d5ce8
+:"content/blog/2009/10-19-blogging_with_webby.textile": 
+  :created_at: 2009/10/19
+  :updated_at: 2011-06-04 21:37:42 +01:00
+  :digest: 2945e285f262108f53357c6a6e0a92f33f95bb35
+:"content/blog/2009/10-25-compass_to_the_rescue.textile": 
+  :created_at: 2009/10/25
+  :updated_at: 2011-08-27 22:10:35 +01:00
+  :digest: 91526a380fe351bdadfbe6340b776d7b6c197674
+:"content/blog/2009/11-14-playing_with_mozilla_ubiquity.textile": 
+  :created_at: 2009/11/14
+  :updated_at: 2011-06-04 21:31:44 +01:00
+  :digest: fbc2cc3e7b67d72075ba45ec859a6474633a4877
+:"content/blog/2010/02-03-tips_for_emacs_ibuffer.textile": 
+  :created_at: 2010/02/03
+  :updated_at: 2011-08-28 08:52:15 +01:00
+  :digest: d4aba5a98e5d17e70e302dcdecea76a025fc5336
+:"content/blog/2011/05-14-func_unit_and_sauce_labs.textile": 
+  :created_at: 2011/05/14
+  :updated_at: 2011-08-27 21:59:57 +01:00
+  :digest: ca0217138e7870eb5f806418ca919662e40e26f5
+:"content/blog/2011/08-27-i_love_everyone.org": 
+  :created_at: 2011/08/27
+  :updated_at: 2011-08-27 22:06:20 +01:00
+  :digest: 1f454fe3e9f0c259ad585ff377e91013bc5177bb

@@ -1,0 +1,11 @@
+---
+---
+.excerpt
+  - url = "#{route_path(item)}"
+  %time(datetime="#{item[:created_at].gsub('/','-')}")<= item[:created_at]
+  %h2<
+    %a(href="#{url}" title="Full article" class="permalink")= "&laquo; #{item[:title]}"
+  .body
+    %p
+      = item[:excerpt] || "!!! Missing excerpt metadata for <code>#{item[:file].path}</code>"
+    

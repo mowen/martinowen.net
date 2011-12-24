@@ -1,0 +1,80 @@
+---
+title: My 5 Favourite Things About Git
+tags: [git]
+created_at: 2009/08/10
+kind: article
+excerpt: The 5 things I like most about Git, Linus Torvalds' distributed version system.
+---
+I've been using Git for quite a while now, so here are my top five favourite things about it. 
+
+h3. 5. Only one .git directory and .gitignore file
+
+A minor irritation with Subversion and CVS is that each checked out directory contains a ".svn" metadata directory. If you want to get a copy of the code without the metadata, you have to check it out with the special "export" command. Git keeps all of its metadata in a .git folder at the top level of the cloned repository. This means you simply delete the .git folder to remove all traces of "gitness".
+
+Files to be ignored can also be specified in one .gitignore file at the top level, and that file is committed like any other. This is something that requires editing the "svn:ignore" property in Subversion, which seems unnecessary when you could edit a single config file instead.
+
+h3. 4. Branching is easier
+
+I create branches more liberally in Git than I do in Subversion, because they are easier to create and merge. I can just hide a temp change on a branch and try code with or without it.
+
+I often have experimental branches in Subversion, but they never stray far from the trunk, because otherwise merging would be too much of a pain. This is because Subversion branches are snapshots, and once the trunk moves on, the branch is left behind until you start to manually merge all those changes back. Git's merging is much more sophisticated.
+
+In "Linus' Google Tech Talk on Git":http://www.youtube.com/watch?v=4XpnKHJAok8 he argues that Subversion's boast that it makes branching cheap is concentrating on the wrong problem. Branching is easy. Merging is hard. Git focuses on merging more than Subversion does.
+
+With Subversion I also feel like I need to tidy up my working copy before I create a branch in it, but with Git I can hack away, suddenly decide that what I'm doing should really be in a branch, type @git checkout -b new-trunk@ and the code is now on a branch!
+
+h4. git stash
+
+I consider <code>git stash</code> to be a part of Git's branching features. It allows you to stash away changes for later. I use it if I want to split some changes off but not create a new branch. It's also useful if you want to quickly tidy up the working copy without committing your work or throwing it away.
+
+h3. 3. The Index
+
+Commits in Git are a two-stage process: first you "add" your changes to a staging area know as "the index" and only when you're happy with everything in the index do you commit it.
+
+This is very useful if you are make a lot of changes and then realise that you want to commit them separately. When this happens in Subversion I have no choice but to manually copy files out of my working copy and pick the individual changes out. Git automates this process really well, particularly if you use the @git add --patch@ command.
+
+h4. git add --patch
+
+This is a contender for the best Git command, and I was amazed when I first used it. <code>git add --patch</code> allows you to interactively refine what you're adding to the index by looking through the diffs in a file and choosing which ones to add. So if you were working on one change and left work in the evening only to start a new change in the same working copy the next morning, Git allows you to view each diff that you made and add them to a commit individually.
+
+If you're using a front-end to Git, you'll be able to scroll through the diffs of a file, and decide which ones to stage, one at a time.
+
+This feature is very useful if you are working on big files can change in different areas for different reasons e.g. CSS files. If you want to experiment with a particular style but want to keep it separate from other style changes, you can use add --patch to commit those changes separately.
+
+A downside to this feature is that you can end up spending _too much_ time refining commits, time you should be spending writing code! After a while with Git you should be able to reach a balance.
+
+h3. 2. Local commits
+
+What is not to like about local commits? You can commit while disconnected, and it lowers the barrier to entry for every open source project that uses it. Anyone can develop their own "Linux":http://git.kernel.org/?p=linux/kernel/git/torvalds/linux-2.6.git;a=summary or "Ruby on Rails":http://github.com/rails/rails. You even get the whole history of a project when you clone it!
+
+Martin Fowler suggests refactoring a project in order to get to know it, and local commits allow you to commit refactorings of a major project without interfering with the master branch. You may never use those refactorings, but the process will have accelerated your learning.
+
+h4. Many clones means many backups
+
+I've never experienced the horror of a lost or corrupt source code repository, but I can imagine how painful it must be. With a distributed version control system like Git every clone is a full copy of the repository, so if the original is lost then the bulk of the history will still be there in one of the clones.
+
+h4. You can amend your local commits
+
+Part of the local commit functionality is the <code>git reset</code> command which allows you to undo commits, without losing the changes (if you use the "soft" reset option they will remain staged in the index.) If you've done something you really shouldn't have, or just screwed up a commit message, this is very useful.
+
+h3. 1. "GitHub":http://github.com
+
+This isn't a feature of Git, but it was my primary motivation for getting to know it. It's an amazing piece of work - like a wonderful blend of Sourceforge and Twitter. It's very well designed and a joy to browse. When you compare it to Microsoft's open source project hosting effort "CodePlex":http://www.codeplex.com/, you can see just how much they are playing catch-up in this area.
+
+I don't even think the code you push to GitHub even needs to be anything special. None of the things that I've pushed are fully-fledged open source projects. "Here's someone who pushed everything they had":http://www.catonmat.net/blog/i-pushed-30-of-my-projects-to-github/ (30 projects). And why not? 
+
+GitHub also features "Gist":http://gist.github.com/, a pastie site for posting code that isn't significant enough to warrant its own repo.
+
+The way the site (and Git itself) is designed encourages collaboration on projects. People can fork projects and then request that the owner takes a look at their efforts, and they can even go as far as to comment on commits. "Here's a funny example":http://github.com/rails/rails/commit/22af62cf486721ee2e45bb720c42ac2f4121faf4 of people arguing over a Ruby on Rails commit.
+
+h3. Some tips for learning Git
+
+I'm not ashamed to say that Git took a while to get my head around, the fact that I don't use it day-to-day in work probably didn't help. Some pointers that I think apply to learning Git are:
+
+# Be sure to use the repository visualization tool "gitk" from the off, or some other graphical tool. It makes things eveything much clearer than the command line tools.
+# Practice on a non-public remote repository, or at least an unpopular one. Git allows you to undo commits, but you won't want to undo a commit that you have pushed.
+# Try to empty your mind of Subversion while using Git, the two systems are more different than you initially think. *A Git checkout is not the same a Subversion checkout!*
+# You don't need to use the full SHA-1 when refering to commits. In Subversion it's easy to look through a log and find the revision you want by a simple revision number. Git replaces this with a terrifying 40 character SHA-1 ID, which would take you a while to shout across the office. You only actually need to use the first 6 characters of the ID.
+# Don't be afraid to open up the ".git" directory and look around (assuming you've pushed it to a remote first!) The key to understanding Git is understanding the "objects that comprise a Git repository":http://book.git-scm.com/1_the_git_object_model.html
+
+That last suggestion accelerated my learning more than anything else. The structure of a Git repository is simpler than a Subversion one, and all the command line tools do is modify them. Scott Chacon's "Git Internals PDF":http://peepcode.com/products/git-internals-pdf at Peepcode helped me a great deal in understanding the file system. I think a lot of that content is now available in "The Git Community Book":http://book.git-scm.com/index.html which was also written by Scott (he's a GitHub employee.) "The Git Parable":http://tom.preston-werner.com/2009/05/19/the-git-parable.html by Tom Preston-Werner, a GitHub co-founder, takes a different approach to the same subject matter.

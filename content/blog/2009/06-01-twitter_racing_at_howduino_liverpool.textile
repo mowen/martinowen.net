@@ -1,0 +1,74 @@
+---
+title: Twitter Racing at Howduino Liverpool
+excerpt: My account of the Howduino Arduino hacking event in Liverpool in May 2009.
+created_at: 2009/06/01
+kind: article
+tags: [arduino, event, liverpool]
+---
+<a href="http://www.flickr.com/photos/jeanbaptisteparis/119421176/" title="Arduino fixation by jeanbaptisteparis, on Flickr"><img src="/assets/images/119421176_e1c82c8298_m.jpg" alt="Arduino fixation" class="left" /></a>
+
+If you haven't seen one yet, the "Arduino microcontroller":http://www.arduino.cc/ is the cutest piece of hardware since WALL-E, if you think circuits are cute that is. Like my first iPod, every time I see it I am surprised by how small it is. The hardware is pretty simple, just an ATmega168 microcontroller and some inputs/outputs, meaning that they're pretty cheap too.
+
+I'd known about them for a while (and had attended Adrian McEwen's talk at the Liverpool BarCamp back in December) but had put off buying one because I've always been under the impression that hardware is much harder to debug than software, and I pictured myself spending hours of my precious free time trying to detect an elusive problem. So it wasn't until Adrian and Thom Shannon organised the inaugural "Howduino":http://www.howduino.com/ event in Liverpool that I finally got an excuse to buy one.
+
+When I finally took the plunge, I bought an "Ethernet shield":http://www.arduino.cc/en/Main/ArduinoEthernetShield along with the Ardunino itself, partly because it looked like "tinker.it":http://tinker.it/ would sell out before the event, but also because I thought that whatever project I did would _have_ to involve the internet.
+
+h3. Preparing for the event - My first project
+
+So upon receiving my Arduino I set about getting an LED to blink (the "Hello World" of Arduino development). That was easy, so the next step meant an excuse to use the Ethernet shield - controlling an LED via the web. This turned out to be suprisingly simple thanks to an open source library named "Webduino":http://code.google.com/p/webduino/.
+
+Webduino is a small HTTP server for the Arduino, and handles GET requests, including parsing query string parameters. That was all I needed to start receiving HTTP requests on the Arduino. So with a simple web page which contained 4 checkboxes and a submit button, I was able to turn 4 LEDs on or off depending on the value of their checkboxes.
+
+This was very encouraging, as although lighting up LEDs isn't very useful, the implications of being able to control something physical via a web page was quite exciting, especially considering that I'd only spent a few hours getting it to work. I was an Arduino fan already.
+
+h3. Twitter Racing
+
+<a href="http://www.flickr.com/photos/ts0/3575844410/" title="IMG_1324 by Thom Shannon, on Flickr"><img src="/assets/images/3575844410_0abc5de799_m.jpg" alt="IMG_1324" class="right" /></a>
+
+At the Howduino event, I decided that I would try to race remote controlled cars based on how well certain search terms were doing on Twitter. I would generate a two timelines, and trigger the forward motors of the cars according to their timelines.
+
+h4. Getting the timeline data
+
+When I initially conceived of the idea I had been intending to use the ethernet shield to access the "Twitter API":http://apiwiki.twitter.com/Twitter-API-Documentation in real time, but it soon became obvious that the ethernet shield would be unnecessary. I could get all of the data I needed before the start of the race using "a Ruby script":http://github.com/mowen/howduino/blob/master/ruby/timeline_generator.rb, and then send it to the Arduino in a stream of serial bytes via the Arduino IDE. Each car would have a character in the stream, and when that character appeared it would move a little (more on this later).
+
+A snippet of a timeline with a @0@ representing one car and a @1@ the other would look like this:
+
+<pre>1
+9
+1 1
+0
+9
+9
+0 0 1
+9
+</pre>
+
+The @9@ is a null, meaning that neither car moves for that step.
+
+I wrote a simple program in "Processing":http://processing.org/ for simulating the timelines to see which races would be most exciting in terms of a close race, so that I could choose which races to show to people.
+
+h4. Cheap Remote Control Cars
+
+I bought two similar remote control cars that operated on different frequencies. My plan was that I could simplify the project by just connecting the remote controls to the Arduino rather than trying to control the motors of the cars themselves. I planned to connect the forward switch on the remote control and trigger it whenever the car appeared in the timeline.
+
+I had written the Ruby timeline processing code before the day of Howduino, so I was pretty confident that I would be able to have some exciting Twitter races on the day. Unfortunately, two problems meant that the races didn't quite go to plan...
+
+h4. Getting ahead of myself
+
+Before the event, I started to get clever, thinking that this was too simple and needed a bit more control. I'd bought an analogue slider, so I thought I would use it to control the speed of the race. My intentions were good - while testing with the Processing simulation I had found that some races were very fast and some were very slow, depending on the participants of the race.
+
+For example a race between the finalists on American Idol during the final itself would be very fast as hundreds of Tweets occur each second, but two more obscure topics would be much slower as their Tweets trickled in over months.
+
+I later found that adding the slider actually meant that I couldn't limit the rate of the serial bytes to the Arduino, and it ended up being flooded. The end result of this was that the race would be over before it began, and the cars would just stutter a little and then stop. I didn't actually realise this until after Howduino.
+
+h4. Survival of the fittest
+
+Something else I discovered after the event when I started running a control race - both cars being sent the exact same timeline - was that one car (the blue) was much less powerful than the other. This was a big setback, because without adding a handicap in the code the race could never be fair.
+
+Maybe I should have bought more expensive cars!
+
+h3. The future of Twitter Racing
+
+I learnt a lot from my couple of days of Twitter Racing, but haven't played with it since. If I attend another Arduino hacking event I'm sure I'll revisit it and make it much more of a success!
+
+"The Twitter Racing code":http://github.com/mowen/howduino is available on GitHub. It's pretty rough and needs refactoring, particularly the Processing code as it was my first attempt at Processing.

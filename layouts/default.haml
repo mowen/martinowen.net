@@ -1,0 +1,64 @@
+---
+---
+:ruby
+  def keywords
+    if is_front_page?
+      tag_set.join(', ') 
+    else
+      tags = @item[:tags].nil? ? '' : @item[:tags].join(', ') 
+      keywords = @item[:keywords] || ''
+      [keywords, tags].join(', ')
+    end
+  end
+  def link_unless_current(s)
+    "<li><a href='/#{s}.html'>#{s}</a></li>" if @item.identifier != "/#{s}/" 
+  end
+
+!!! 5
+%html(lang="en")
+  %head
+    %title= "#{@item[:title]}"
+    %meta(content="text/html; charset=utf-8" http-equiv="Content-Type")
+    %meta(name="keywords" content="#{keywords}")
+    %meta(name="description" content="#{@item[:excerpt]}")
+    %link(href="/assets/css/twilight.css" media="screen" rel="stylesheet" type="text/css")
+    %link(href="http://fonts.googleapis.com/css?family=Inconsolata" rel="stylesheet" type="text/css")
+    %link{ :href => "/assets/css/screen.css", :rel => "stylesheet", :type => "text/css", :media => "screen, projection" }
+    %link{ :href => "/assets/css/print.css", :rel => "stylesheet", :type => "text/css", :media => "print" }
+    / 
+      [if lt IE 8]>
+      <link href="/assets/css/ie.css" media="screen, projection" rel="stylesheet" type="text/css">
+      <![endif]
+
+  %body
+    -# needed since some content render <pre> blocks
+    - content = find_and_preserve(yield)
+    #main
+      %header
+        %hgroup
+          %h1
+            %a(href="/")
+              = site_name
+        %nav
+          %ul
+            != link_unless_current "about"
+            != link_unless_current "archives"
+            != link_unless_current "tags"
+            %li
+              %a(href='/atom.xml') rss
+
+      - if @item[:kind] == 'article'
+        = render('_article', :item => @item, :content => content)
+
+        %nav#sidebar
+          = render('_sidebar')
+   
+      - else
+        %section
+          = content
+      
+      %footer
+        %small
+          &copy; 2011 Martin Owen
+
+    = render('_ganalytics')

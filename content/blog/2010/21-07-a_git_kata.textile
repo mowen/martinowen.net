@@ -1,0 +1,185 @@
+--- 
+title: Git Katas
+created_at: 2010/07/21
+excerpt: A list of 'katas' for learning and practicing usage of the Git distributed version control system.
+tags: [git]
+kind: article
+publish: false
+css_class: git-kata
+--- 
+h2. A hands-on approach to learning Git
+
+Although there are "some":http://www.gitready.com/ "excellent":http://progit.org/book/ "resources":http://gitref.org/ on the web for learning Git I wrote the following katas to cover all of the topics that I've needed so far in a safe sandbox environment (your desktop). People learning Git might not realise that there is no reason why they can't set up a remote on their desktop and have multiple clones pushing to it.
+
+h3. Disclaimer
+
+I don't consider myself to be a Git expert, and in writing this I hope to see what others think of my usage of Git, and if I could be doing things better. I'll be more than happy to make changes to these kata if you think I've got something wrong.
+
+h2. List of Katas
+
+* "Kata 0 - Setting things up":#setting-up
+** "Kata 0.1 - Create your origin":#create-origin
+** "Kata 0.2 - Create a clone of a repository":#cloning
+* "Kata 1 - Committing":#committing
+** "Kata 1.1 - Stage changes to the index":#stage
+** "Kata 1.2 - Unstage changes (optional)":#unstage
+** "Kata 1.3 - Commit":#commit
+** "Kata 1.4 - Push the local changes to a remote":#pushing
+* "Kata 2 - Pulling changes from a remote":#pulling
+* "Kata 3 - Rebasing onto a remote":#rebasing
+* "Kata 4 - Creating a branch":#branching
+* "Kata 5 - Committing part of your working copy":#partial-commit
+* "Kata 6 - Forking":#forking
+
+h3(#setting-up). Kata 0 - Setting things up
+
+<div id="setting-up">
+
+In order to do this kata, we need an origin repo (which will be our 'remote') and two cloned repos that will push and pull on it.
+
+h4(#create-origin). 0.1 Create your origin
+
+Create a folder called 'gitkata' on your desktop, and change directory to it in a shell.
+
+Init or clone a Git repo (any repo - the contents and history don't matter, and it can be read-only) with the @--bare@ command line switch.
+
+_The @--bare@ switch is important as this is going to be our origin and shouldn't contain any working copy files. If it did contain any then we wouldn't be able to push, as such an operation could potentially overwrite local changes._
+
+<pre>cd gitkata
+git clone http://github.com/mowen/js-unit-testing.git --bare
+</pre>
+
+h4(#cloning). 0.1 Create a clone of a repository
+
+Staying in the gitkata folder, clone the new repo. Call your clone @jack@:
+
+<pre>git clone js-unit-testing.git jack
+</pre>
+
+h4. 0.2 Create another clone
+
+Clone your @origin@ repo one more time, and this time call it @jill@.
+
+<pre>git clone js-unit-testing.git jill
+</pre>
+
+If you want to do this kata again, or you'd like to have a save point, you might want to copy the gitkata folder away somewhere.
+
+</div>
+
+h3(#committing). Kata 1 - Committing
+
+h4. Setup - Make some changes
+
+Change directory to @jack@ and make some changes to a file or files in the working copy. It doesn't matter which files:
+
+<pre>cd jack
+echo "Wibble" >> qunit/js/TestStringCalculator.js
+git status
+# On branch master
+# Changed but not updated:
+#   (use "git add <file>..." to update what will be committed)
+#   (use "git checkout -- <file>..." to discard changes in working directory)
+#
+#	modified:   qunit/js/TestStringCalculator.js
+#
+no changes added to commit (use "git add" and/or "git commit -a")
+</pre>
+
+h4(#stage). Kata 1.1 - Stage changes to the index
+
+Stage the changes to the index.
+
+<div class="solution">
+<pre>git add qunit/js/TestStringCalculator.js
+</pre>
+</div>
+
+h4(#unstage). Kata 1.2 - Unstage the changes (optional)
+
+Unstage the changes that you just staged.
+
+<div class="solution">
+<pre>git reset HEAD qunit/js/TestStringCalculator.js
+</pre>
+
+or:
+
+<pre>git reset HEAD .
+</pre>
+</div>
+
+h4(#commit). Kata 1.3 - Commit the changes
+
+Commit your changes with a simple commit message.
+
+<div class="solution">
+<pre>git commit -m "Minor change."
+</pre>
+</div>
+
+h4(#pushing). Kata 1.4 - Push the local changes to a remote
+
+Push those changes to the @master@ branch on the @origin@ remote.
+
+<div class="solution">
+<pre>git push origin master
+</pre>
+</div>
+
+h3(#pulling). Kata 2 - Pulling changes from a remote
+
+Change directory to @jill@ and pull the change that @jack@ just pushed to the @origin@ remote.
+
+<div class="solution">
+<pre>cd ../jill
+git pull origin master
+</pre>
+</div>
+
+h4. Commit changes in the other clone
+
+Change directory to @jill@ and make some changes to some *different* files. Make sure they are different!
+
+<pre>cd ../jill
+echo "Wobble" >> qunit/js/StringCalculator.js
+# On branch master
+# Changed but not updated:
+#   (use "git add <file>..." to update what will be committed)
+#   (use "git checkout -- <file>..." to discard changes in working directory)
+#
+#	modified:   qunit/js/StringCalculator.js
+#
+no changes added to commit (use "git add" and/or "git commit -a")
+</pre>
+
+Stage and commit your changes to @jill@.
+
+<div class="solution">
+<pre>git add qunit/js/StringCalculator.js
+git commit -m "A minor change to a different file."
+</pre>
+</div>
+
+h4. Push the other clone's changes
+
+Try to push your changes to @origin@ and you will see something like this:
+
+<pre>git push origin master
+To /Users/martin/Desktop/gitkata/./js-unit-testing.git
+ ! [rejected]        master -> master (non-fast-forward)
+error: failed to push some refs to '/Users/martin/Desktop/gitkata/./js-unit-testing.git'
+To prevent you from losing history, non-fast-forward updates were rejected
+Merge the remote changes before pushing again.  See the 'Note about
+fast-forwards' section of 'git push --help' for details.
+</pre>
+
+This is perfectly fine. The history of the @jill@ repository is no longer the same as the history of @origin@, so we can't push @jill's@ changes until its history matches the remote's. We can do this by fetching the changes in the origin/master branch, and then rebase our new commit on top of it:
+
+<div class="solution">
+<pre>git fetch origin master
+git rebase origin/master
+</pre>
+</div>
+
+As long as you've done things properly and the changes were in a separate file and then you won't have any conflicts.

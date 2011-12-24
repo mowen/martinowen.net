@@ -1,0 +1,33 @@
+---
+title: About
+---
+h2. A Word of Introduction
+
+I'm a software developer living in Liverpool in the United Kingdom. I work for "Qire":http://qire.co.uk/.
+
+Some of the many things I'm interested in are:
+
+* JavaScript
+* C#/.NET
+* Ruby
+* MongoDB
+* Dependency Injection
+* Unit Testing
+* Test Driven Development
+* Behaviour Driven Development
+* Emacs
+* Lisp (particularly Clojure)
+* Erlang
+* Arduino
+
+h3. This Site
+
+This site was built using the following tools:
+
+* "Webby":http://webby.rubyforge.org/ the static site generator, itself implemented in the "Ruby":http://www.ruby-lang.org/en/ programming language.
+* "Textile":http://www.textism.com/tools/textile/ for formatting the content of the pages.
+* "HAML":http://haml-lang.com/ for generating the markup.
+* "SASS":http://sass-lang.com/ for generating the stylesheets, with help from the "Blueprint CSS framework":http://www.blueprintcss.org/, via "Compass":http://compass-style.org/.
+* "Ultraviolet":http://ultraviolet.rubyforge.org/ and the many Textmate bundles for syntax highlighting the code.
+* Everything was edited with "GNU Emacs":http://www.gnu.org/software/emacs/ 
+* ... and version controlled by "Git":http://git-scm.com/ and "GitHub":http://github.com.

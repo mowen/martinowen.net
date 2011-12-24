@@ -1,0 +1,66 @@
+---
+title: I Heart Org Mode
+excerpt: My tribute to an unsung hero of productivity applications, Emacs Org Mode.
+created_at: 2009/11/07
+kind: article
+publish: false
+tags: [emacs, tools]
+---
+"Emacs Org Mode":http://orgmode.org/ is the work of "Carsten Dominik":http://staff.science.uva.nl/~dominik/, a Dutch Astronomy professor. I use it almost every day, and I find it to be the easiest way to organise notes and todos.
+
+h3. Life before Org Mode
+
+Before I settled on Org Mode I tried a number of different personal information managers. These were:
+
+* Backpack
+* GTD TiddlyWiki
+* Monkey GTD
+
+Backpack and GTD Tiddlywiki were very good fits (as both are basically personal wikis) but I found Monkey GTD to be pretty overwhelming and too structured (I don't really get on with GTD). In fact I used both Backpack and GTD Tiddlywiki for quite, I particularly like Backpack for the ability to e-mail Textile-formatted content directly to pages, something that was very innovative at the time.
+
+Within a week of discovering Org, my Backpack account was closed and I stopped using GTD Tiddlywiki.
+
+h3. An Emacs Easter Egg
+
+I had started using Emacs again as I wanted a cross-platform text editor with excellent keyboard shortcuts. While looking through the documentation I came across the section for Org Mode and started playing with it.
+
+In fact, I'd go as far as to say Org Mode is a reason to start using Emacs, even if it's all you use it for.
+
+h3. What Org Mode gives you
+
+* The most simple and intuitive interface for _getting things down_ that I have seen.
+** To add an outline, just type "*" followed by the heading. For a subheading just add an extra "*".
+** To cycle the expansion of an outline, press tab.
+** To cycle a TODO, press CTRL-c CTRL-t.
+** To add notes within an outline just write them under the heading.
+* Task management (including setting deadlines.)
+* Fantastic facilities for editing tables.
+* Excellent export facilities, including a HTML export.
+
+h4. Table editing
+
+The table editing in Org Mode really impressed me when I first saw it. My initial reaction was "Why don't table in Word work like this?!" To move a row or column in an Org table, all you have to do is press Alt together with the cursor key for the direction in which you want to move it. The border of the table is just made of "|" and "-" characters. For example:
+
+<pre>* Things Microsoft Have Ripped Off
+  | Netscape Navigator | Internet Explorer |
+  | Java               | C#                |
+  | iPod               | Zune              |
+  | Ruby on Rails      | MVC.NET           |
+</pre>
+
+If you add a "|" at the end of row and press tab, a new column appears. Tables come together very quickly, and can be exported using the standard export mode when you finish. You can also apply some complex formulas to the data in the table, as Org is integrated with Emacs Calculator mode.
+
+h4. It's all plain text!
+
+Because all of the data is plain text, I can commit it to a version control system and sync it to my other machines. I use that to remind myself of notes that I may have forgotten about.
+
+h4. An iPhone App
+
+Someone has recently written an "iPhone App":http://mobileorg.ncogni.to/ for giving Org Mode content a nice iPhone interface, so I may have to finally buy one now.
+
+h3. More praise
+
+I'm not alone in my love of Org Mode. Here is a selection of other posts:
+
+* "Emacs-Fu - In Praise of Org Mode":http://emacs-fu.blogspot.com/2009/03/in-praise-of-org-mode.html
+* "Sacha Chau - Nothing quite like Org for Emacs":http://sachachua.com/wp/2009/04/06/nothing-quite-like-org-for-emacs/
