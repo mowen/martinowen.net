@@ -13,5 +13,4 @@
         %li &middot;
         - item[:tags].sort.each do |tag|
           %li
-            %a(href="/tags/#{tag}/" class='tag')
-              = tag
+            %a(href="/tags/#{tag}/" class='tag')= tag

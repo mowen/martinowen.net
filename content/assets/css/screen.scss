@@ -131,12 +131,25 @@ body {
     h1, h2, h3, h4, h5, h6 {
 	@include header-font-style; }
 
+    h1, h2, h3, h4, h5, h6 {
+	@include margin-trailer(0.5);
+    }
+    
+    p, pre, ul, ol {
+	@include margin-trailer(1);
+    }
+
     #main > header {
         hgroup {
-            @include column($blueprint_grid_columns/2); }
+            @include column($blueprint_grid_columns/2);
+        }
+
 	h1 {
 	    @include adjust-font-size-to(50px);
-	    @include text-shadow(1px 1px 2px white); }
+	    @include text-shadow(1px 1px 2px white);
+            @include margin-trailer(0);
+        }
+
 	a {
 	    text-decoration: none;
 	    border: none;
@@ -146,13 +159,25 @@ body {
             @include column($blueprint_grid_columns/2, true);
             height: 57px;
             padding-top: 15px;
+
+            ul {
+                @include no-bullets;
+            }
+
 	    li {
 		@include adjust-font-size-to(30px);
 		display: inline;
-		margin-right: 50px; } } }
+		margin-right: 50px;
+	    }
+        }
+    }
 
     #main > section {
 	@include column($blueprint_grid_columns, true);
+
+        ul, ol {
+	    @include pretty-bullets("bullet_black.png", 15px, 15px, $base-line-height, 25px);
+        }
 
         .excerpt {
             height: rhythm(7);
@@ -197,12 +222,9 @@ body {
 	header {
 	    h1 { @include adjust-font-size-to(40px); }
 	    h2 { @include adjust-font-size-to(30px); }
-
-	    h1 {
-		@include margin-trailer(0.5); } }
-
-        p, pre, ul, ol {
-	    @include margin-trailer(1); }
+            
+	    h1 { @include margin-trailer(0.5); }
+        }
 
 	h1 { @include adjust-font-size-to(28px); }
 	h2 { @include adjust-font-size-to(25px); }
@@ -212,12 +234,8 @@ body {
 
 	.body {
 	    @include margin-leader(1);
-
-            h1, h2, h3, h4, h5, h6 {
-		@include margin-trailer(0.5); }
-
-	    ul, ol {
-		@include pretty-bullets("bullet_black.png", 15px, 15px, $base-line-height, 25px); } } }
+        }
+    }
     
     #sidebar {
 	$sidebar_columns: 6;
@@ -230,13 +248,16 @@ body {
 
     ul.tags {
 	li {
-	    display: inline; } }
+	    display: inline;
+        }
+    }
 
     .tag {
-        @include box-shadow(#555, 1px, 1px, 4px);
+        @include box-shadow(#555, 1px, 1px, 2px);
         @include border-radius(5px);
-        border: 1px solid #555;
-        padding: 1px 3px;
+        border: 0.5px solid #555;
+        padding: 2px;
+        margin: 0px 2px;
     }
 
     .post-date {
@@ -248,11 +269,14 @@ body {
 	@include no-bullets;
 	a {
 	    @include header-font-style;
-	    border-bottom: none; } }
+	    border-bottom: none;
+        }
+    }
     
     pre, code {
 	@include text-shadow(0px 0px 0px gray); 
-	font-family: $blueprint_fixed_font_family; }
+	font-family: $blueprint_fixed_font_family;
+    }
 
     pre {
 	display: block;
@@ -262,15 +286,24 @@ body {
 	padding-right: 0.6em;
 	overflow: auto;
 	@include border-radius(5px);
-	@include box-shadow; }
+	@include box-shadow;
+    }
 
     p, li {
 	code {
-	    @include border-radius(4px); } }
+            @include text-shadow(none);
+            @include box-shadow(#555, 1px, 1px, 2px);
+            @include border-radius(4px);
+            border: 0.5px solid #555;
+            padding: 1px 3px;
+        }
+    }
+
     img {
 	border: 2px solid #e0e0e0;
         margin-right: 10px;
         float: left; }
+
     #main {
 	.post {
 	    h2 {
