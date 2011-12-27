@@ -152,26 +152,26 @@ body {
 		margin-right: 50px; } } }
 
     #main > section {
-	@include column($blueprint_grid_columns - 2, true);
-	@include box-shadow;
-	@include border-radius(15px);
+	@include column($blueprint_grid_columns, true);
 
-	/* I got this from rhythm-border */
-	padding: 1.438em;
-	border: 0.063em solid #555; }
+        .excerpt {
+            height: 140px;
+            margin-bottom: 8px;
+	    border-top: 1px solid #555;
+	    @include column($blueprint_grid_columns/3);
+        }
+    
+        & .excerpt:nth-child(3), & .excerpt:nth-child(6), & .excerpt:nth-child(9) {
+            @include column($blueprint_grid_columns/3, true);
+        }
 
-    .excerpt {
-	@include column($blueprint_grid_columns);
-	@include margin-trailer(1); }
+        .clear, #taglist {
+            @include column($blueprint_grid_columns, true);
+        }
+    }
 
     article {
 	@include column($blueprint_grid_columns - 8);
-	@include box-shadow;
-	@include border-radius(15px);
-
-	/* I got this from rhythm-border */
-	padding: 1.438em;
-	border: 0.063em solid #555;
 
 	header {
 	    h1 { @include adjust-font-size-to(40px); }
@@ -210,6 +210,13 @@ body {
     ul.tags {
 	li {
 	    display: inline; } }
+
+    .tag {
+        @include box-shadow(#555, 1px, 1px, 4px);
+        @include border-radius(5px);
+        border: 1px solid #555;
+        padding: 1px 3px;
+    }
 
     .post-date {
 	@include header-font-style(false);
