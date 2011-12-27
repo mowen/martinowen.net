@@ -136,7 +136,7 @@ body {
             @include column($blueprint_grid_columns - 14); }
 	h1 {
 	    @include adjust-font-size-to(50px);
-	    @include text-shadow(0px 2px 0px white); }
+	    @include text-shadow(1px 1px 2px white); }
 	a {
 	    text-decoration: none;
 	    border: none;
@@ -155,10 +155,31 @@ body {
 	@include column($blueprint_grid_columns, true);
 
         .excerpt {
-            height: 140px;
+            height: rhythm(7);
             margin-bottom: 8px;
-	    border-top: 1px solid #555;
 	    @include column($blueprint_grid_columns/3);
+            
+            header, .body {
+                padding: 4px;
+            }
+
+            header {
+	        border-top: 1px solid #aaa;
+                @include border-top-radius(8px);
+                @include background-image(
+                    linear-gradient(
+                        lighten($background_color, 10),
+                        $background_color
+                    )
+                );
+
+                height: rhythm(2);
+
+                time {
+                    padding-left: 5px;
+                    float: right;
+                }
+            }
         }
     
         & .excerpt:nth-child(3), & .excerpt:nth-child(6), & .excerpt:nth-child(9) {
