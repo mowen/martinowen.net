@@ -133,7 +133,7 @@ body {
 
     #main > header {
         hgroup {
-            @include column($blueprint_grid_columns - 14); }
+            @include column($blueprint_grid_columns/2); }
 	h1 {
 	    @include adjust-font-size-to(50px);
 	    @include text-shadow(1px 1px 2px white); }
@@ -143,7 +143,7 @@ body {
 	    @include link-colors(black, black, black, black, black);
 	    @include header-font-style; }
 	nav {
-            @include column(14, true);
+            @include column($blueprint_grid_columns/2, true);
             height: 57px;
             padding-top: 15px;
 	    li {
@@ -186,7 +186,7 @@ body {
             @include column($blueprint_grid_columns/3, true);
         }
 
-        .clear, #taglist {
+        #taglist {
             @include column($blueprint_grid_columns, true);
         }
     }
