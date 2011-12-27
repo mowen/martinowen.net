@@ -132,7 +132,8 @@ body {
 	@include header-font-style; }
 
     #main > header {
-
+        hgroup {
+            @include column($blueprint_grid_columns - 14); }
 	h1 {
 	    @include adjust-font-size-to(50px);
 	    @include text-shadow(0px 2px 0px white); }
@@ -142,6 +143,9 @@ body {
 	    @include link-colors(black, black, black, black, black);
 	    @include header-font-style; }
 	nav {
+            @include column(14, true);
+            height: 57px;
+            padding-top: 15px;
 	    li {
 		@include adjust-font-size-to(30px);
 		display: inline;
