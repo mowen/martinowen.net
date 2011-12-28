@@ -68,6 +68,16 @@
     @include append(1);
 }
 
+@mixin my-article-width {
+    @include column($blueprint_grid_columns - 8);
+    @include prepend(1);
+    
+    border-left: 1px solid #aaa;
+    @include border(#aaa, 1px);
+
+    @include append(1);
+}
+
 // Compass imports
 @import "compass/reset";
 @import "compass/layout";
@@ -272,9 +282,7 @@ body {
     }
 
     article {
-	@include column($blueprint_grid_columns, true);
-
-        width: 868px;
+	@include column($blueprint_grid_columns - 6);
 
         @include margin-trailer(0.5);
 
@@ -287,7 +295,7 @@ body {
                 @include margin-trailer(0.5);
             }
 
-            @include my-full-width;
+            @include my-article-width;
 
             @include border-top-radius(20px);
             border-top: 1px solid #aaa;
@@ -307,7 +315,7 @@ body {
 	h5 { @include adjust-font-size-to(17px); }
 
 	.body {
-            @include my-full-width;
+            @include my-article-width;
 
             @include border-bottom-radius(20px);
             border-bottom: 1px solid #aaa;
@@ -315,6 +323,23 @@ body {
             ul, ol {
                 @include my-pretty-bullets;
             }
+        }
+    }
+
+    #sidebar {
+        @include column(6, true);
+
+        @include adjust-font-size-to(14px);
+
+        @include padding-leader(0.5);
+
+        ul {
+            @include my-pretty-bullets;
+        }
+
+        a {
+            @include my-header-font-style;
+            border-bottom: none;
         }
     }
     
