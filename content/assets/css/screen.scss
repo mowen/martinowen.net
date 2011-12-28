@@ -119,12 +119,6 @@ $link_focus_color: $link_hover_color;
     @include grid-background;
 }
 
-#main > footer {
-    @include column($blueprint_grid_columns, true);
-    @include leader(1);
-    @include trailer(1);
-}
-
 #other-articles .older { @include column($blueprint_grid_columns/2); }
 #other-articles .newer { @include column($blueprint_grid_columns/2, true); }
 
@@ -141,6 +135,7 @@ body {
 	float: left;
 	padding-right: 5px;
         @include my-header-font-style;
+        //color: $quiet_color;
     }
 
     nav {
@@ -264,10 +259,31 @@ body {
         }
     }
 
+    #main > footer {
+        @include my-full-width;
+
+        @include border-top-radius(20px);
+        border-top: 1px solid #aaa;
+
+        @include background-image(
+            linear-gradient(
+                $background_color,
+                lighten($background_color, 10)
+            )
+        );
+
+        @include padding-leader(0.5);
+        @include padding-trailer(0.5);
+
+        text-align: center;
+    }
+
     article {
 	@include column($blueprint_grid_columns, true);
 
         width: 868px;
+
+        @include margin-trailer(0.5);
 
 	header {
 	    h1 { @include adjust-font-size-to(40px); }
@@ -300,6 +316,9 @@ body {
 	.body {
             @include my-full-width;
 
+            @include border-bottom-radius(20px);
+            border-bottom: 1px solid #aaa;
+
             ul, ol {
                 @include my-pretty-bullets;
             }
@@ -325,15 +344,6 @@ body {
 	color: $quiet-color;
     }
 
-    .posts-list {
-	margin-left: 0px;
-	@include no-bullets;
-	a {
-	    @include my-header-font-style;
-	    border-bottom: none;
-        }
-    }
-    
     pre, code {
 	@include text-shadow(0px 0px 0px gray); 
 	font-family: $blueprint_fixed_font_family;
@@ -363,18 +373,7 @@ body {
     img {
 	border: 2px solid #e0e0e0;
         margin-right: 10px;
-        float: left; }
-
-    #main {
-	.post {
-	    h2 {
-		a {
-		    border-bottom: none; } }
-	    time.post-date, p.post-summary {
-		@include my-header-font-style;
-		color: $quiet-color;
-		/* Style below stolen from h3.
-		   TODO: This shouldnt be hard-coded!!!! */
-		font-size: 1.5em;
-		margin-bottom: 1em; } } } }
+        float: left;
+    }
+}
 
