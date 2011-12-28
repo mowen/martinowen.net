@@ -1,8 +1,10 @@
-@mixin header-font-style($bold: true) {
+@mixin my-header-font-style($bold: true) {
     font-family: $header_font;
     letter-spacing: -0.04em;
     @if $bold {
-	font-weight: bold; } }
+	font-weight: bold;
+    }
+}
 
 @mixin include_link_icons {
     a[href^="mailto:"] {
@@ -18,12 +20,14 @@
     a[href$=".rdf"] {
 	@include link-icon(unquote("feed.png")); }
     a.noicon {
-	@include no-link-icon; } }
+	@include no-link-icon; }
+}
 
 @mixin social-icon-base {
     padding-left: 20px;
     background-repeat: no-repeat;
-    background-position: left center; }
+    background-position: left center;
+}
 
 @mixin include_social_icons {
     a.delicious {
@@ -45,7 +49,24 @@
     a.delicious, a.twitter, a.lastfm,
     a.facebook, a.flickr, a.github,
     a.linkedin, a.friendfeed {
-	@include social-icon-base; } }
+	@include social-icon-base; }
+}
+
+@mixin my-pretty-bullets {
+    @include pretty-bullets("bullet_black.png", 15px, 15px, $base-line-height, 25px);
+}
+
+@mixin my-full-width {
+    @include column($blueprint_grid_columns - 2, true);
+    @include prepend(1);
+    
+    border-left: 1px solid #aaa;
+    @include border(#aaa, 1px);
+    
+    width: 868px;
+    
+    @include append(1);
+}
 
 // Compass imports
 @import "compass/reset";
@@ -77,6 +98,7 @@ $blueprint_container_size: 950px;
 $blueprint_grid_margin: 10px;
 $blueprint_grid_width: ($blueprint_container_size + $blueprint_grid_margin) / $blueprint_grid_columns - $blueprint_grid_margin;
 
+// My variables
 $header_font: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
 $body_font: Georgia;
 $font_color: lighten(black, 20);
@@ -118,18 +140,23 @@ body {
     time {
 	float: left;
 	padding-right: 5px;
-        @include header-font-style; }
+        @include my-header-font-style;
+    }
 
     nav {
 	ul {
-	    @include no-bullets; } }
+	    @include no-bullets;
+        }
+    }
 
     a {
 	@include link-colors($link_color, $link_hover_color, $link_active_color, $link_visited_color, $link_focus_color);
-	text-decoration: none; }
+	text-decoration: none;
+    }
 
     h1, h2, h3, h4, h5, h6 {
-	@include header-font-style; }
+	@include my-header-font-style;
+    }
 
     h1, h2, h3, h4, h5, h6 {
 	@include margin-trailer(0.5);
@@ -174,7 +201,9 @@ body {
 	    text-decoration: none;
 	    border: none;
 	    @include link-colors(black, black, black, black, black);
-	    @include header-font-style; }
+	    @include my-header-font-style;
+        }
+
 	nav {
             @include column($blueprint_grid_columns/2 - 1, true);
             @include append(1);
@@ -197,10 +226,6 @@ body {
 
     #main > section {
 	@include column($blueprint_grid_columns, true);
-
-        ul, ol {
-	    @include pretty-bullets("bullet_black.png", 15px, 15px, $base-line-height, 25px);
-        }
 
         .excerpt {
             height: rhythm(7);
@@ -240,22 +265,9 @@ body {
     }
 
     article {
-	@include column($blueprint_grid_columns - 2);
+	@include column($blueprint_grid_columns, true);
+
         width: 868px;
-        @include prepend(1);
-        border-left: 1px solid #aaa;
-        @include border(#aaa, 1px);
-        @include append(1);
-
-        @include border-top-radius(20px);
-        border-top: 1px solid #aaa;
-
-        @include background-image(
-            linear-gradient(
-                lighten($background_color, 10),
-                $background_color
-            )
-        );
 
 	header {
 	    h1 { @include adjust-font-size-to(40px); }
@@ -265,6 +277,18 @@ body {
                 @include padding-leader(0.5);
                 @include margin-trailer(0.5);
             }
+
+            @include my-full-width;
+
+            @include border-top-radius(20px);
+            border-top: 1px solid #aaa;
+
+            @include background-image(
+                linear-gradient(
+                    lighten($background_color, 10),
+                    $background_color
+                )
+            );
         }
 
 	h1 { @include adjust-font-size-to(28px); }
@@ -274,22 +298,14 @@ body {
 	h5 { @include adjust-font-size-to(17px); }
 
 	.body {
-	    @include margin-leader(1);
+            @include my-full-width;
+
+            ul, ol {
+                @include my-pretty-bullets;
+            }
         }
     }
     
-    /* #sidebar { */
-    /*     $sidebar_columns: 6; */
-    /*     @include column($sidebar_columns, true); */
-    /*     li { */
-    /*         @include padding-trailer(0.5); */
-    /*     } */
-    /*     a { */
-    /*         @include header-font-style; */
-    /*         border-bottom: none; */
-    /*     } */
-    /* } */
-
     ul.tags {
 	li {
 	    display: inline;
@@ -305,14 +321,15 @@ body {
     }
 
     .post-date {
-	@include header-font-style(false);
-	color: $quiet-color; }
+	@include my-header-font-style(false);
+	color: $quiet-color;
+    }
 
     .posts-list {
 	margin-left: 0px;
 	@include no-bullets;
 	a {
-	    @include header-font-style;
+	    @include my-header-font-style;
 	    border-bottom: none;
         }
     }
@@ -354,7 +371,7 @@ body {
 		a {
 		    border-bottom: none; } }
 	    time.post-date, p.post-summary {
-		@include header-font-style;
+		@include my-header-font-style;
 		color: $quiet-color;
 		/* Style below stolen from h3.
 		   TODO: This shouldnt be hard-coded!!!! */
