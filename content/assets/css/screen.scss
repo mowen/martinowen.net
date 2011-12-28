@@ -94,14 +94,14 @@ $link_focus_color: $link_hover_color;
 
 #main {
     @include container;
-    @include grid-background; }
-
-#main > header, #main > footer {
-    @include column($blueprint_grid_columns); }
+    @include grid-background;
+}
 
 #main > footer {
+    @include column($blueprint_grid_columns, true);
     @include leader(1);
-    @include trailer(1); }
+    @include trailer(1);
+}
 
 #other-articles .older { @include column($blueprint_grid_columns/2); }
 #other-articles .newer { @include column($blueprint_grid_columns/2, true); }
@@ -140,8 +140,28 @@ body {
     }
 
     #main > header {
+        @include column($blueprint_grid_columns, true);
+
+        @include border-bottom-radius(20px);
+        border-bottom: 1px solid #aaa;
+        border-left: 1px solid #aaa;
+        @include border(#aaa, 1px);
+
+        width: 944px;
+
+        @include background-image(
+            linear-gradient(
+                lighten($background_color, 10),
+                $background_color
+            )
+        );
+
+        @include margin-trailer(0.5);
+
         hgroup {
-            @include column($blueprint_grid_columns/2);
+            @include prepend(1);
+            @include column($blueprint_grid_columns/2 - 1);
+            width: 426px;
         }
 
 	h1 {
@@ -156,7 +176,10 @@ body {
 	    @include link-colors(black, black, black, black, black);
 	    @include header-font-style; }
 	nav {
-            @include column($blueprint_grid_columns/2, true);
+            @include column($blueprint_grid_columns/2 - 1, true);
+            @include append(1);
+
+            width: 426px;
             height: 57px;
             padding-top: 15px;
 
@@ -167,7 +190,7 @@ body {
 	    li {
 		@include adjust-font-size-to(30px);
 		display: inline;
-		margin-right: 50px;
+		margin-right: 40px;
 	    }
         }
     }
@@ -217,13 +240,31 @@ body {
     }
 
     article {
-	@include column($blueprint_grid_columns - 8);
+	@include column($blueprint_grid_columns - 2);
+        width: 868px;
+        @include prepend(1);
+        border-left: 1px solid #aaa;
+        @include border(#aaa, 1px);
+        @include append(1);
+
+        @include border-top-radius(20px);
+        border-top: 1px solid #aaa;
+
+        @include background-image(
+            linear-gradient(
+                lighten($background_color, 10),
+                $background_color
+            )
+        );
 
 	header {
 	    h1 { @include adjust-font-size-to(40px); }
 	    h2 { @include adjust-font-size-to(30px); }
             
-	    h1 { @include margin-trailer(0.5); }
+	    h1 {
+                @include padding-leader(0.5);
+                @include margin-trailer(0.5);
+            }
         }
 
 	h1 { @include adjust-font-size-to(28px); }
@@ -237,14 +278,17 @@ body {
         }
     }
     
-    #sidebar {
-	$sidebar_columns: 6;
-	@include column($sidebar_columns, true);
-	li {
-	    @include padding-trailer(0.5); }
-	a {
-	    @include header-font-style;
-	    border-bottom: none; } }
+    /* #sidebar { */
+    /*     $sidebar_columns: 6; */
+    /*     @include column($sidebar_columns, true); */
+    /*     li { */
+    /*         @include padding-trailer(0.5); */
+    /*     } */
+    /*     a { */
+    /*         @include header-font-style; */
+    /*         border-bottom: none; */
+    /*     } */
+    /* } */
 
     ul.tags {
 	li {
@@ -253,7 +297,7 @@ body {
     }
 
     .tag {
-        @include box-shadow(#555, 1px, 1px, 2px);
+        @include box-shadow(#555 1px 1px 2px);
         @include border-radius(5px);
         border: 0.5px solid #555;
         padding: 2px;
@@ -292,7 +336,7 @@ body {
     p, li {
 	code {
             @include text-shadow(none);
-            @include box-shadow(#555, 1px, 1px, 2px);
+            @include box-shadow(#555 1px 1px 2px);
             @include border-radius(4px);
             border: 0.5px solid #555;
             padding: 1px 3px;

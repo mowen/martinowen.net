@@ -50,8 +50,8 @@
       - if @item[:kind] == 'article'
         = render('_article', :item => @item, :content => content)
 
-        %nav#sidebar
-          = render('_sidebar')
+        -# %nav#sidebar
+        -#   = render('_sidebar')
    
       - else
         %section
