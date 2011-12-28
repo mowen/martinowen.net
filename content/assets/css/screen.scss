@@ -233,13 +233,6 @@ body {
 
             header {
 	        border-top: 1px solid #aaa;
-                @include border-top-radius(8px);
-                @include background-image(
-                    linear-gradient(
-                        lighten($background_color, 10),
-                        $background_color
-                    )
-                );
 
                 height: rhythm(2);
 
