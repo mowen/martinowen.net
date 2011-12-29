@@ -1,6 +1,5 @@
 * TODO [[http://compass-style.org/reference/compass/layout/sticky_footer/][Sticky Footer]]
 * TODO Improve the style of the excerpts on the front page
-* DONE Fix the display of the archives
-  Will be similar to front page, but grouped by month.
 * TODO Fix the atom feed
 * TODO Improve the display of the tags
+* TODO Fix blockquote, it is unstyled at the moment
