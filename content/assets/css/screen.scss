@@ -262,6 +262,10 @@ body {
         }
     }
 
+    #main > section > section {
+        @include column($blueprint_grid_columns, true);
+    }
+
     #main > footer {
         @include my-full-width;
 
