@@ -32,6 +32,8 @@ def route_path(item)
     end
   elsif extname == ".sass"
     outext = '.css'
+  elsif extname == ".coffee"
+    outext = '.js'
   else
     outext = '.html'
   end

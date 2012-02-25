@@ -7,7 +7,7 @@ data_sources:
 
 # Custom settings
 
-text_extensions: [ 'html', 'css', 'haml', 'sass', 'scss', 'erb', 'md', 'textile', 'org' ]
+text_extensions: [ 'html', 'css', 'haml', 'sass', 'scss', 'erb', 'md', 'textile', 'org', 'coffee' ]
 
 # Use rsync + ssh for live site. To deploy:
 #

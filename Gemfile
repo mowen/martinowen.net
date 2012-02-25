@@ -1,6 +1,6 @@
 source :gemcutter
 
-gem "nanoc"
+gem "nanoc", "3.3.1"
 gem "rack"
 gem "rake"
 gem "mime-types"
@@ -17,3 +17,4 @@ gem "compass"
 gem "org-ruby", "~> 0.5.3"
 gem "spox-ultraviolet"
 gem "typogruby"
+gem "coffee-script", "~> 2.2.0"
