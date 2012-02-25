@@ -218,7 +218,8 @@ td { vertical-align: top; }
    Author: Martin Owen
    ========================================================================== */
 
-@import url('/assets/css/twilight.css');
+@import "my-styles";
+@import "twilight";
 
 /* ==|== media queries ======================================================
    EXAMPLE Media Query for Responsive Design.

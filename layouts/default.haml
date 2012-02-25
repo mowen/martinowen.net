@@ -38,7 +38,7 @@
   
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory: mathiasbynens.be/notes/touch-icons -->
 
-    <link rel="stylesheet" href="/assets/css/html5bp-style.css">
+    <link rel="stylesheet" href="/assets/css/style.css">
   
     <!-- More ideas for your <head> here: h5bp.com/d/head-Tips -->
   
@@ -64,7 +64,6 @@
             <ul>
             <%= link_unless_current "about" %>
             <%= link_unless_current "archives" %>
-            <%= link_unless_current "tags" %>
             <li>
               <a href='/atom.xml'>rss</a>
             </li>
@@ -84,11 +83,8 @@
         <% end %>
     </div>
     <footer>
-      <small>
-            &copy; 2012 Martin Owen
-      </small>
+      <%= render('_footer') %>
     </footer>
-  
   
     <!-- JavaScript at the bottom for fast page loading -->
   
