@@ -52,39 +52,39 @@
          chromium.org/developers/how-tos/chrome-frame-getting-started -->
     <!--[if lt IE 7]><p class=chromeframe>Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p><![endif]-->
     <% content = find_and_preserve(yield) %>
-    <header>
+    <div id="container">
+      <div id="layout">
+        <header>
           <hgroup>
-            <h1>
-              <a href='/'>
-                <%= site_name %>
-              </a>
-            </h1>
+            <h1 id="site-header"><a href='/'><%= site_name %></a></h1>
           </hgroup>
           <nav>
             <ul>
-            <%= link_unless_current "about" %>
             <%= link_unless_current "archives" %>
             <li>
               <a href='/atom.xml'>rss</a>
             </li>
             </ul>
           </nav>              
-    </header>
-    <div id="main">
-        <% if @item[:kind] == 'article' %>
-          <%= render('_article', :item => @item, :content => content) %>
-          <nav id="sidebar">
-            <%= render('_sidebar') %>
-          </nav>
-        <% else %>
-          <section>
-            <%= content %>
-          </section>
-        <% end %>
+        </header>
+        <div id="main">
+          <% if @item[:kind] == 'article' %>
+            <%= render('_article', :item => @item, :content => content) %>
+            <nav id="sidebar">
+              <%= render('_sidebar') %>
+            </nav>
+          <% else %>
+            <section>
+              <%= content %>
+            </section>
+          <% end %>
+        </div>
+        <div id='layout-footer'></div>
+      </div>
+      <footer>
+        <%= render('_footer') %>
+      </footer>
     </div>
-    <footer>
-      <%= render('_footer') %>
-    </footer>
   
     <!-- JavaScript at the bottom for fast page loading -->
   

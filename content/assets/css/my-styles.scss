@@ -1,4 +1,5 @@
 @import "compass/reset";
+@import "compass/layout";
 @import "compass/css3/border-radius";
 @import "compass/css3/text-shadow";
 @import "compass/css3/box-shadow";
@@ -6,6 +7,7 @@
 @import "compass/typography/links";
 @import "compass/typography/lists/bullets";
 @import "960/grid";
+@import "blueprint/link-icons";
 
 $header_font: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
 $body_font: Georgia;
@@ -26,13 +28,60 @@ $link_focus_color: $link_hover_color;
     }
 }
 
+@mixin link-icons {
+    a[href^="mailto:"] {
+	@include link-icon(unquote("email.png")); }
+    a[href$=".pdf"] {
+	@include link-icon(unquote("pdf.png")); }
+    a[href$=".doc"] {
+	@include link-icon(unquote("doc.png")); }
+    a[href$=".xls"] {
+	@include link-icon(unquote("xls.png")); }
+    a.atom-feed,
+    a[href$=".rss"],
+    a[href$=".rdf"] {
+	@include link-icon(unquote("feed.png")); }
+    a.noicon {
+	@include no-link-icon; }
+}
+
+@mixin social-icon-base {
+    padding-left: 20px;
+    background-repeat: no-repeat;
+    background-position: left center;
+}
+
+@mixin social-icons {
+    a.delicious {
+	@include link-icon(unquote("social_icons/delicious_16.png"), false); }
+    a.twitter {
+	@include link-icon(unquote("social_icons/twitter_16.png"), false); }
+    a.lastfm {
+	@include link-icon(unquote("social_icons/lastfm_16.png"), false); }
+    a.facebook {
+	@include link-icon(unquote("social_icons/facebook_16.png"), false); }
+    a.flickr {
+	@include link-icon(unquote("social_icons/flickr_16.png"), false); }
+    a.github {
+	@include link-icon(unquote("social_icons/github_16.png"), false); }
+    a.linkedin {
+	@include link-icon(unquote("social_icons/linkedin_16.png"), false); }
+    a.friendfeed {
+	@include link-icon(unquote("social_icons/friendfeed_16.png"), false); }
+    a.delicious, a.twitter, a.lastfm,
+    a.facebook, a.flickr, a.github,
+    a.linkedin, a.friendfeed {
+	@include social-icon-base; }
+}
+
 @include establish-baseline;
+@include sticky-footer(300px, "#layout", "#layout-footer", "footer");
 
 body {
-    @include grid-container;
-
     font-family: $body_font;
-    background-color: $background_color;
+    background: white;
+
+    @include link-icons;
 
     @include text-shadow(0px 1px 0px white);
 
@@ -65,60 +114,78 @@ body {
         margin: 0px 2px;
     }
 
-    header {
-        @include grid(12);
-        @include alpha;
-        @include omega;
+    #container {
+        @include grid-container;
 
-        hgroup {
-            @include grid-prefix(1);
-            @include grid(4);
+        background-color: $background_color;
+
+        #layout > header {
+            @include grid(2);
             @include alpha;
-        }
 
-        nav {
-            @include grid(6);
-            @include grid-suffix(1);
-            @include omega;
-
-            li {
-                display: inline;
-            }
-        }
-    }
-    
-    #main {
-        @include grid(12);
-        @include alpha;
-        @include omega;
-        
-        .excerpt {
-            
-            time {
-                @include grid(2);
-                @include alpha;
+            h1 {
+                font-size: 70px;
+                line-height: 0.9em;
+                margin-bottom: 0.2em;
                 text-align: right;
             }
-
-            .content {
-                @include grid(8);
-                @include grid-suffix(2);
-                @include omega;
+            
+            nav {
+                li {
+                    @include my-header-font-style;
+                    font-size: 2em;
+                    display: inline;
+                    text-align: right;
+                }
             }
+        }
+    
+        #main {
+            @include grid(10);
+            @include omega;
+        
+            .excerpt {
+                
+                time {
+                    @include grid(2);
+                    @include alpha;
+                    text-align: right;
+                }
 
-            @include margin-trailer(1);
+                .content {
+                    @include grid(8);
+                    @include omega;
+                }
+
+                @include margin-trailer(1);
+            }
         }
     }
 
     footer {
-        @include grid(12);
-        @include alpha;
-        @include omega;
+        @include grid-container;
+
+        background: white;
+
+        font-weight: normal;
+        @include single-text-shadow(#000, 0px, 0px, 0);
+
+        @include adjust-font-size-to(14px);
+
+        .about, .elsewhere, .tags {
+            @include grid(4);
+        }
+
+        .about {
+            @include alpha;
+        }
+
+        .elsewhere {
+            @include social-icons;
+        }
 
         .tags {
-            @include grid-prefix(4);
-            @include grid(4);
-            @include grid-suffix(4);
+            @include omega;
 
             ul {
                 display: inline;
@@ -130,9 +197,9 @@ body {
         }
         
         .small {
-            @include grid-prefix(3);
-            @include grid(6);
-            @include grid-suffix(3);
+            @include grid-prefix(1);
+            @include grid(10);
+            @include grid-suffix(1);
             
             text-align: center;
         }
