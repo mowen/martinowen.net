@@ -29,6 +29,8 @@ compile '*' do
   # item[:extension] returns 'html.erb' for multi-dotted filename
   ext = item[:extension].nil? ? nil : item[:extension].split('.').last
 
+  ext_to_ignore = %w(png xml html ico txt js)
+  
   if ext == 'erb'
     filter :erb
   elsif ext == 'haml' || ext.nil?
@@ -42,16 +44,18 @@ compile '*' do
   elsif ext == 'org'
     filter :org
   else
-    raise "Filter is not configured for #{item.identifier} in Rules file." if ext != 'html'
+    raise "Filter is not configured for #{item.identifier} in Rules file." unless ext_to_ignore.include? ext
   end
 
-  filter :typogruby
-  filter :uv, :line_numbers => false, :theme => 'twilight'
+  unless ext_to_ignore.include? ext
+    filter :typogruby
+    filter :uv, :line_numbers => false, :theme => 'twilight'
 
-  # use layouts with .html extension or layout specified in meta
-  item[:layout] = "none" unless item[:layout] || File.extname(route_path(item)) == '.html' 
+    # use layouts with .html extension or layout specified in meta
+    item[:layout] = "none" unless item[:layout] || File.extname(route_path(item)) == '.html' 
 
-  layout 'default' unless item[:layout] == "none"
+    layout 'default' unless item[:layout] == "none"
+  end
 end
 
 route '/assets/css/*/' do

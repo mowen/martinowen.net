@@ -10,55 +10,94 @@
       [keywords, tags].join(', ')
     end
   end
+
   def link_unless_current(s)
     "<li><a href='/#{s}.html'>#{s}</a></li>" if @item.identifier != "/#{s}/" 
   end
+:erb
+  <!doctype html>
+  <!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
+  <!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+  <!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+  <!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+  <!-- Consider adding a manifest.appcache: h5bp.com/d/Offline -->
+  <!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+  
+    <!-- Use the .htaccess and remove these lines to avoid edge case issues.
+         More info: h5bp.com/i/378 -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  
+    <title><%= @item[:title] %></title>
+    <meta name="keywords" content="<%= keywords %>">
+    <meta name="description" content="<%= @item[:excerpt] %>">
+  
+    <!-- Mobile viewport optimized: h5bp.com/viewport -->
+    <meta name="viewport" content="width=device-width">
+  
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory: mathiasbynens.be/notes/touch-icons -->
 
-!!! 5
-%html(lang="en")
-  %head
-    %title= "#{@item[:title]}"
-    %meta(content="text/html; charset=utf-8" http-equiv="Content-Type")
-    %meta(name="keywords" content="#{keywords}")
-    %meta(name="description" content="#{@item[:excerpt]}")
-    %link(href="/assets/css/twilight.css" media="screen" rel="stylesheet" type="text/css")
-    %link(href="http://fonts.googleapis.com/css?family=Inconsolata" rel="stylesheet" type="text/css")
-    %link{ :href => "/assets/css/screen.css", :rel => "stylesheet", :type => "text/css", :media => "screen, projection" }
-    %link{ :href => "/assets/css/print.css", :rel => "stylesheet", :type => "text/css", :media => "print" }
-    / 
-      [if lt IE 8]>
-      <link href="/assets/css/ie.css" media="screen, projection" rel="stylesheet" type="text/css">
-      <![endif]
-
-  %body
-    -# needed since some content render <pre> blocks
-    - content = find_and_preserve(yield)
-    #main
-      %header
-        %hgroup
-          %h1
-            %a(href="/")
-              = site_name
-        %nav
-          %ul
-            != link_unless_current "about"
-            != link_unless_current "archives"
-            != link_unless_current "tags"
-            %li
-              %a(href='/atom.xml') rss
-
-      - if @item[:kind] == 'article'
-        = render('_article', :item => @item, :content => content)
-
-        %nav#sidebar
-          = render('_sidebar')
-
-      - else
-        %section
-          = content
-      
-      %footer
-        %small
-          &copy; 2011 Martin Owen
-
-    = render('_ganalytics')
+    <link rel="stylesheet" href="assets/css/html5bp-style.css">
+  
+    <!-- More ideas for your <head> here: h5bp.com/d/head-Tips -->
+  
+    <!-- All JavaScript at the bottom, except this Modernizr build.
+         Modernizr enables HTML5 elements & feature detects for optimal performance.
+         Create your own custom Modernizr build: www.modernizr.com/download/ -->
+    <script src="js/libs/modernizr-2.5.3.min.js"></script>
+  </head>
+  <body>
+    <!-- Prompt IE 6 users to install Chrome Frame. Remove this if you support IE 6.
+         chromium.org/developers/how-tos/chrome-frame-getting-started -->
+    <!--[if lt IE 7]><p class=chromeframe>Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p><![endif]-->
+    <% content = find_and_preserve(yield) %>
+    <header>
+          <hgroup>
+            <h1>
+              <a href='/'>
+                <%= site_name %>
+              </a>
+            </h1>
+          </hgroup>
+    </header>
+    <div role="main">
+        <% if @item[:kind] == 'article' %>
+          <%= render('_article', :item => @item, :content => content) %>
+          <nav id="sidebar">
+            <%= render('_sidebar') %>
+          </nav>
+        <% else %>
+          <section>
+            <%= content %>
+          </section>
+        <% end %>
+    </div>
+    <footer>
+      <small>
+            &copy; 2012 Martin Owen
+      </small>
+    </footer>
+  
+  
+    <!-- JavaScript at the bottom for fast page loading -->
+  
+    <!-- Grab Google CDN's jQuery, with a protocol relative URL; fall back to local if offline -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/libs/jquery-1.7.1.min.js"><\/script>')</script>
+  
+    <!-- scripts concatenated and minified via build script -->
+    <script src="js/plugins.js"></script>
+    <script src="js/script.js"></script>
+    <!-- end scripts -->
+  
+    <!-- Asynchronous Google Analytics snippet. Change UA-XXXXX-X to be your site's ID.
+         mathiasbynens.be/notes/async-analytics-snippet -->
+    <script>
+      var _gaq=[['_setAccount','<%= @config[:google_analytics][:site_id] %>'],['_trackPageview']];
+      (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+      g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+      s.parentNode.insertBefore(g,s)}(document,'script'));
+    </script>
+  </body>
+  </html>
