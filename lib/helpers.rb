@@ -30,13 +30,17 @@ def route_path(item)
     outext = '' # remove 2nd extension
   elsif extname == ".sass"
     outext = '.css'
+  elsif extname == ".png"
+    outext = '.png'
   else
     outext = '.html'
   end
   url.gsub!(extname, outext)
-  
-  url.gsub!('-', '/') # /2010/01/01-some_title.html -> /2010/01/01/some_title.html
-  url.gsub!('_', '-') # /2010/01/01/some_title.html -> /2010/01/01/some-title.html
+
+  if url.match(/blog/)
+    url.gsub!('-', '/') # /2010/01/01-some_title.html -> /2010/01/01/some_title.html
+    url.gsub!('_', '-') # /2010/01/01/some_title.html -> /2010/01/01/some-title.html
+  end
 
   url
 end
