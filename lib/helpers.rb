@@ -27,15 +27,18 @@ def route_path(item)
   extname = '.' + item[:extension].split('.').last
   outext = '.haml'
   if url.match(/(\.[a-zA-Z0-9]+){2}$/) # => *.html.erb, *.html.md ...
-    outext = '' # remove 2nd extension
+    unless url.match(/\.min\.js$/)
+      outext = '' # remove 2nd extension unless minified js
+    end
   elsif extname == ".sass"
     outext = '.css'
-  elsif extname == ".png"
-    outext = '.png'
   else
     outext = '.html'
   end
-  url.gsub!(extname, outext)
+
+  unless %w(.png .ico .txt .xml .js).include? extname
+    url.gsub!(extname, outext)
+  end
 
   if url.match(/blog/)
     url.gsub!('-', '/') # /2010/01/01-some_title.html -> /2010/01/01/some_title.html
