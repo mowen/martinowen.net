@@ -70,7 +70,7 @@
             </ul>
           </nav>              
     </header>
-    <div role="main">
+    <div id="main">
         <% if @item[:kind] == 'article' %>
           <%= render('_article', :item => @item, :content => content) %>
           <nav id="sidebar">

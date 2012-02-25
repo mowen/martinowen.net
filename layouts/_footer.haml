@@ -5,7 +5,7 @@
       - tag = tag_count[0]
       - count = tag_count[1]
       %li
-        %a(href="/tags/#{tag}/" class='tag')= tag
-        = " (#{count})"
-%small
-  &copy; 2012 Martin Owen
+        %a(href="/tags/#{tag}/" class='tag')= "#{tag} (#{count})"
+.small
+  %small
+    &copy; 2012 Martin Owen
