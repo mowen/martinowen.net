@@ -39,6 +39,7 @@
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory: mathiasbynens.be/notes/touch-icons -->
 
     <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Inconsolata">
   
     <!-- More ideas for your <head> here: h5bp.com/d/head-Tips -->
   
@@ -55,24 +56,23 @@
     <div id="container">
       <div id="layout">
         <header>
-          <hgroup>
-            <h1 id="site-header"><a href='/'><%= site_name %></a></h1>
-          </hgroup>
-          <nav>
-            <ul>
-            <%= link_unless_current "archives" %>
-            <li>
-              <a href='/atom.xml'>rss</a>
-            </li>
-            </ul>
-          </nav>              
+          <div class="wrapper">
+            <hgroup>
+              <h1 id="site-header"><a href='/'><%= site_name %></a></h1>
+            </hgroup>
+            <nav>
+              <ul>
+                <%= link_unless_current "archives" %>
+                <li>
+                  <a href='/atom.xml'>subscribe</a>
+                </li>
+              </ul>
+            </nav>
+          </div>
         </header>
-        <div id="main">
+        <div id="main" role="main">
           <% if @item[:kind] == 'article' %>
             <%= render('_article', :item => @item, :content => content) %>
-            <nav id="sidebar">
-              <%= render('_sidebar') %>
-            </nav>
           <% else %>
             <section>
               <%= content %>
@@ -82,7 +82,9 @@
         <div id='layout-footer'></div>
       </div>
       <footer>
-        <%= render('_footer') %>
+        <div class="wrapper">      
+          <%= render('_footer') %>
+        </div>
       </footer>
     </div>
   

@@ -11,6 +11,7 @@
 
 $header_font: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
 $body_font: Georgia;
+$fixed_font: "Inconsolata", Monaco, "Courier New", Courier;
 $font_color: lighten(black, 20);
 $background_color: darken(white, 20);
 
@@ -26,6 +27,10 @@ $link_focus_color: $link_hover_color;
     @if $bold {
 	font-weight: bold;
     }
+}
+
+@mixin my-pretty-bullets {
+    @include pretty-bullets("bullet_black.png", 15px, 15px, $base-line-height, 25px);
 }
 
 @mixin link-icons {
@@ -75,11 +80,11 @@ $link_focus_color: $link_hover_color;
 }
 
 @include establish-baseline;
-@include sticky-footer(300px, "#layout", "#layout-footer", "footer");
+@include sticky-footer(350px, "#layout", "#layout-footer", "footer");
 
 body {
     font-family: $body_font;
-    background: white;
+    background-color: $background_color;
 
     @include link-icons;
 
@@ -115,94 +120,192 @@ body {
     }
 
     #container {
-        @include grid-container;
+        #layout {
+            & > header {
+                background-color: white;
+                height: 80px;
 
-        background-color: $background_color;
+                .wrapper {
+                    @include grid-container;
+                    
+                    hgroup {
+                        @include grid(6);
+                        @include grid-prefix(2);
+                        @include alpha;
 
-        #layout > header {
-            @include grid(2);
-            @include alpha;
+                        h1 {
+                            font-size: 70px;
+                            line-height: 0.9em;
+                            margin-bottom: 0.2em;
+                        }
+                    }
+                    
+                    nav {
+                        @include grid(4);
+                        @include omega;
 
-            h1 {
-                font-size: 70px;
-                line-height: 0.9em;
-                margin-bottom: 0.2em;
-                text-align: right;
+                        margin-top: 24px;
+
+                        ul {
+                            li {
+                                @include my-header-font-style;
+                                font-size: 2em;
+                                display: inline;
+                                margin-left: 18px;
+                            }
+                        }
+                    }
+                }
             }
             
-            nav {
-                li {
-                    @include my-header-font-style;
-                    font-size: 2em;
-                    display: inline;
-                    text-align: right;
-                }
-            }
-        }
-    
-        #main {
-            @include grid(10);
-            @include omega;
-        
-            .excerpt {
-                
-                time {
-                    @include grid(2);
-                    @include alpha;
-                    text-align: right;
+            #main {
+                @include grid-container;
+
+                .excerpt {
+                    
+                    time {
+                        @include grid(2);
+                        @include grid-prefix(2);
+                        @include alpha;
+                        text-align: right;
+                    }
+
+                    .content {
+                        @include grid(6);
+                        @include grid-suffix(2);
+                        @include omega;
+                    }
+
+                    @include margin-trailer(1);
                 }
 
-                .content {
+                & > article {
                     @include grid(8);
+                    @include grid-prefix(2);
+                    @include grid-suffix(2);
+                    @include alpha;
                     @include omega;
+
+                    header {
+
+	                h1 { @include adjust-font-size-to(40px); }
+	                h2 { @include adjust-font-size-to(30px); }
+                        
+	                h1 {
+                            @include padding-leader(0.5);
+                            @include margin-trailer(0.5);
+                        }
+
+                    }
+
+	            h1 { @include adjust-font-size-to(28px); }
+	            h2 { @include adjust-font-size-to(25px); }
+	            h3 { @include adjust-font-size-to(22px); }
+	            h4 { @include adjust-font-size-to(18px); }
+	            h5 { @include adjust-font-size-to(17px); }
+
+	            .body {
+                        ul, ol {
+                            @include my-pretty-bullets;
+                        }
+                    }
+
                 }
 
-                @include margin-trailer(1);
+                pre, code {
+	            @include text-shadow(0px 0px 0px gray); 
+	            font-family: $fixed_font;
+                }
+
+                pre {
+	            display: block;
+	            background: #222;
+	            color: #6f6;
+	            padding-left: 0.6em;
+	            padding-right: 0.6em;
+	            overflow: auto;
+	            @include border-radius(5px);
+	            @include box-shadow;
+                }
+                
+                p, li {
+	            code {
+                        @include text-shadow(none);
+                        @include box-shadow(#555 1px 1px 2px);
+                        @include border-radius(4px);
+                        border: 0.5px solid #555;
+                        padding: 1px 3px;
+                    }
+                }
+                
+                img {
+	            border: 2px solid #e0e0e0;
+                    margin-right: 10px;
+                    float: left;
+                }
+
+                #other-articles {
+                    @include grid(12);
+                    @include alpha;
+                    @include omega;
+                    
+                    .older {
+                        @include grid(6);
+                        @include alpha;
+                        text-align: right;
+                    }
+
+                    .newer {
+                        @include grid(6);
+                        @include omega;
+                    }
+                }
             }
         }
     }
 
     footer {
-        @include grid-container;
+        background-color: white;
 
-        background: white;
+        .wrapper {
+            @include grid-container;
 
-        font-weight: normal;
-        @include single-text-shadow(#000, 0px, 0px, 0);
+            font-weight: normal;
+            @include single-text-shadow(#000, 0px, 0px, 0);
 
-        @include adjust-font-size-to(14px);
+            @include adjust-font-size-to(14px);
 
-        .about, .elsewhere, .tags {
-            @include grid(4);
-        }
+            .about {
+                @include alpha;
+                @include grid(4);
+            }
 
-        .about {
-            @include alpha;
-        }
+            .elsewhere {
+                /* Social icons very slow during dev */
+                /* @include social-icons; */
+                @include grid(4);
+            }
 
-        .elsewhere {
-            @include social-icons;
-        }
-
-        .tags {
-            @include omega;
-
-            ul {
-                display: inline;
-                li {
-                    float: left;
-                    @include no-bullets;
+            .tags {
+                @include omega;
+                @include grid(4);
+                
+                ul {
+                    display: inline;
+                    li {
+                        float: left;
+                        @include no-bullets;
+                    }
                 }
             }
-        }
-        
-        .small {
-            @include grid-prefix(1);
-            @include grid(10);
-            @include grid-suffix(1);
             
-            text-align: center;
+            .small {
+                @include grid-prefix(2);
+                @include grid(8);
+                @include grid-suffix(2);
+                
+                text-align: center;
+            }
         }
     }
-
 }
