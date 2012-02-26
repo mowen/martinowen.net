@@ -3,6 +3,7 @@
 @import "compass/css3/border-radius";
 @import "compass/css3/text-shadow";
 @import "compass/css3/box-shadow";
+@import "compass/css3/images";
 @import "compass/typography/vertical_rhythm";
 @import "compass/typography/links";
 @import "compass/typography/lists/bullets";
@@ -15,6 +16,9 @@ $fixed_font: "Inconsolata", Monaco, "Courier New", Courier;
 $font_color: lighten(black, 20);
 $background_color: darken(white, 20);
 $outer_background: #f0f0f0;
+
+/* To enable SVG gradient support in IE9 and Opera */
+$experimental-support-for-svg: true;
 
 $link_color: lighten(black, 20);;
 $link_hover_color: lighten(black, 60);
@@ -123,7 +127,10 @@ body {
     #container {
         #layout {
             & > header {
-                background-color: $outer_background;
+                @include background-image(
+                    linear-gradient($outer_background 70px, lighten(black, 40))
+                );
+
                 height: 80px;
 
                 .wrapper {
@@ -266,15 +273,19 @@ body {
     }
 
     footer {
+        @include background-image(
+            linear-gradient(lighten(black, 40), $outer_background 10px)
+        );
+
         background-color: $outer_background;
 
         .wrapper {
             @include grid-container;
+            @include padding-leader(1);
+            @include single-text-shadow(#000, 0px, 0px, 0);
+            @include adjust-font-size-to(14px);
 
             font-weight: normal;
-            @include single-text-shadow(#000, 0px, 0px, 0);
-
-            @include adjust-font-size-to(14px);
 
             .about {
                 @include alpha;
