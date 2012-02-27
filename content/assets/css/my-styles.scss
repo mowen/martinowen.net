@@ -112,6 +112,12 @@ body {
 	@include margin-trailer(1);
     }
 
+    nav {
+	ul {
+	    @include no-bullets;
+        }
+    }
+
     time {
         @include my-header-font-style;
     }
@@ -218,6 +224,12 @@ body {
                         }
                     }
 
+                }
+
+                ul.tags {
+	            li {
+	                display: inline;
+                    }
                 }
 
                 pre, code {

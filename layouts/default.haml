@@ -81,6 +81,9 @@
         </div>
         <div id='layout-footer'></div>
       </div>
+      <% if @item[:kind] == 'article' %>
+        <%= render('_article', :item => @item, :content => content) %>      
+      <% end %>
       <footer>
         <div class="wrapper">      
           <%= render('_footer') %>

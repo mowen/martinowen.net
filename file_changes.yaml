@@ -155,3 +155,11 @@
   :created_at: 2011/08/27
   :updated_at: 2011-08-27 22:06:20 +01:00
   :digest: 1f454fe3e9f0c259ad585ff377e91013bc5177bb
+:"content/blog/2008/05-28-erlang_talk.html.erb": 
+  :created_at: 2008/05/28
+  :updated_at: 2011-12-08 16:46:13 +00:00
+  :digest: f37e02fd95c2392c1d5fb24821b2310e61595fc5
+:"content/blog/2009/01-12-barcamp_liverpool.html.erb": 
+  :created_at: 2009/01/12
+  :updated_at: 2011-12-08 16:46:13 +00:00
+  :digest: 7abdc494c3b3cbf2a772bfb3725822c12a64d0ef
