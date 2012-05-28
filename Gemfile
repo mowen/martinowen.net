@@ -2,6 +2,7 @@ source :gemcutter
 
 gem "nanoc", "3.3.1"
 gem "rack"
+gem "rack-rewrite", :require => "rack/rewrite"
 gem "rake"
 gem "mime-types"
 gem "cri"
