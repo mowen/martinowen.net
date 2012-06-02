@@ -1,0 +1,13 @@
+%figure.code
+  %figcaption
+    %span
+      = @title
+    - if @link
+      %a(href=@link title=@link_title)= @link_title
+  %div.highlight
+    %table
+      %tbody
+        %tr
+          %td.gutter
+            = @code
+          %td.code

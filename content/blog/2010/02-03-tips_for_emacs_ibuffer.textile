@@ -13,7 +13,7 @@ h3. Using Ibuffer
 
 First of all, rebind the standard buffer list key binding @C-x C-b@ to use Ibuffer:
 
-<notextile><code class="language-lisp">(global-set-key (kbd "C-x C-b") 'ibuffer) ;; Use Ibuffer for Buffer List
+<notextile><code class="language-cl">(global-set-key (kbd "C-x C-b") 'ibuffer) ;; Use Ibuffer for Buffer List
 </code></notextile>
 
 Once you've used Ibuffer you won't be going back so you should put this in your .emacs.
@@ -22,7 +22,7 @@ h4. Defining your filter groups
 
 You can define your filters and groups in the buffer list itself, but I find that it is easier to specify them in my .emacs:
 
-<notextile><code class="language-lisp">(setq ibuffer-saved-filter-groups
+<notextile><code class="language-cl">(setq ibuffer-saved-filter-groups
       '(("home"
 	 ("emacs-config" (or (filename . ".emacs.d")
 			     (filename . "emacs-config")))
@@ -42,7 +42,7 @@ You can define your filters and groups in the buffer list itself, but I find tha
 
 I then load the saved filter group by name in the @ibuffer-mode-hook@ so that a particular filter is always loaded automatically:
 
-<notextile><code class="language-lisp">(add-hook 'ibuffer-mode-hook 
+<notextile><code class="language-cl">(add-hook 'ibuffer-mode-hook 
 	  '(lambda ()
 	     (ibuffer-switch-to-saved-filter-groups "home")))
 </code></notextile>
@@ -57,21 +57,21 @@ h4. ibuffer-expert
 
 Unless you turn this variable on you will be prompted every time you want to delete a buffer, even unmodified ones, which is way too cautious for most people. You'll still be prompted for confirmation when deleting modified buffers after the option has been turned off.
 
-<notextile><code class="language-lisp">(setq ibuffer-expert t)
+<notextile><code class="language-cl">(setq ibuffer-expert t)
 </code></notextile>
 
 h4. ibuffer-show-empty-filter-groups
 
 Turning off @ibuffer-show-empty-filter-groups@ is particularly useful, because the empty filter groups can really clutter things up.
 
-<notextile><code class="language-lisp">(setq ibuffer-show-empty-filter-groups nil)
+<notextile><code class="language-cl">(setq ibuffer-show-empty-filter-groups nil)
 </code></notextile>
 
 h4. ibuffer-auto-mode
 
 @ibuffer-auto-mode@ is a minor mode that automatically keeps the buffer list up to date. I turn it on in my @ibuffer-mode-hook@:
 
-<notextile><code class="language-lisp">(add-hook 'ibuffer-mode-hook 
+<notextile><code class="language-cl">(add-hook 'ibuffer-mode-hook 
 	  '(lambda ()
 	     (ibuffer-auto-mode 1)
 	     (ibuffer-switch-to-saved-filter-groups "home")))
@@ -84,3 +84,5 @@ This is something I had a problem with when I upgraded to Emacs 23.1. The latest
 Rather than doing diffs against the 22.3 versions of the Ibuffer files to determine the changes (and possibly undo them) I've just copied the old versions from the 'lisp' directory of Emacs 22.3 To a 'vendor' directory in my .emacs.d and loaded that.
 
 If I find a better way to solve this problem I'll post an update.
+
+
