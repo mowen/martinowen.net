@@ -51,7 +51,8 @@ compile '*' do
 
   unless ext_to_ignore.include? ext
     filter :typogruby
-    filter :uv, :line_numbers => false, :theme => 'twilight'
+    #filter :uv, :line_numbers => false, :theme => 'twilight'
+    filter :colorize_syntax, :colorizers => :pygmentize
 
     # use layouts with .html extension or layout specified in meta
     item[:layout] = "none" unless item[:layout] || File.extname(route_path(item)) == '.html' 
