@@ -1,6 +1,6 @@
 source :gemcutter
 
-gem "nanoc", "3.3.1"
+gem "nanoc"
 gem "rack"
 gem "rack-rewrite", :require => "rack/rewrite"
 gem "rake"
@@ -16,7 +16,7 @@ gem "nokogiri"
 gem "adsf"
 gem "compass"
 gem "compass-960-plugin"
-gem "org-ruby", "~> 0.5.3"
+gem "org-ruby"
 gem "spox-ultraviolet"
 gem "typogruby"
 gem "coffee-script", "~> 2.2.0"
