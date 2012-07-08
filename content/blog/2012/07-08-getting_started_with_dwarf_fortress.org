@@ -24,9 +24,9 @@ that attracted me to the game (because I'm a fucking idiot.)/
 
 * DF is a game for software developers
 
-There was a [[http://quaran.to/blog/2007/10/29/why-every-programmer-should-play-nethack/][blog post by Nick Quaranto]] that said that every programmer should
-play NetHack. I think it was sub-conciously one of the reasons that I decided to
-play DF, because although DF isn't strictly a roguelike game, it shares the
+There was a [[http://quaran.to/blog/2007/10/29/why-every-programmer-should-play-nethack/][blog post by Nick Quaranto]] that said every programmer should play
+NetHack. I think it was sub-conciously one of the reasons that I decided to play
+DF, because although DF isn't strictly a roguelike game, it shares the
 rougelike's total disregard for quality graphics, and ridiculously steep
 learning curve.
 
@@ -40,9 +40,13 @@ detail and
   visualising the things that they represent. 
 - Losing is part of the game. The more you lose, the more you learn.
 
-* Dwarf Fortress is the Emacs of video games
+* The Downside - Performance
 
-You can open DF up and experiment with it, but you will need to waste a lot of
-time with experiment
+DF is the most CPU intensive application my 5 year-old MacBook has had to
+contend with. Generating a world takes 20 minutes of huffing and puffing. Saving
+the game causes a couple of minutes of beach-ball spinning.
 
-
+I think this is all down to the scope of the game - there is a whole world of
+creatures out there that need to be simulated. I personally couldn't give two
+hoots about 250+ years of history and a massive world that I'm unlikely to
+explore - just make the thing save fast.
