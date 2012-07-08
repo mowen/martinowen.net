@@ -1,4 +1,3 @@
-
 require 'nanoc3/tasks'
 require 'fileutils'
 
@@ -6,7 +5,6 @@ namespace :create do
 
   desc "Creates a new article"
   task :article do
-    $KCODE = 'UTF8'
     require 'active_support/core_ext'
     require 'active_support/multibyte'
     @ymd = Time.now.to_s(:db).split(' ')[0]
@@ -43,8 +41,8 @@ TEMPLATE
 
   def calc_path(title)
     year, month_day = @ymd.split('-', 2)
-    path = "content/" + year + "/" 
-    filename = month_day + "-" + title.parameterize('_') + ".md"
+    path = "content/blog/" + year + "/" 
+    filename = month_day + "-" + title.parameterize('_') + ".org"
     [path, filename, path + filename]
   end
 end
