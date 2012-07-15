@@ -31,7 +31,7 @@ site_name: Martin Owen
 featured_count: 0
 
 # number of excerpted posts to display on front
-excerpt_count: 9
+excerpt_count: 10
 
 # number of other articles to reference at bottom of each article
 other_articles_max: 3

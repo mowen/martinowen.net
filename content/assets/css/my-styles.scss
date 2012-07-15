@@ -135,7 +135,6 @@ body {
 
     time {
         @include my-header-font-style;
-        float: left;
     }
 
     .tag {
@@ -187,9 +186,21 @@ body {
             background-color: $background_color;
 
             .excerpt {
+                @include grid-container;
+
+                h2 {
+                    @include alpha;
+                    @include grid(6);
+                }
                 
                 time {
                     text-align: right;
+                    @include grid(2);
+                    @include omega;
+                }
+
+                .body {
+                    @include grid(8);
                 }
 
                 @include margin-trailer(1);
@@ -245,10 +256,15 @@ body {
             }
 
             #other-articles {
+                @include grid-container;
+
+                li {
+                    @include no-bullets;
+                }
+
                 .older {
                     @include alpha;
                     @include grid(4);
-                    @include grid-suffix(1);
                     text-align: right;
                 }
 
@@ -261,6 +277,7 @@ body {
     }
 
     footer {
+        @include grid(8);
         @include padding-leader(1);
         @include adjust-font-size-to(14px);
 
