@@ -11,9 +11,6 @@
     end
   end
 
-  def link_unless_current(s)
-    "<li><a href='/#{s}.html'>#{s}</a></li>" if @item.identifier != "/#{s}/" 
-  end
 :erb
   <!doctype html>
   <!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
@@ -51,41 +48,24 @@
   <body>
     <!-- Prompt IE 6 users to install Chrome Frame. Remove this if you support IE 6.
          chromium.org/developers/how-tos/chrome-frame-getting-started -->
-    <!--[if lt IE 7]><p class=chromeframe>Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p><![endif]-->
+    <!--[if lt IE 7]><p class=chromeframe>Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p><![endif]-->  
     <% content = find_and_preserve(yield) %>
     <div id="container">
-      <div id="layout">
-        <header>
-          <div class="wrapper">
-            <hgroup>
-              <h1 id="site-header"><a href='/'><%= site_name %></a></h1>
-            </hgroup>
-            <nav>
-              <ul>
-                <%= link_unless_current "archives" %>
-                <li>
-                  <a href='/atom.xml'>subscribe</a>
-                </li>
-              </ul>
-            </nav>
-          </div>
-        </header>
-        <div id="main" role="main">
-          <% if @item[:kind] == 'article' %>
-            <%= render('_article', :item => @item, :content => content) %>
-          <% else %>
-            <section>
-              <%= content %>
-            </section>
-          <% end %>
-        </div>
-        <div id='layout-footer'></div>
-      </div>
-      <footer>
-        <div class="wrapper">
+      <section id="sidebar">
+        <%= render('_sidebar') %>
+      </section>
+      <section id="main" role="main">
+        <% if @item[:kind] == 'article' %>
+          <%= render('_article', :item => @item, :content => content) %>
+        <% else %>
+          <section>
+            <%= content %>
+          </section>
+        <% end %>
+        <footer>
           <%= render('_footer') %>
-        </div>
-      </footer>
+        </footer>
+      </div>
     </div>
   
     <!-- JavaScript at the bottom for fast page loading -->

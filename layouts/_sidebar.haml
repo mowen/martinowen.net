@@ -1,10 +1,65 @@
 ---
 ---
-%ul
-  - sorted_articles.each do |item|
+:ruby
+  def link_unless_current(s)
+    "<li><a href='/#{s}.html'>#{s}</a></li>" if @item.identifier != "/#{s}/" 
+  end
+
+%header
+  %a(href="/") 
+    %img(src="/assets/images/avatar.png" title="Martin Owen")
+  %h1#side-header
+    %a(href="/")
+      %span.martin<
+        martin
+      %br
+      %span.owen<
+        owen
+
+%nav.main
+  %ul
     %li
-      %h3
-        %time(datetime="#{item[:created_at].gsub('/', '-')}")
-          = item[:created_at]
-        %a(href="#{route_path(item)}" title="#{item[:excerpt] || ''}")
-          = "&raquo; #{item[:title]}"
+      = link_unless_current "about"
+    %li
+      = link_unless_current "archives"
+    %li
+      %a(href='/atom.xml')
+        subscribe
+
+%nav.elsewhere
+  %ul.social-network-links
+    %li
+      %a.github{ :href => "http://github.com/mowen"}
+        github
+    %li
+      %a.lastfm{ :href => "http://last.fm/user/martyziff"}
+        last.fm
+    %li
+      %a.twitter{ :href => "http://twitter.com/martinowen"}
+        twitter
+    %li
+      %a.facebook{ :href => "http://facebook.com/martowen"}
+        facebook
+    %li
+      %a.delicious{ :href => "http://delicious.com/mintyboy"}
+        delicious
+    %li
+      %a.flickr{ :href => "http://www.flickr.com/photos/mintyboy"}
+        flickr
+    %li
+      %a.linkedin{ :href => "http://uk.linkedin.com/in/martinowenuk"}
+        linkedin
+    %li
+      %a.friendfeed{ :href => "http://friendfeed.com/martinowen"}
+        friendfeed
+
+%nav.tags
+  %h2
+    Tags
+  - tags = count_tags()
+  %ul
+    - tags.sort_by{|k,v| k}.each do |tag_count|
+      - tag = tag_count[0]
+      - count = tag_count[1]
+      %li
+        %a(href="/tags/#{tag}/" class='tag')= "#{tag} (#{count})"

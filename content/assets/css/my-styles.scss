@@ -91,11 +91,10 @@ $link_focus_color: $link_hover_color;
 }
 
 @include establish-baseline;
-@include sticky-footer(350px, "#layout", "#layout-footer", "footer");
 
 body {
     font-family: $body_font;
-    background-color: $background_color;
+    background-color: $outer_background;
 
     @include link-icons;
 
@@ -136,6 +135,7 @@ body {
 
     time {
         @include my-header-font-style;
+        float: left;
     }
 
     .tag {
@@ -147,188 +147,127 @@ body {
     }
 
     #container {
-        #layout {
-            & > header {
-                @include background-image(
-                    linear-gradient($outer_background 70px, lighten(black, 40))
-                );
+        @include grid-container;
 
-                height: 80px;
+        #sidebar {
+            @include alpha;
+            @include grid(2);
 
-                .wrapper {
-                    @include grid-container;
-                    
-                    hgroup {
-                        @include grid(6);
-                        @include grid-prefix(2);
-                        @include alpha;
+            h1 {
+                font-size: 50px;
+                line-height: 0.9em;
+                margin-bottom: 0.2em;
+            }
 
-                        h1 {
-                            font-size: 70px;
-                            line-height: 0.9em;
-                            margin-bottom: 0.2em;
-                        }
-                    }
-                    
-                    nav {
-                        @include grid(4);
-                        @include omega;
+            ul {
+                @include my-header-font-style;
+            }
 
-                        margin-top: 24px;
+            .elsewhere {
+                @include social-icons;
+            }
 
-                        ul {
-                            li {
-                                @include my-header-font-style;
-                                font-size: 2em;
-                                display: inline;
-                                margin-left: 18px;
-                            }
-                        }
+            .tags {
+                ul {
+                    li {
+                        @include no-bullets;
                     }
                 }
             }
-            
-            #main {
-                @include grid-container;
+        }
 
-                .excerpt {
-                    
-                    time {
-                        @include grid(2);
-                        @include grid-prefix(2);
-                        @include alpha;
-                        text-align: right;
-                    }
+        #main {
+            @include grid(8);
+            @include grid-prefix(1);
+            @include grid-suffix(1);
+            @include omega;
 
-                    .content {
-                        @include grid(6);
-                        @include grid-suffix(2);
-                        @include omega;
-                    }
+            //@include grid-container;
 
-                    @include margin-trailer(1);
+            background-color: $background_color;
+
+            .excerpt {
+                
+                time {
+                    text-align: right;
                 }
 
-                & > article {
-                    @include grid(8);
-                    @include grid-prefix(2);
-                    @include grid-suffix(2);
-                    @include alpha;
-                    @include omega;
+                @include margin-trailer(1);
+            }
 
-                    header {
-
-	                h1 { @include adjust-font-size-to(40px); }
-	                h2 { @include adjust-font-size-to(30px); }
+            & > article {
+                header {
+                    
+	            h1 { @include adjust-font-size-to(40px); }
+	            h2 { @include adjust-font-size-to(30px); }
                         
-	                h1 {
-                            @include padding-leader(0.5);
-                            @include margin-trailer(0.5);
-                        }
-
+	            h1 {
+                        @include padding-leader(0.5);
+                        @include margin-trailer(0.5);
                     }
-
-	            h1 { @include adjust-font-size-to(28px); }
-	            h2 { @include adjust-font-size-to(25px); }
-	            h3 { @include adjust-font-size-to(22px); }
-	            h4 { @include adjust-font-size-to(18px); }
-	            h5 { @include adjust-font-size-to(17px); }
-
-	            .body {
-                        ul, ol {
-                            @include my-pretty-bullets;
-                        }
-                    }
-
-                }
-
-                ul.tags {
-	            li {
-	                display: inline;
-                    }
-                }
-
-                img {
-	            border: 2px solid #e0e0e0;
-                    margin-right: 10px;
-                    float: left;
-                }
-
-                p, li {
-	            code {
-                        @include text-shadow(none);
-                        @include box-shadow(#555 1px 1px 2px);
-                        @include border-radius(4px);
-                        border: 0.5px solid #555;
-                        padding: 1px 3px;
-                    }
-                }
-
-                #other-articles {
-                    @include grid(12);
-                    @include alpha;
-                    @include omega;
                     
-                    .older {
-                        @include grid(6);
-                        @include alpha;
-                        text-align: right;
-                    }
+                }
 
-                    .newer {
-                        @include grid(6);
-                        @include omega;
+	        h1 { @include adjust-font-size-to(28px); }
+	        h2 { @include adjust-font-size-to(25px); }
+	        h3 { @include adjust-font-size-to(22px); }
+	        h4 { @include adjust-font-size-to(18px); }
+	        h5 { @include adjust-font-size-to(17px); }
+
+	        .body {
+                    ul, ol {
+                        @include my-pretty-bullets;
                     }
+                }
+                
+            }
+
+            ul.tags {
+	        li {
+	            display: inline;
+                }
+            }
+
+            img {
+	        border: 2px solid #e0e0e0;
+                margin-right: 10px;
+                float: left;
+            }
+
+            p, li {
+	        code {
+                    @include text-shadow(none);
+                    @include box-shadow(#555 1px 1px 2px);
+                    @include border-radius(4px);
+                    border: 0.5px solid #555;
+                    padding: 1px 3px;
+                }
+            }
+
+            #other-articles {
+                .older {
+                    @include alpha;
+                    @include grid(4);
+                    @include grid-suffix(1);
+                    text-align: right;
+                }
+
+                .newer {
+                    @include grid(4);
+                    @include omega;
                 }
             }
         }
     }
 
     footer {
-        @include background-image(
-            linear-gradient(lighten(black, 40), $outer_background 10px)
-        );
+        @include padding-leader(1);
+        @include adjust-font-size-to(14px);
 
-        background-color: $outer_background;
+        font-weight: normal;
 
-        .wrapper {
-            @include grid-container;
-            @include padding-leader(1);
-            @include single-text-shadow(#000, 0px, 0px, 0);
-            @include adjust-font-size-to(14px);
-
-            font-weight: normal;
-
-            .about {
-                @include alpha;
-                @include grid(4);
-            }
-
-            .elsewhere {
-                @include social-icons;
-                @include grid(4);
-            }
-
-            .tags {
-                @include omega;
-                @include grid(4);
-                
-                ul {
-                    display: inline;
-                    li {
-                        float: left;
-                        @include no-bullets;
-                    }
-                }
-            }
-            
-            .small {
-                @include grid-prefix(2);
-                @include grid(8);
-                @include grid-suffix(2);
-                
-                text-align: center;
-            }
+        .small {
+            text-align: center;
         }
     }
 }

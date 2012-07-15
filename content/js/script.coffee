@@ -23,23 +23,30 @@ class SiteHeaderMutator
       @toggleLetterMutation(i) if randomInt(0,1) is 1
 
   toggleLetterMutation: (i) ->
+    @properties = {}
+
     if @letterIsMutating[i-1] or i in @staticLetters
       return
 
     $letter = $(@siteHeaderSelector).find('.char' + i)
 
-    if $letter.css('font-size') is '70px'
-      properties = { 'font-size': '50px' }
-    else
-      properties = { 'font-size': '70px' }
+    @toggleFontSize $letter
 
     @letterIsMutating[i-1] = true
     callback = do (i) =>
       @letterIsMutating[i-1] = false
-    $letter.animate properties, @mutationDuration, 'swing', callback
+    $letter.animate @properties, @mutationDuration, 'swing', callback
+
+  toggleFontSize: ($letter) ->
+    if $letter.css('font-size') is '50px'
+      @properties['font-size'] = '30px'
+    else
+      @properties['font-size'] = '50px'
 
 $ ->
-  siteHeaderMutator = new SiteHeaderMutator '#site-header a', 1000, [1,8]
+  martinMutator = new SiteHeaderMutator '#side-header .martin', 1000, [1]
+  owenMutator = new SiteHeaderMutator '#side-header .owen', 1000, [1]
   mutate = ->
-    siteHeaderMutator.run()
+    martinMutator.run()
+    owenMutator.run()
   setInterval mutate, 5000

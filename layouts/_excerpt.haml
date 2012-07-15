@@ -2,9 +2,9 @@
 ---
 .excerpt
   - url = "#{route_path(item)}"
-  %time(datetime="#{item[:created_at].gsub('/','-')}")<= item[:created_at]
   .content
     %header
+      %time(datetime="#{item[:created_at].gsub('/','-')}")><= "#{item[:created_at]} &laquo;"
       %h2<
         %a(href="#{url}" title="Full article" class="permalink")= "#{item[:title]}"
     .body

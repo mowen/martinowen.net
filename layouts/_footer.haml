@@ -1,53 +1,5 @@
-.about
-  %h2
-    About
-  :textile
-    p. I’m a software developer living in Liverpool in the United Kingdom. I work for Qivox.
-      
-    p. At the moment I'm really into CoffeeScript, Node.js, and MongoDB, but who knows what I'll be into next week.
-
-.elsewhere
-  %h2
-    Elsewhere
-  %p
-    %em
-      In order of activity, starting with most active:
-  %ul.social-network-links
-    %li
-      %a.github{ :href => "http://github.com/mowen"}
-        github.com/mowen
-    %li
-      %a.lastfm{ :href => "http://last.fm/user/martyziff"}
-        last.fm/user/martyziff
-    %li
-      %a.twitter{ :href => "http://twitter.com/martinowen"}
-        twitter.com/martinowen
-    %li
-      %a.facebook{ :href => "http://facebook.com/martowen"}
-        facebook.com/martowen
-    %li
-      %a.delicious{ :href => "http://delicious.com/mintyboy"}
-        delicious.com/mintyboy
-    %li
-      %a.flickr{ :href => "http://www.flickr.com/photos/mintyboy"}
-        flickr.com/photos/mintyboy
-    %li
-      %a.linkedin{ :href => "http://uk.linkedin.com/in/martinowenuk"}
-        uk.linkedin.com/in/martinowenuk
-    %li
-      %a.friendfeed{ :href => "http://friendfeed.com/martinowen"}
-        friendfeed.com/martinowen
-
-.tags
-  %h2
-    Tags
-  - tags = count_tags()
-  %ul
-    - tags.sort_by{|k,v| k}.each do |tag_count|
-      - tag = tag_count[0]
-      - count = tag_count[1]
-      %li
-        %a(href="/tags/#{tag}/" class='tag')= "#{tag} (#{count})"
+---
+---
 .small
   %small
     :textile

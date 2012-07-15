@@ -10,3 +10,4 @@ npm-debug.log
 output.diff
 Gemfile.lock
 file_changes.yaml
+crash.log

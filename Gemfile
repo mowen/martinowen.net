@@ -1,6 +1,6 @@
 source :gemcutter
 
-gem "nanoc"
+gem "nanoc", 3.4
 gem "rack"
 gem "rack-rewrite", :require => "rack/rewrite"
 gem "rake"
