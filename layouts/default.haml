@@ -58,7 +58,7 @@
         <% if @item[:kind] == 'article' %>
           <%= render('_article', :item => @item, :content => content) %>
         <% else %>
-          <section>
+          <section <% if @item[:css_class] %>class="<%= @item[:css_class] %>"<% end %>>
             <%= content %>
           </section>
         <% end %>

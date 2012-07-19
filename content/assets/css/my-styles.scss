@@ -62,9 +62,9 @@ $link_focus_color: $link_hover_color;
 }
 
 @mixin social-icon-base {
-    padding-left: 20px;
+    padding-right: 20px;
     background-repeat: no-repeat;
-    background-position: left center;
+    background-position: right center;
 }
 
 @mixin social-icons {
@@ -120,7 +120,7 @@ body {
     }
 
     h1, h2, h3, h4, h5, h6 {
-	@include margin-trailer(0.5);
+        @include margin-trailer(0.5);
     }
     
     p, pre, ul, ol {
@@ -152,10 +152,22 @@ body {
             @include alpha;
             @include grid(2);
 
+            text-align: right;
+
+            #avatar {
+                @include border-radius(15px, 15px);
+                @include box-shadow(#555 2px 2px 4px);
+            }
+
             h1 {
-                font-size: 50px;
-                line-height: 0.9em;
-                margin-bottom: 0.2em;
+                @include adjust-font-size-to(40px);
+                @include trailer(0.25);
+            }
+
+            .main {
+                li {
+                    @include adjust-font-size-to(25px);
+                }
             }
 
             ul {
@@ -184,6 +196,30 @@ body {
             //@include grid-container;
 
             background-color: $background_color;
+
+            .archives {
+                @include grid-container;
+                @include grid(8);
+
+                h2 {
+                    @include grid(8);
+                }
+
+                .archive {
+                    time, h3 {
+                        @include adjust-font-size-to(16px);
+                    }
+                    
+                    h3 {
+                        @include grid(5);
+                    }
+                    
+                    time {
+                        text-align: right;
+                        @include grid(2);
+                    }
+                }
+            }
 
             .excerpt {
                 @include grid-container;

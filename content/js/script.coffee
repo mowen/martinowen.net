@@ -38,15 +38,18 @@ class SiteHeaderMutator
     $letter.animate @properties, @mutationDuration, 'swing', callback
 
   toggleFontSize: ($letter) ->
-    if $letter.css('font-size') is '50px'
-      @properties['font-size'] = '30px'
+    minFontSize = '30px'
+    maxFontSize = '50px'
+
+    if $letter.css('font-size') is maxFontSize
+      @properties['font-size'] = minFontSize
     else
-      @properties['font-size'] = '50px'
+      @properties['font-size'] = maxFontSize
 
 $ ->
   martinMutator = new SiteHeaderMutator '#side-header .martin', 1000, [1]
   owenMutator = new SiteHeaderMutator '#side-header .owen', 1000, [1]
-  mutate = ->
-    martinMutator.run()
-    owenMutator.run()
-  setInterval mutate, 5000
+  # mutate = ->
+  #   martinMutator.run()
+  #   owenMutator.run()
+  # setInterval mutate, 5000

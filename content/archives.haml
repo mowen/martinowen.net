@@ -1,13 +1,17 @@
 ---
 title: Archives
 is_hidden: true
+css_class: archives
 ---
 %h1 Archives
 -# TODO: Replace the articles_by_year_month function with articles_by_year
 - articles_by_year_month.each do |year, month_h|
-  %section
-    %header
-      %h2= year
-      - month_h.each do |month, item_a|
-        - item_a.each do |item|
-          = render('_excerpt', :item => item)
+  %header
+    %h2= year
+  %section.archive
+    - month_h.each do |month, item_a|
+      - item_a.each do |item|
+        - url = "#{route_path(item)}"
+        %h3<
+          %a(href="#{url}" title="Full article" class="permalink")= "#{item[:title]}"
+        %time(datetime="#{item[:created_at].gsub('/','-')}")<= item[:created_at]
