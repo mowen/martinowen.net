@@ -270,6 +270,8 @@ body {
             }
 
             ul.tags {
+                margin-left: 0;
+
 	        li {
 	            display: inline;
                 }
@@ -293,7 +295,7 @@ body {
 
             #other-articles {
                 @include grid-container;
-
+                
                 li {
                     @include no-bullets;
                 }
