@@ -1,4 +1,3 @@
---- 
 output_dir: output
 data_sources: 
 - type: filesystem_unified
@@ -9,12 +8,12 @@ data_sources:
 
 text_extensions: [ 'html', 'css', 'haml', 'sass', 'scss', 'erb', 'md', 'textile', 'org', 'coffee' ]
 
-deploy:
-  default:
-    provider:              aws
-    bucket:                martinowen.net
-    aws_access_key_id:     ENV['AWS_ACCESS_KEY_ID']
-    aws_secret_access_key: ENV['AWS_SECRET_ACCESS_KEY']
+# deploy:
+#   default:
+#     provider:              aws
+#     bucket:                martinowen.net
+#     aws_access_key_id:     notinuse
+#     aws_secret_access_key: notinuse
 
 # domain to which this site is deployed
 base_url: http://martinowen.net
@@ -37,3 +36,4 @@ other_articles_max: 3
 
 # DISQUS Site Shortname. Comment out to disable.
 disqus_shortname: martinowen
+include_disqus_js: true
