@@ -43,14 +43,3 @@
     %li
       %a.linkedin{ :href => "http://uk.linkedin.com/in/martinowenuk"}
         linkedin
-
-%nav.tags
-  %h2
-    Tags
-  - tags = count_tags()
-  %ul
-    - tags.sort_by{|k,v| k}.each do |tag_count|
-      - tag = tag_count[0]
-      - count = tag_count[1]
-      %li
-        %a(href="/tags/#{tag}/" class='tag')= "#{tag} (#{count})"

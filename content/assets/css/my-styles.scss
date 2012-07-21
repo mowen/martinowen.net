@@ -152,6 +152,8 @@ body {
             @include alpha;
             @include grid(2, 12, 0px);
 
+            position: fixed;
+
             & > * {
                 margin-right: 20px;
             }
@@ -159,11 +161,11 @@ body {
             text-align: right;
 
             #side-header {
-                @include text-shadow(1px 1px 2px white, 1px 1px 5px black);
+                @include text-shadow(1px 1px 2px white, 1px 1px 4px black);
             }                
 
             #avatar {
-                @include border-radius(15px, 15px);
+                @include border-radius(8px, 8px);
                 @include box-shadow(#555 2px 2px 4px);
             }
 
@@ -212,6 +214,8 @@ body {
         }
 
         #main {
+            @include grid-push(2, 12);
+
             @include grid(8, 12, 0px);
             @include grid-prefix(1);
             @include grid-suffix(1);
@@ -350,7 +354,8 @@ body {
 
     footer {
         @include alpha;
-        @include grid(12);
+        @include grid(8);
+        @include grid-push(2);
         @include omega;
 
         @include padding-leader(1);
@@ -360,7 +365,22 @@ body {
 
         font-weight: normal;
 
-        .small {
+        nav.tags {
+            @include alpha;
+            @include grid-prefix(1);
+            @include grid(3);
+
+            margin-left: 0;
+            
+	    li {
+	        display: inline;
+            }
+        }
+
+        small {
+            @include grid(3);
+            @include grid-suffix(1);
+            @include omega;
             text-align: center;
         }
     }

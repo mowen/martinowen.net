@@ -1,6 +1,16 @@
 ---
 ---
-.small
-  %small
-    :textile
-      &copy; 2012 Martin Owen | Tools: "nanoc":http://nanoc.stoneship.org/, "HAML/SASS":http://haml-lang.com/ ,"Compass":http://compass-style.org/, "HTML5BP":http://html5boilerplate.com/, "CoffeeScript":http://coffeescript.org/
+%nav.tags
+  %h2
+    Tags
+  - tags = count_tags()
+  %ul
+    - tags.sort_by{|k,v| k}.each do |tag_count|
+      - tag = tag_count[0]
+      - count = tag_count[1]
+      %li
+        %a(href="/tags/#{tag}/" class='tag')= "#{tag}&nbsp;(#{count})"
+
+%small
+  :textile
+    &copy; 2012 Martin Owen | Tools: "nanoc":http://nanoc.stoneship.org/, "HAML/SASS":http://haml-lang.com/ ,"Compass":http://compass-style.org/, "HTML5BP":http://html5boilerplate.com/, "CoffeeScript":http://coffeescript.org/
