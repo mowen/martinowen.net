@@ -1,5 +1,5 @@
 ---
-created_at: 2012-07-08
+created_at: 2012/07/08
 excerpt: Getting Started with Dwarf Fortress with a lot of help from Peter Tyson's book "Getting Started With Dwarf Fortress"
 kind: article
 publish: true
@@ -50,3 +50,13 @@ I think this is all down to the scope of the game - there is a whole world of
 creatures out there that need to be simulated. I personally couldn't give two
 hoots about 250+ years of history and a massive world that I'm unlikely to
 explore - just make the thing save fast.
+
+* Maybe I'm Too Casual For All This
+
+I think Peter's book is a great intro to the game as it's more cohesive than the
+wiki and video tutorials that you'll find. It certainly gave me a really good
+start.
+
+However, I can't see myself sticking with Dwarf Fortress as it is /way/ too time
+consuming. If I was bed-ridden with some serious illness I might be able to find
+the time to play it, but otherwise I'll have to stick to more casual gaming.

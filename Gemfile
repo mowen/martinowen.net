@@ -20,3 +20,7 @@ gem "org-ruby"
 gem "typogruby"
 gem "coffee-script"
 gem "pygments.rb"
+gem "guard"
+gem "guard-livereload"
+gem "yajl-ruby" # improves JSON performance
+gem "nanoc-deploy"

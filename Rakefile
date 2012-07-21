@@ -1,4 +1,5 @@
-require 'nanoc3/tasks'
+require 'nanoc/tasks'
+require 'nanoc-deploy/tasks'
 require 'fileutils'
 
 namespace :create do
