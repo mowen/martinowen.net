@@ -150,9 +150,17 @@ body {
 
         #sidebar {
             @include alpha;
-            @include grid(2);
+            @include grid(2, 12, 0px);
+
+            & > * {
+                margin-right: 20px;
+            }
 
             text-align: right;
+
+            #side-header {
+                @include text-shadow(1px 1px 2px white, 1px 1px 5px black);
+            }                
 
             #avatar {
                 @include border-radius(15px, 15px);
@@ -164,9 +172,25 @@ body {
                 @include trailer(0.25);
             }
 
-            .main {
-                li {
-                    @include adjust-font-size-to(25px);
+            nav.main {
+                margin-right: 0;
+
+                ul {
+                    @include margin-leader(0.5);
+                    @include margin-trailer(0.5);
+
+                    li {
+                        background-color: $background-color;
+                        padding-right: 20px;
+
+                        @include adjust-font-size-to(25px);
+
+                        @include padding-leader(0);
+                        @include margin-leader(0.5);
+
+                        @include padding-trailer(0);
+                        @include margin-trailer(0.5);
+                    }
                 }
             }
 
@@ -188,13 +212,12 @@ body {
         }
 
         #main {
-            @include grid(8);
+            @include grid(8, 12, 0px);
             @include grid-prefix(1);
             @include grid-suffix(1);
             @include omega;
 
-            //@include grid-container;
-
+            margin-left: 0px;
             background-color: $background_color;
 
             .archives {
@@ -224,15 +247,26 @@ body {
             .excerpt {
                 @include grid-container;
 
+                h2, time {
+                   background-color: $outer_background;
+                }
+
                 h2 {
                     @include alpha;
                     @include grid(6);
+                    margin-right: 0;
+                    padding-left: 10px;
                 }
                 
                 time {
+                    color: darken($background_color, 30);
                     text-align: right;
+
                     @include grid(2);
                     @include omega;
+
+                    margin-left: 0;
+                    padding-right: 10px;
                 }
 
                 .body {
@@ -315,9 +349,14 @@ body {
     }
 
     footer {
-        @include grid(8);
+        @include alpha;
+        @include grid(12);
+        @include omega;
+
         @include padding-leader(1);
         @include adjust-font-size-to(14px);
+
+        background-color: $outer_background;
 
         font-weight: normal;
 
