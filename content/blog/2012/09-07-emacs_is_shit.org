@@ -1,0 +1,36 @@
+---
+created_at: 2012-09-07
+excerpt: Emacs I love you, but you're bringing me down.
+kind: article
+publish: false
+tags: [emacs]
+title: "Emacs is Shit"
+---
+I've been using Emacs on and off for about 12 years. If you've been using
+something for that long you must think quite a lot of it, and although I do, I'm
+constantly thinking that it's not quite good enough. 
+
+* A Sunk Cost?
+
+If you've invested lots of time in something you think that 
+
+Humorous videos on YouTube in which kids think that Emacs is some kind of easter
+egg in OS X that allows them to play Tetris.
+
+I have lots of little niggles with Emacs. The bigs ones are:
+
+- No decent HTML editing mode that can deal with PHP or JavaScript in the same
+  file. I'm always shocked by this.
+- Programmable in a language that isn't Emacs Lisp.
+- The default install is shockingly bad. The recently added package manager
+  improves things greatly, but you still need to read a lot of documentation to
+  get any work done.
+
+* The good stuff
+
+- Magit is a very nice way to interact with Git.
+- Org Mode is peerless, and reason enough to use Emacs, even if you use another
+  editor for your coding.
+- Great keyboard shortcuts.
+- Emacs Rocks - magnars is doing some really good things with Emacs, and
+  presenting it in such an excellent way.
