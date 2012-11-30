@@ -354,8 +354,8 @@ body {
 
     footer {
         @include alpha;
-        @include grid(8);
-        @include grid-push(2);
+        @include grid-prefix(2);
+        @include grid(10);
         @include omega;
 
         @include padding-leader(1);
@@ -366,9 +366,7 @@ body {
         font-weight: normal;
 
         nav.tags {
-            @include alpha;
-            @include grid-prefix(1);
-            @include grid(3);
+            @include grid(10);
 
             margin-left: 0;
             
@@ -378,9 +376,7 @@ body {
         }
 
         small {
-            @include grid(3);
-            @include grid-suffix(1);
-            @include omega;
+            @include grid(10);
             text-align: center;
         }
     }

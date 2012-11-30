@@ -1,8 +1,6 @@
 ---
 ---
 %nav.tags
-  %h2
-    Tags
   - tags = count_tags()
   %ul
     - tags.sort_by{|k,v| k}.each do |tag_count|

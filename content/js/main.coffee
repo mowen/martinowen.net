@@ -46,10 +46,20 @@ class SiteHeaderMutator
     else
       @properties['font-size'] = maxFontSize
 
+  revert: ->
+    for i in [1...@letterCount]
+      $letter = $(@siteHeaderSelector).find('.char' + i)
+      callback = do (i) =>
+        @letterIsMutating[i-1] = false
+      $letter.animate { 'font-size': '40px' }, @mutationDuration, 'swing', callback
+
 $ ->
-  martinMutator = new SiteHeaderMutator '#side-header .martin', 1000, [1]
-  owenMutator = new SiteHeaderMutator '#side-header .owen', 1000, [1]
-  mutate = ->
-    martinMutator.run()
-    owenMutator.run()
-  setInterval mutate, 5000
+  articleHeadingMutator = new SiteHeaderMutator '#main article header h1', 1000, [1]
+  callback = ->
+    now = new Date()
+    seconds = now.getSeconds()
+    if seconds % 20 is 0
+      articleHeadingMutator.run()
+    else if seconds + 1 % 20 is 0
+      articleHeadingMutator.revert()
+  setInterval callback, 5000
