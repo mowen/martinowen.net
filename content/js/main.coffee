@@ -49,7 +49,7 @@ class SiteHeaderMutator
 $ ->
   martinMutator = new SiteHeaderMutator '#side-header .martin', 1000, [1]
   owenMutator = new SiteHeaderMutator '#side-header .owen', 1000, [1]
-  # mutate = ->
-  #   martinMutator.run()
-  #   owenMutator.run()
-  # setInterval mutate, 5000
+  mutate = ->
+    martinMutator.run()
+    owenMutator.run()
+  setInterval mutate, 5000
