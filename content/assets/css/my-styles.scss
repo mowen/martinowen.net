@@ -17,7 +17,7 @@
 @import "octopress-classic/syntax";
 
 $header_font: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
-$body_font: Georgia;
+$body_font: 300 15px/21px "MuseoSans",Arial,Helvetica,sans-serif;
 $fixed_font: "Inconsolata", Monaco, "Courier New", Courier;
 $font_color: lighten(black, 20);
 $background_color: darken(white, 20);
@@ -93,7 +93,7 @@ $link_focus_color: $link_hover_color;
 @include establish-baseline;
 
 body {
-    font-family: $body_font;
+    font: $body_font;
     background-color: $outer_background;
 
     @include link-icons;

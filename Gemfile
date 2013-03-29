@@ -1,12 +1,13 @@
 source :gemcutter
 
-gem "nanoc", 3.4
+gem "nanoc"
 gem "rack"
 gem "rack-rewrite", :require => "rack/rewrite"
 gem "rake"
 gem "mime-types"
 gem "cri"
 gem "haml"
+gem "haml-contrib"
 gem "rdiscount"
 gem "builder"
 gem "activesupport"

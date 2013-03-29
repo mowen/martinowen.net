@@ -53,9 +53,6 @@ compile '*' do
     filter :typogruby
     filter :my_pygments
 
-    # use layouts with .html extension or layout specified in meta
-    item[:layout] = "none" unless item[:layout] || File.extname(route_path(item)) == '.html' 
-
     layout 'default' unless item[:layout] == "none"
   end
 end
