@@ -16,8 +16,8 @@
 @import "octopress-classic/typography";
 @import "octopress-classic/syntax";
 
-$header_font: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
-$body_font: 300 15px/21px "MuseoSans",Arial,Helvetica,sans-serif;
+$header_font: "adelle", serif; //"HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+$body_font: "museo-sans", sans-serif; //300 15px/21px "MuseoSans",Arial,Helvetica,sans-serif;
 $fixed_font: "Inconsolata", Monaco, "Courier New", Courier;
 $font_color: lighten(black, 20);
 $background_color: darken(white, 20);
@@ -93,7 +93,7 @@ $link_focus_color: $link_hover_color;
 @include establish-baseline;
 
 body {
-    font: $body_font;
+    font-family: $body_font;
     background-color: $outer_background;
 
     @include link-icons;
@@ -158,21 +158,24 @@ body {
                 margin-right: 20px;
             }
 
+            header {
+                margin-right: 10px;
+            }
+
             text-align: right;
 
             #side-header {
                 @include text-shadow(1px 1px 2px white, 1px 1px 4px black);
             }                
 
-            #avatar {
-                @include border-radius(8px, 8px);
-                @include box-shadow(#555 2px 2px 4px);
-            }
+            /* #avatar { */
+            /*     @include border-radius(8px, 8px); */
+            /*     @include box-shadow(#555 2px 2px 4px); */
+            /* } */
 
-            h1 {
-                @include adjust-font-size-to(40px);
-                @include trailer(0.25);
-            }
+            /* h1 { */
+            /*     @include adjust-font-size-to(20px); */
+            /* } */
 
             nav.main {
                 margin-right: 0;
@@ -183,15 +186,16 @@ body {
 
                     li {
                         background-color: $background-color;
-                        padding-right: 20px;
+                        padding-left: 15px;
+                        padding-right: 15px;
 
-                        @include adjust-font-size-to(25px);
+                        @include adjust-font-size-to(20px);
 
                         @include padding-leader(0);
-                        @include margin-leader(0.5);
+                        @include margin-leader(0.2);
 
                         @include padding-trailer(0);
-                        @include margin-trailer(0.5);
+                        @include margin-trailer(0.2);
                     }
                 }
             }
