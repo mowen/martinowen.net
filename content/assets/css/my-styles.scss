@@ -16,8 +16,8 @@
 @import "octopress-classic/typography";
 @import "octopress-classic/syntax";
 
-$header_font: "adelle", serif; //"HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
-$body_font: "museo-sans", sans-serif; //300 15px/21px "MuseoSans",Arial,Helvetica,sans-serif;
+$header_font: "adelle", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+$body_font: "museo-sans", Arial, Helvetica, sans-serif;
 $fixed_font: "Inconsolata", Monaco, "Courier New", Courier;
 $font_color: lighten(black, 20);
 $background_color: darken(white, 20);
@@ -109,6 +109,10 @@ body {
 
     pre {
         white-space: pre;
+    }
+    
+    blockquote {
+        @include adjust-font-size-to($base-font-size);
     }
 
     i {

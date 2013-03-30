@@ -7,15 +7,12 @@ I'm a software developer living in Liverpool in the United Kingdom. I work for "
 
 Some of the many things I'm interested in are:
 
-* JavaScript
+* JavaScript/CoffeeScript
 * C#/.NET
 * Ruby
 * MongoDB
-* Dependency Injection
-* Unit Testing
-* Test Driven Development
-* Behaviour Driven Development
+* TDD/BDD
 * Emacs
 * Lisp (particularly Clojure)
 * Erlang
-* Arduino
+* Hardware Hacking (Arduino and Raspberry Pi)
