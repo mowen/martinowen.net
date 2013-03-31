@@ -1,5 +1,4 @@
 * TODO [[http://compass-style.org/reference/compass/layout/sticky_footer/][Sticky Footer]]
-* TODO Improve the style of the excerpts on the front page
 * TODO Fix the atom feed
-* TODO Improve the display of the tags
-* TODO Fix blockquote, it is unstyled at the moment
+  Is this still broken?
+* TODO Don't apply the li style to tag and other article lists

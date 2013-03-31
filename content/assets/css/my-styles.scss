@@ -213,6 +213,8 @@ body {
             @include grid-suffix(1);
             @include omega;
 
+            @include padding-leader(1);
+
             margin-left: 0px;
             background-color: $background_color;
 
@@ -270,6 +272,13 @@ body {
 
             .excerpt {
                 @include grid-container;
+                @include grid(8, 12, 0px);
+
+                header {
+                    @include grid-container;
+                    @include grid(8, 12, 0px);
+                    @include omega;
+                }
 
                 h2, time {
                    background-color: $outer_background;
@@ -277,33 +286,34 @@ body {
                 }
 
                 h2 {
-                    @include grid(6);
+                    @include grid(6, 12, 10px);
+                    padding-left: 10px;
+                    margin-left: 0;
                     margin-right: 0;
                 }
 
-                h2, .body {
-                    padding-left: 10px;
+                time {
+                    @include grid(2, 12, 10px);
+                    @include omega;
+                    padding-right: 10px;
+                    margin-right: 0;
+                    margin-left: 0;
                 }
                 
                 .body {
-                    @include grid(8);
+                    @include grid(8, 12, 10px);
                     @include omega;
+                    padding-left: 10px;
                     padding-right: 10px;
+                    margin-left: 0;
+                    margin-right: 0;
                 }
-
-                @include margin-trailer(1);
             }
 
             & > article {
                 header {
-                    
 	            h1 { @include adjust-font-size-to(40px); }
 	            h2 { @include adjust-font-size-to(30px); }
-                        
-	            h1 {
-                        @include padding-leader(0.5);
-                        @include margin-trailer(0.5);
-                    }
                 }
 
 	        h1 { @include adjust-font-size-to(28px); }
