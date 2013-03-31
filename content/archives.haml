@@ -9,7 +9,7 @@ css_class: archives
 -# TODO: Replace the articles_by_year_month function with articles_by_year
 - articles_by_year_month.each do |year, month_h|
   %header
-    %h2= year
+    %h2(class="year")= year
   %section.archive
     - month_h.each do |month, item_a|
       - item_a.each do |item|

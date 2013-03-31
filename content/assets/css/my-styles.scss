@@ -26,10 +26,10 @@ $outer_background: #f0f0f0;
 /* To enable SVG gradient support in IE9 and Opera */
 $experimental-support-for-svg: true;
 
-$link_color: lighten(black, 20);;
-$link_hover_color: lighten(black, 60);
+$link_color: #2883ca;
+$link_hover_color: lighten($link_color, 10);
 $link_active_color: $link_hover_color;
-$link_visited_color: lighten(black, 40);
+$link_visited_color: darken($link_color, 10);
 $link_focus_color: $link_hover_color;
 
 @mixin my-header-font-style($bold: true) {
@@ -98,12 +98,8 @@ body {
 
     @include link-icons;
 
-    p {
-        @include text-shadow(0px 1px 0px white);
-    }
-
     a {
-	@include link-colors($link_color, $link_hover_color, $link_active_color, $link_visited_color, $link_focus_color);
+	@include link-colors($font_color);
 	text-decoration: none;
     }
 
@@ -121,9 +117,6 @@ body {
 
     h1, h2, h3, h4, h5, h6 {
 	@include my-header-font-style;
-    }
-
-    h1, h2, h3, h4, h5, h6 {
         @include margin-trailer(0.5);
     }
     
@@ -142,8 +135,8 @@ body {
     }
 
     .tag {
+        @include my-header-font-style(false);
         @include box-shadow(#555 1px 1px 2px);
-        @include border-radius(5px);
         border: 0.5px solid #555;
         padding: 2px;
         margin: 0px 2px;
@@ -172,15 +165,6 @@ body {
                 @include text-shadow(1px 1px 2px white, 1px 1px 4px black);
             }                
 
-            /* #avatar { */
-            /*     @include border-radius(8px, 8px); */
-            /*     @include box-shadow(#555 2px 2px 4px); */
-            /* } */
-
-            /* h1 { */
-            /*     @include adjust-font-size-to(20px); */
-            /* } */
-
             nav.main {
                 margin-right: 0;
 
@@ -205,7 +189,7 @@ body {
             }
 
             ul {
-                @include my-header-font-style;
+                @include my-header-font-style(false);
             }
 
             .elsewhere {
@@ -232,44 +216,20 @@ body {
             margin-left: 0px;
             background-color: $background_color;
 
-            .archives {
-                @include grid-container;
-                @include grid(8);
-
-                h2 {
-                    @include grid(8);
-                }
-
-                .archive {
-                    time, h3 {
-                        @include adjust-font-size-to(16px);
-                    }
-                    
-                    h3 {
-                        @include grid(5);
-                    }
-                    
-                    time {
-                        text-align: right;
-                        @include grid(2);
-                    }
+            p, li {
+                @include text-shadow(0px 1px 0px white);
+                
+                a {
+	            @include link-colors($link_color, $link_hover_color, $link_active_color, $link_visited_color, $link_focus_color);
+                    text-decoration: underline;
                 }
             }
 
-            .excerpt {
-                @include grid-container;
+            ul, ol { @include my-pretty-bullets; }
 
-                h2, time {
-                   background-color: $outer_background;
-                }
+            h1 { @include adjust-font-size-to(40px); }
 
-                h2 {
-                    @include alpha;
-                    @include grid(6);
-                    margin-right: 0;
-                    padding-left: 10px;
-                }
-                
+            .archives, .excerpt {
                 time {
                     color: darken($background_color, 30);
                     text-align: right;
@@ -280,9 +240,55 @@ body {
                     margin-left: 0;
                     padding-right: 10px;
                 }
+            }
 
+            .archives {
+                @include grid-container;
+                @include grid(8, 12, 0px);
+
+                h2.year {
+                    @include grid(8);
+                    @include omega;
+                    background-color: $outer_background;
+                    font-weight: normal;
+                }
+
+                h2.year, h3 {
+                    padding-left: 10px;
+                }
+
+                time, h3 {
+                    @include adjust-font-size-to(16px);
+                    font-weight: normal;
+                }
+                    
+                h3 {
+                    @include grid(6);
+                    margin-right: 0;
+                }
+            }
+
+            .excerpt {
+                @include grid-container;
+
+                h2, time {
+                   background-color: $outer_background;
+                   font-weight: normal;
+                }
+
+                h2 {
+                    @include grid(6);
+                    margin-right: 0;
+                }
+
+                h2, .body {
+                    padding-left: 10px;
+                }
+                
                 .body {
                     @include grid(8);
+                    @include omega;
+                    padding-right: 10px;
                 }
 
                 @include margin-trailer(1);
@@ -298,7 +304,6 @@ body {
                         @include padding-leader(0.5);
                         @include margin-trailer(0.5);
                     }
-                    
                 }
 
 	        h1 { @include adjust-font-size-to(28px); }
@@ -306,13 +311,6 @@ body {
 	        h3 { @include adjust-font-size-to(22px); }
 	        h4 { @include adjust-font-size-to(18px); }
 	        h5 { @include adjust-font-size-to(17px); }
-
-	        .body {
-                    ul, ol {
-                        @include my-pretty-bullets;
-                    }
-                }
-                
             }
 
             ul.tags {
