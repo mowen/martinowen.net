@@ -227,7 +227,7 @@ body {
                 }
             }
 
-            ul, ol { @include my-pretty-bullets; }
+            //ul, ol { @include my-pretty-bullets; }
 
             h1 { @include adjust-font-size-to(40px); }
 
