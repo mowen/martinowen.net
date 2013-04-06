@@ -1,14 +1,17 @@
-source :gemcutter
+source 'https://rubygems.org'
 
 gem "nanoc"
+
 gem "rack"
 gem "rack-rewrite", :require => "rack/rewrite"
+gem "thin"
+
 gem "rake"
 gem "mime-types"
 gem "cri"
 gem "haml"
 gem "haml-contrib"
-gem "rdiscount"
+gem "rdiscount", "1.6.8" # 2.0.7.1 has a Windows compile issue, fixed in .2
 gem "builder"
 gem "activesupport"
 gem "RedCloth"
