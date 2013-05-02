@@ -4,7 +4,7 @@
 - is_embedded ||= false
 %article
   %header
-    %h1 
+    %h1<
       - if is_embedded
         %a(href="#{route_path(item)}" title="Full article" class="permalink")= item[:title]
       - else

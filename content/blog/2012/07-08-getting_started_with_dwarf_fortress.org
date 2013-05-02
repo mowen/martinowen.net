@@ -2,7 +2,7 @@
 created_at: 2012/07/08
 excerpt: Getting Started with Dwarf Fortress with a lot of help from Peter Tyson's book "Getting Started With Dwarf Fortress"
 kind: article
-publish: true
+publish: false
 tags: [gaming]
 title: Getting Started with Dwarf Fortress
 ---
