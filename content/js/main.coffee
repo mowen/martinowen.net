@@ -11,4 +11,4 @@ $ ->
       effect: 'tada'
       shuffle: true
     loop: true
-  $('#main article header h1').textillate options
+  # $('#main article header h1').textillate options
