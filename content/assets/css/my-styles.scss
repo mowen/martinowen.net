@@ -26,7 +26,7 @@ $outer_background: #f0f0f0;
 /* To enable SVG gradient support in IE9 and Opera */
 $experimental-support-for-svg: true;
 
-$link_color: #2883ca;
+$link_color: rgb(95, 56, 177);
 $link_hover_color: lighten($link_color, 10);
 $link_active_color: $link_hover_color;
 $link_visited_color: darken($link_color, 10);
@@ -36,7 +36,7 @@ $link_focus_color: $link_hover_color;
     font-family: $header_font;
     letter-spacing: -0.04em;
     @if $bold {
-	font-weight: bold;
+        font-weight: bold;
     }
 }
 
@@ -46,19 +46,19 @@ $link_focus_color: $link_hover_color;
 
 @mixin link-icons {
     a[href^="mailto:"] {
-	@include link-icon(unquote("email.png")); }
+        @include link-icon(unquote("email.png")); }
     a[href$=".pdf"] {
-	@include link-icon(unquote("pdf.png")); }
+        @include link-icon(unquote("pdf.png")); }
     a[href$=".doc"] {
-	@include link-icon(unquote("doc.png")); }
+        @include link-icon(unquote("doc.png")); }
     a[href$=".xls"] {
-	@include link-icon(unquote("xls.png")); }
+        @include link-icon(unquote("xls.png")); }
     a.atom-feed,
     a[href$=".rss"],
     a[href$=".rdf"] {
-	@include link-icon(unquote("feed.png")); }
+        @include link-icon(unquote("feed.png")); }
     a.noicon {
-	@include no-link-icon; }
+        @include no-link-icon; }
 }
 
 @mixin social-icon-base {
@@ -69,25 +69,25 @@ $link_focus_color: $link_hover_color;
 
 @mixin social-icons {
     a.delicious {
-	@include link-icon(unquote("social_icons/delicious_16.png"), false); }
+        @include link-icon(unquote("social_icons/delicious_16.png"), false); }
     a.twitter {
-	@include link-icon(unquote("social_icons/twitter_16.png"), false); }
+        @include link-icon(unquote("social_icons/twitter_16.png"), false); }
     a.lastfm {
-	@include link-icon(unquote("social_icons/lastfm_16.png"), false); }
+        @include link-icon(unquote("social_icons/lastfm_16.png"), false); }
     a.facebook {
-	@include link-icon(unquote("social_icons/facebook_16.png"), false); }
+        @include link-icon(unquote("social_icons/facebook_16.png"), false); }
     a.flickr {
-	@include link-icon(unquote("social_icons/flickr_16.png"), false); }
+        @include link-icon(unquote("social_icons/flickr_16.png"), false); }
     a.github {
-	@include link-icon(unquote("social_icons/github_16.png"), false); }
+        @include link-icon(unquote("social_icons/github_16.png"), false); }
     a.linkedin {
-	@include link-icon(unquote("social_icons/linkedin_16.png"), false); }
+        @include link-icon(unquote("social_icons/linkedin_16.png"), false); }
     a.friendfeed {
-	@include link-icon(unquote("social_icons/friendfeed_16.png"), false); }
+        @include link-icon(unquote("social_icons/friendfeed_16.png"), false); }
     a.delicious, a.twitter, a.lastfm,
     a.facebook, a.flickr, a.github,
     a.linkedin, a.friendfeed {
-	@include social-icon-base; }
+        @include social-icon-base; }
 }
 
 @include establish-baseline;
@@ -99,14 +99,15 @@ body {
     @include link-icons;
 
     a {
-	@include link-colors($font_color);
-	text-decoration: none;
+        @include link-colors($font_color);
+        text-decoration: none;
     }
 
     pre {
         white-space: pre;
+        @include border-radius(0px, 0px);
     }
-    
+
     blockquote {
         @include adjust-font-size-to($base-font-size);
     }
@@ -116,17 +117,17 @@ body {
     }
 
     h1, h2, h3, h4, h5, h6 {
-	@include my-header-font-style;
+        @include my-header-font-style;
         @include margin-trailer(0.5);
     }
-    
+
     p, pre, ul, ol {
-	@include margin-trailer(1);
+        @include margin-trailer(1);
     }
 
     nav {
-	ul {
-	    @include no-bullets;
+        ul {
+            @include no-bullets;
         }
     }
 
@@ -136,7 +137,7 @@ body {
 
     .tag {
         @include my-header-font-style(false);
-        @include box-shadow(#555 1px 1px 2px);
+        background-color: $outer_background;
         border: 0.5px solid #555;
         padding: 2px;
         margin: 0px 2px;
@@ -160,10 +161,6 @@ body {
             }
 
             text-align: right;
-
-            #side-header {
-                @include text-shadow(1px 1px 2px white, 1px 1px 4px black);
-            }                
 
             nav.main {
                 margin-right: 0;
@@ -219,15 +216,10 @@ body {
             background-color: $background_color;
 
             p, li {
-                @include text-shadow(0px 1px 0px white);
-                
                 a {
-	            @include link-colors($link_color, $link_hover_color, $link_active_color, $link_visited_color, $link_focus_color);
-                    text-decoration: underline;
+                    @include link-colors($link_color, $link_hover_color, $link_active_color, $link_visited_color, $link_focus_color);
                 }
             }
-
-            //ul, ol { @include my-pretty-bullets; }
 
             h1 { @include adjust-font-size-to(40px); }
 
@@ -263,7 +255,7 @@ body {
                     @include adjust-font-size-to(16px);
                     font-weight: normal;
                 }
-                    
+
                 h3 {
                     @include grid(6);
                     margin-right: 0;
@@ -281,8 +273,8 @@ body {
                 }
 
                 h2, time {
-                   background-color: $outer_background;
-                   font-weight: normal;
+                    background-color: $outer_background;
+                    font-weight: normal;
                 }
 
                 h2 {
@@ -299,7 +291,7 @@ body {
                     margin-right: 0;
                     margin-left: 0;
                 }
-                
+
                 .body {
                     @include grid(8, 12, 10px);
                     @include omega;
@@ -312,36 +304,35 @@ body {
 
             & > article {
                 header {
-	            h1 { @include adjust-font-size-to(40px); }
-	            h2 { @include adjust-font-size-to(30px); }
+                    h1 { @include adjust-font-size-to(40px); }
+                    h2 { @include adjust-font-size-to(30px); }
                 }
 
-	        h1 { @include adjust-font-size-to(28px); }
-	        h2 { @include adjust-font-size-to(25px); }
-	        h3 { @include adjust-font-size-to(22px); }
-	        h4 { @include adjust-font-size-to(18px); }
-	        h5 { @include adjust-font-size-to(17px); }
+                h1 { @include adjust-font-size-to(28px); }
+                h2 { @include adjust-font-size-to(25px); }
+                h3 { @include adjust-font-size-to(22px); }
+                h4 { @include adjust-font-size-to(18px); }
+                h5 { @include adjust-font-size-to(17px); }
             }
 
             ul.tags {
                 margin-left: 0;
 
-	        li {
-	            display: inline;
+                li {
+                    display: inline;
                 }
             }
 
             img {
-	        border: 2px solid #e0e0e0;
+                border: 2px solid #e0e0e0;
                 margin-right: 10px;
                 float: left;
             }
 
             p, li {
-	        code {
+                code {
                     @include text-shadow(none);
-                    @include box-shadow(#555 1px 1px 2px);
-                    @include border-radius(4px);
+                    @include border-radius(0px, 0px);
                     border: 0.5px solid #555;
                     padding: 1px 3px;
                 }
@@ -349,7 +340,7 @@ body {
 
             #other-articles {
                 @include grid-container;
-                
+
                 li {
                     @include no-bullets;
                 }
@@ -385,9 +376,11 @@ body {
             @include grid(10);
 
             margin-left: 0;
-            
-	    li {
-	        display: inline;
+
+            li {
+                display: inline;
+
+                a.tag { background-color: $background_color; }
             }
         }
 
