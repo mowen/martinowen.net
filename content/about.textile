@@ -12,7 +12,7 @@ Some of the many things I'm interested in are:
 * Ruby
 * MongoDB
 * TDD/BDD
-* Emacs
+* Emacs (I can't bring myself to ditch it for Sublime Text)
 * Lisp (particularly Clojure)
 * Erlang
 * Hardware Hacking (Arduino and Raspberry Pi)

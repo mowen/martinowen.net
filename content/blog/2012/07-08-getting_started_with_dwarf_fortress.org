@@ -2,7 +2,7 @@
 created_at: 2012/07/08
 excerpt: Getting Started with Dwarf Fortress with a lot of help from Peter Tyson's book "Getting Started With Dwarf Fortress"
 kind: article
-publish: false
+publish: true
 tags: [gaming]
 title: Getting Started with Dwarf Fortress
 ---
@@ -13,31 +13,47 @@ into. When I heard that the graphics were extremely basic I was intrigued.
 
 * Basic Graphics
 
+[[/assets/images/Thirsty_Dwarves.gif]]
+
 DF has extremely basic character-based graphics. It makes Minecraft look like
 Avatar. A chicken is represented by a brown "c". A cat is also represented by a
 "c", but it's a dark grey "c". They are just two of the many creatures that are
-represented by a "c", I shit you not. Just take a look at all of the creatures and their representations: [[http://dwarffortresswiki.org/index.php/Creatures][Dwarf Fortress - Creatures]]. It's like looking
-through the alphabet.
+represented by a "c", /I shit you not/. Just take a look at all of the creatures
+and their representations: [[http://dwarffortresswiki.org/index.php/Creatures][Dwarf Fortress - Creatures]]. It's like looking through
+the alphabet.
 
-/I'd just like to point out that I the basic graphics were one of the things
-that attracted me to the game (because I'm a fucking idiot.)/
+You can (and should) use a tileset to play the game. Hardcore players argue that
+the ASCII forces you to use your imagination, but as a beginner the learning
+curve is just too steep without tiles.
+
+* Emergent Functionality
+
+DF is a game which was developed and co-designed by a programmer and
+mathematician. Someone who isn't afraid of complexity and intricate detail.
+
+This detail is where DF's beauty lies, you will find DF players telling some
+crazy tales of the time a dwarf went insane after their least favourite animal
+was engraved on their bedroom wall by another dwarf. The history generation
+engine tells tales of Dwarfs avenging family members years after their deaths.
+
+This kind of epic tale has been illustrated brilliantly by [[http://bronzemurder.timdenee.com][Tim Denee]], and has
+inspired plenty of fan art which beats anything I've seen from simpler games.
 
 * DF is a game for software developers
 
 There was a [[http://quaran.to/blog/2007/10/29/why-every-programmer-should-play-nethack/][blog post by Nick Quaranto]] that said every programmer should play
 NetHack. I think it was sub-conciously one of the reasons that I decided to play
 DF, because although DF isn't strictly a roguelike game, it shares the
-rougelike's total disregard for quality graphics, and ridiculously steep
-learning curve.
-
-DF is a game which was developed and co-designed by a programmer and
-mathematician. Someone who isn't afraid of complexity and intricate detail. The
-detail and 
+rougelike's total disregard for quality graphics, steep
+learning curve and high likelihood of a crushing defeat.
 
 - There's a lot of micro-management. Although the dwarfs will take care of the
   jobs, you need to imperatively tell them what you want them to do.
 - You're looking at an array of text characters on a screen and mentally
-  visualising the things that they represent. 
+  visualising the things that they represent.
+- There's a fair bit of shit-work - you have to dig out a lot of bedrooms, mark
+  them as bedrooms, and then furnish them. (This can be automated using
+  [[http://www.joelpt.net/quickfort/][Quickfort]].) You have to do this every time you start a new fort.
 - Losing is part of the game. The more you lose, the more you learn.
 
 * The Downside - Performance
