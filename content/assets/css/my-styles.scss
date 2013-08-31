@@ -20,8 +20,8 @@ $header_font: "museo-sans", "HelveticaNeue-Light", "Helvetica Neue Light", "Helv
 $body_font: "museo-slab", Georgia, serif;
 $fixed_font: "Inconsolata", Monaco, "Courier New", Courier;
 $font_color: lighten(black, 20);
-$background_color: darken(white, 20);
-$outer_background: #f0f0f0;
+$background_color: #f0f0f0;
+$outer_background: darken(white, 10);
 
 /* To enable SVG gradient support in IE9 and Opera */
 $experimental-support-for-svg: true;
