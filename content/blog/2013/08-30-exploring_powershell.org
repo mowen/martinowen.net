@@ -16,9 +16,9 @@ I recently read the excellent book [[http://shop.oreilly.com/product/06369200244
 
 What really blew me away about PowerShell is the pipeline. Unix piping always felt really elegant, but PowerShell improves on it by piping objects rather than streams. This is why I think Microsoft chose the wrong name - I think ObjectShell would have been more appropriate.
 
-Add to the object piping great CSV, XML (and in PowerShell 3.0 JSON) importing and exporting commands, and you've got a very nice glue language indeed.
+Add to the object piping great CSV, XML (and in PowerShell 3.0 JSON) importing and exporting commands, plus the ability to invoke REST methods natively, and you've got a very nice glue language indeed.
 
-The example below allows me to get a very simple command line view of the new messages in my GMail inbox:
+The example below shows how the Invoke-RestMethod cmdlet can pipe an XML atom feed to a block that will be run foreach XML node.  It allows me to get a very simple command line view of the new messages in my GMail inbox:
 
 #+BEGIN_SRC powershell
 function List-Mail {
@@ -35,5 +35,14 @@ function List-Mail {
     } | Format-Table -AutoSize
 }
 #+END_SRC
+
+This produces the following output at the PowerShell console:
+
+#+BEGIN_EXAMPLE
+Time      From  Title
+----      ----  -----
+Mon 09:59 David Sarah keeps making faces at me
+Mon 09:45 Sarah David smells
+#+END_EXAMPLE
 
 This lets me see if my mail is worth opening in the browser without distracting me too much.
