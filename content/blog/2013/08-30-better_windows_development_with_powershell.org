@@ -1,0 +1,91 @@
+---
+created_at: 2013/08/30
+excerpt: Since reading Windows PowerShell for Developers, I've been seriously impressed by PowerShell!
+kind: article
+publish: true
+tags: [powershell, .net]
+title: Better Windows development with PowerShell
+---
+* Overcoming my PowerShell cynicism
+
+I've always loved Unix shells for their simplicity and power. I was sure that PowerShell was nothing in comparison, just an iteration of Windows batch files or VBScript (two of the most unfriendly scripting environments I've ever come across). My opinion changed recently when I read the excellent book [[http://shop.oreilly.com/product/0636920024491.do][Windows PowerShell for Developers]] by Douglas Finke.
+
+If you are a .NET developer I highly recommend Finke's book. He gives a really good introduction to PowerShell and also highlights how PowerShell's integration with the .NET framework can enable you to explore APIs at the console.
+
+He covers things like:
+
+- Embedding PowerShell into .NET applications 
+- Querying XML and Json web services (using both =System.Net.WebClient= and the new =Invoke-RestMethod= cmdlet introduced in PowerShell 3.0)
+- Building GUIs with the [[http://showui.codeplex.com/][ShowUI]] PowerShell module
+- Using Roslyn to query the code in a .NET DLL and extract syntax trees from it
+- Writing a DSL (he creates a DSL to generate GraphViz digraphs)
+- Automating COM applications such as Excel and Internet Explorer
+
+* PowerShell = ObjectShell
+
+What really blew me away about PowerShell is the pipeline. Unix piping always felt really elegant, but PowerShell improves on it by piping objects rather than streams. This is why I think Microsoft chose the wrong name - I think ObjectShell would have been more appropriate.
+
+Add to the object piping great CSV, XML (and in PowerShell 3.0 Json) importing and exporting commands, plus the ability to invoke REST methods natively, and you've got a very nice glue language indeed.
+
+The example below shows how the =Invoke-RestMethod= cmdlet can pipe an XML atom feed to a block that will be run foreach XML node.  It allows me to get a very simple command line view of the new messages in my GMail inbox:
+
+#+BEGIN_SRC powershell
+function List-Mail {
+    $GmailFeed = "https://mail.google.com/mail/feed/atom"
+    $SecurePassword = ConvertTo-SecureString "password123" -AsPlainText -Force
+    $Credential = New-Object System.Management.Automation.PSCredential ("billy@gmail.com", $SecurePassword)
+
+    Invoke-RestMethod -Uri $GmailFeed -Credential $Credential | % {
+        [PSCustomObject] @{
+            Time = Get-Date -Date $_.issued -Format "ddd HH:mm"
+            From = $_.author.name
+            Title = $_.title
+        }
+    } | Format-Table -AutoSize
+}
+#+END_SRC
+
+This produces the following output at the PowerShell console:
+
+#+BEGIN_EXAMPLE
+Time      From  Title
+----      ----  -----
+Mon 09:59 David Sarah keeps making faces at me
+Mon 09:45 Sarah David smells
+#+END_EXAMPLE
+
+This lets me see if my mail is worth opening in the browser without distracting me too much. Since starting to use PowerShell I've been maintaining a =$Profile= file and adding useful functions such as this to it regularly.
+
+* Improvements in my day to day work
+
+Since reading the Finke book, I've used PowerShell myself in the following ways:
+
+** Firewall debugging
+
+Helping a client to trace where our application was being intermittently blocked by their firewall with a small PowerShell script that repeatedly created a =System.Net.Sockets.TcpClient= and made a connection to their server, logging the source port of any failures so that they could be traced in the firewall logs.
+
+I wrote this script while on a conference call with the client (they were waiting to get authorisation for =tcpdump=), and didn't even know I could get the source port from the =TcpClient= until I explored the API using PowerShell.
+
+** Ad-hoc application monitoring
+
+Ad-hoc monitoring of an application deployment that ran regularly as a scheduled task, queried a DB, wrote the results to CSV, and emailed them as an attachment to a group. This was used to provide stats every half hour following an application deployment. I was so confident that I'd be able to put this together in PowerShell that I only scheduled an hour, and it proved to be enough time.
+
+** Temporary scheduled export process
+
+I needed to add some functionality to a legacy Windows service application for an ad-hoc export process that would run daily for just under three weeks and felt that writing a temporary Powershell script would be simpler than the significant changes to the service that were required.
+
+The script included querying a database, writing the results to a CSV file, uploading it to an FTP server, and finally emailing the result of the operation. My solution ran perfectly for the three week period.
+
+As you can see, everything in the three examples above involves typical interactions such as querying a database or other server and then writing the results to a file (and possibly emailing that). PowerShell made this easier to implement than using a C# console application or Windows service as it has cmdlets to natively handle these operations, and can use .NET for everything else.
+
+* Open up Windows PowerShell ISE and give it a try
+
+PowerShell comes installed with every modern version of Windows, but Microsoft
+don't seem to have marketed it enough. If I hadn't bought the Finke book on a
+whim I would have missed out on a really decent scripting tool. Nobody I speak
+to knows about the Windows PowerShell ISE (Integrated Scripting Environment) that
+comes with PowerShell and really makes it easy to debug and pick up.
+
+If you are a .NET developer, open up the Windows PowerShell ISE application that
+is almost certainly installed on your machine, look through the cmdlets, and
+check out what is available. I think you'll be pleasantly surprised.
