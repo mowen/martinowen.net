@@ -28,8 +28,9 @@ end
 compile '*' do
   # item[:extension] returns 'html.erb' for multi-dotted filename
   ext = item[:extension].nil? ? nil : item[:extension].split('.').last
+  final_ext = item[:extension].nil? ? nil : item[:extension].split('.').first 
 
-  ext_to_ignore = %w(png xml html ico txt js coffee)
+  ext_to_ignore = %w(png xml ico txt js coffee)
   
   if ext == 'erb'
     filter :erb
@@ -49,7 +50,7 @@ compile '*' do
     raise "Filter is not configured for #{item.identifier} in Rules file." unless ext_to_ignore.include? ext
   end
 
-  unless ext_to_ignore.include? ext
+  unless ext_to_ignore.include? final_ext
     filter :typogruby
     filter :my_pygments
 
