@@ -1,0 +1,52 @@
+---
+created_at: 2013/09/22
+excerpt: Avoiding the pain of Ruby development on Windows by creating a Vagrant Rails dev package.
+kind: article
+publish: false
+tags: [ruby, rails, devops, linux]
+title: Linux Rails Dev Via Windows with Vagrant
+---
+* Getting Started
+
+Install =curl= so that we can download further goodies.
+
+#+BEGIN_EXAMPLE
+sudo apt-get install curl
+#+END_EXAMPLE
+
+Install =rvm= so that we can install the appropriate version of Ruby and Rails.
+
+#+BEGIN_EXAMPLE
+curl -L https://get.rvm.io | bash -s stable
+source ~/.rvm/scripts/rvm
+rvm requirements
+#+END_EXAMPLE
+
+Install a bunch of other requirements:
+
+#+BEGIN_EXAMPLE
+sudo apt-get install build-essential openssl libreadline6 libreadline6-dev \
+curl git-core zlib1g zlib1g-dev libssl-dev libyaml-dev libsqlite3-dev sqlite3 \
+libxml2-dev libxslt-dev autoconf libc6-dev ncurses-dev automake libtool bison  \
+subversion pkg-config
+#+END_EXAMPLE
+
+You are now ready to install Ruby!
+
+#+BEGIN_EXAMPLE
+rvm install 2.0.0
+rvm use 2.0.0
+#+END_EXAMPLE
+
+And of course Rails:
+
+#+BEGIN_EXAMPLE
+gem install rails
+#+END_EXAMPLE
+
+Finally, Postgres:
+
+#+BEGIN_EXAMPLE
+sudo apt-get install libpq-dev
+#+END_EXAMPLE
+
