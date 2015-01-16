@@ -1,0 +1,49 @@
+---
+created_at: 2015/01/15
+excerpt: Using Vagrant to manage Windows development environments with WinRM and PowerShell
+kind: article
+publish: true
+tags: [devops]
+title: Vagrant for Windows VMs
+---
+
+I recently needed to build a Windows reference environment in order to provide
+training on a system that was split across multiple servers in production. The
+attendees were using both OS X and Windows, so I wanted to use Oracle VirtualBox
+as a hypervisor rather than Hyper-V.
+
+I was pretty happy with the results so I thought I'd write about it.
+
+I started from scratch with a Windows Server 2008 R2 VM that I built directly in
+VirtualBox. Once I had installed quite a bit of software (with a lot of help
+from [[http://blogs.technet.com/b/jonjor/archive/2009/01/09/winrm-windows-remote-management-troubleshooting.aspx][Chocolatey]]) I packaged it up using Vagrant. As VirtualBox is Vagrant's
+default provider this was as simple as:
+
+#+BEGIN_EXAMPLE
+vagrant package --base my-virtual-machine
+#+END_EXAMPLE
+
+I used a couple of helpful blog posts:
+
+- [[http://www.hurryupandwait.io/blog/in-search-of-a-light-weight-windows-vagrant-box][one for reducing the size of the VM]] and
+- [[http://blogs.technet.com/b/jonjor/archive/2009/01/09/winrm-windows-remote-management-troubleshooting.aspx][one to help with enabling Windows Remote Management on it]]
+
+WinRM wasn't working until I ran:
+
+#+BEGIN_EXAMPLE
+winrm quickconfig
+#+END_EXAMPLE
+
+By the end of this I had a single Windows Server Vagrant box that can be
+provisioned on either Windows or OS X with only a couple of Vagrant commands:
+
+#+BEGIN_EXAMPLE
+vagrant box add sandbox package.box
+vagrant init
+vagrant up
+vagrant rdp
+#+END_EXAMPLE
+
+This all happens without opening VirtualBox which in my opinion is lacking in
+the UI department. It's much better to just RDP to the server once it is
+running.
