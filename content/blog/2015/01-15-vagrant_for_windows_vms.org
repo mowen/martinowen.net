@@ -8,20 +8,29 @@ title: Vagrant for Windows VMs
 ---
 
 I recently needed to build a Windows reference environment in order to provide
-training on a system that was split across multiple servers in production. The
-attendees were using both OS X and Windows, so I wanted to use Oracle VirtualBox
-as a hypervisor rather than Hyper-V.
+hands-on training to support colleagues on a system that was split across
+multiple servers in production. The attendees would be using both OS X and
+Windows, so I wanted to use [[https://www.virtualbox.org][Oracle VirtualBox]] as a hypervisor rather than
+Hyper-V.
 
-I was pretty happy with the results so I thought I'd write about it.
+[[http://vagrantup.com][Vagrant]] added Windows support in April last year, and I'd been meaning to play
+with it as I'd had good experiences with Linux boxes on Vagrant in the past.
+
+The path to a Windows VM wasn't entirely smooth, but I got there in the end and
+was so happy with the results so I thought I'd write about it.
+
+* A Windows Server base box with Vagrant
 
 I started from scratch with a Windows Server 2008 R2 VM that I built directly in
 VirtualBox. Once I had installed quite a bit of software (with a lot of help
-from [[http://blogs.technet.com/b/jonjor/archive/2009/01/09/winrm-windows-remote-management-troubleshooting.aspx][Chocolatey]]) I packaged it up using Vagrant. As VirtualBox is Vagrant's
+from [[http://chocolatey.org/][Chocolatey]]) I packaged it up using Vagrant. As VirtualBox is Vagrant's
 default provider this was as simple as:
 
 #+BEGIN_EXAMPLE
 vagrant package --base my-virtual-machine
 #+END_EXAMPLE
+
+Internally this uses VBoxManage to export the VM and then 
 
 I used a couple of helpful blog posts:
 
@@ -34,6 +43,10 @@ WinRM wasn't working until I ran:
 winrm quickconfig
 #+END_EXAMPLE
 
+I had to tweak a Vagrantfile to use WinRM, set the VM's mac address and IP, and
+forward the Remote Desktop port. Now that the Vagrantfile is sorted everything
+"just works".
+
 By the end of this I had a single Windows Server Vagrant box that can be
 provisioned on either Windows or OS X with only a couple of Vagrant commands:
 
@@ -41,9 +54,22 @@ provisioned on either Windows or OS X with only a couple of Vagrant commands:
 vagrant box add sandbox package.box
 vagrant init
 vagrant up
-vagrant rdp
+vagrant rdp # even works on OS X if you have the MS RDP app installed!
 #+END_EXAMPLE
 
 This all happens without opening VirtualBox which in my opinion is lacking in
 the UI department. It's much better to just RDP to the server once it is
 running.
+
+After logging off the VM will continue to run until I execute:
+
+#+BEGIN_EXAMPLE
+vagrant halt
+#+END_EXAMPLE
+
+So once the box has been built it is incredibly easy to manage the VM, even with
+a Windows VM on OS X!
+
+This whole process also taught me about the excellent new [[http://technet.microsoft.com/library/jj554906(v=wps.630).aspx][NetSecurity cmdlets]]
+that are available with Windows Server 2012 and Windows 8. I never could stand
+configuring firewall rules with a UI!

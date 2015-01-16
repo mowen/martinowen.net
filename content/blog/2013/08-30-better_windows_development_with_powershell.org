@@ -3,7 +3,7 @@ created_at: 2013/08/30
 excerpt: Since reading Windows PowerShell for Developers, I've been seriously impressed by PowerShell!
 kind: article
 publish: true
-tags: [powershell, dotnet]
+tags: [powershell, dotnet, devops]
 title: Better Windows development with PowerShell
 ---
 * Overcoming my PowerShell cynicism
