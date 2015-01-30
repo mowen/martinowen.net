@@ -1,0 +1,28 @@
+---
+created_at: 2015/01/30
+excerpt: A view of tech interviews from the other side of the fence
+kind: article
+publish: true
+tags: [careers]
+title: Tech interviews - an interviewers perspective
+---
+* The interviewer
+
+The person interviewing is probably super busy as they are bringing people in because either
+
+- a) they have too much work or
+- b) someone is leaving (potentially because of issues caused by being overworked).
+
+If it is b) then they are probably demoralised and trying hard not to show it. They will certainly be trying hard not to show how busy they are. 
+
+If they are busy, you've probably prepared for the interview more than they have. You only have to attend one interview, they have to attend many. 
+
+* The candidate
+
+If you have an active Stack Overflow or GitHub account you will not only be ahead of the other candidates, but the interviewer will love you as you are making their life much easier. Seriously, even a shitty project you threw together on a Saturday afternoon is better than a gaping void. 
+
+There's a good chance it will reduce the time required for the interview as they feel they already know you, and this is positive for all involved. 
+
+* The interviewer's manager
+
+Remember that behind every interviewer there is a manager saying "just hire someone already!" They want you to find a candidate as quickly as possible so that you can get back to your day job. If someone is leaving they want to be able to tell their own boss ASAP that everything is back under control. 
