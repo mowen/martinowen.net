@@ -8,10 +8,10 @@ title: Tech interviews - an interviewers perspective
 ---
 * The interviewer
 
-The person interviewing is probably super busy as they are bringing people in because either
+The person interviewing is probably super busy as they are bringing people in because they either:
 
-- a) they have too much work or
-- b) someone is leaving (potentially because of issues caused by being overworked).
+- a) have too much work or
+- b) someone is leaving (potentially because of issues caused by being overworked)
 
 If it is b) then they are probably demoralised and trying hard not to show it. They will certainly be trying hard not to show how busy they are. 
 

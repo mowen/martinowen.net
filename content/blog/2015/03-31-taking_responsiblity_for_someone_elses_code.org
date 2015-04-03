@@ -1,0 +1,10 @@
+---
+created_at: 2015/03/31
+excerpt: A new blog post that needs an excerpt!
+kind: article
+publish: true
+tags: [undefined]
+title: Taking Responsiblity For Someone Else's Code
+---
+If your software development career goes in the right direction, at some point you will find yourself taking responsibility for software written by someone else. This is hard to adjust to.
+
